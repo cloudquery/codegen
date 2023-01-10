@@ -1,0 +1,54 @@
+name: "Unit tests"
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  unitests:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Check out code into the Go module directory
+        uses: actions/checkout@v3
+      - name: Set up Go 1.x
+        uses: actions/setup-go@v3
+        with:
+          go-version-file: "go.mod"
+          cache: true
+      - run: go mod download
+      - run: go build ./...
+      - name: Run tests
+        if: matrix.os != 'ubuntu-latest'
+        run: go test -race ./...
+      - name: Run tests
+        if: matrix.os == 'ubuntu-latest'
+        run: go test -race -coverprofile=coverage.out ./...
+      - name: Run benchmark
+        if: matrix.os == 'ubuntu-latest'
+        run: make benchmark-ci
+      - name: Save PR number
+        if: matrix.os == 'ubuntu-latest' && github.event_name == 'pull_request'
+        run: echo ${{ github.event.number }} > ./pr_number
+      - name: Upload deltas
+        if: matrix.os == 'ubuntu-latest'
+        uses: actions/upload-artifact@v3
+        with:
+          name: delta-action-benchmarks
+          retention-days: 7
+          path: |
+            .delta.*
+            pr_number
+      - name: Generate coverage report
+        if: always() && matrix.os == 'ubuntu-latest'
+        run: go tool cover -html coverage.out -o coverage.html
+      - uses: actions/upload-artifact@v3
+        if: always() && matrix.os == 'ubuntu-latest'
+        with:
+          name: Code coverage
+          path: coverage.html

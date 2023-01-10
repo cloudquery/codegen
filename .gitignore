@@ -1,0 +1,11 @@
+*.idea
+*.log
+*/.cq/*
+.cq/
+config.hcl
+
+.vscode
+vendor
+cover.out
+.delta.*
+bench.json
