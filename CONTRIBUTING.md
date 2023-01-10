@@ -2,7 +2,7 @@
 
 :+1::tada: First off, thanks for taking the time to contribute! :tada::+1:
 
-This is the repository for CloudQuery SDK. If you are looking for CloudQuery CLI and plugins take a look at our [monorepo](https://github.com/cloudquery/cloudquery)
+If you are looking for CloudQuery CLI and plugins take a look at our [monorepo](https://github.com/cloudquery/cloudquery)
 
 ## Links
 
