@@ -39,9 +39,9 @@ type InterfacesClient interface {
 }
 `
 
-func TestGenerateInterfaces(t *testing.T) {
+func TestGenerate(t *testing.T) {
 	dir := t.TempDir()
-	err := GenerateInterfaces([]any{&Client{}}, dir, WithIncludeFunc(func(m reflect.Method) bool {
+	err := Generate([]any{&Client{}}, dir, WithIncludeFunc(func(m reflect.Method) bool {
 		return MethodHasAnyPrefix(m, []string{"List"}) && MethodHasAnySuffix(m, []string{"Tables"})
 	}))
 	if err != nil {

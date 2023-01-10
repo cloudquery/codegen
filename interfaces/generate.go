@@ -38,11 +38,11 @@ func WithIncludeFunc(f func(reflect.Method) bool) Option {
 	}
 }
 
-// GenerateInterfaces generates service interfaces to be used for generating
+// Generate generates service interfaces to be used for generating
 // mocks. The clients passed in as the first argument should be structs that will be used to
 // generate the service interfaces. The second argument, dir, is the path to the output
 // directory where the service interface files will be created.
-func GenerateInterfaces(clients []any, dir string, opts ...Option) error {
+func Generate(clients []any, dir string, opts ...Option) error {
 	options := &Options{}
 	for _, opt := range opts {
 		opt(options)
