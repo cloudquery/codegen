@@ -22,6 +22,9 @@ type Options struct {
 	// the method will be included. MethodHasPrefix and MethodHasSuffix can be used inside a custom function here
 	// to customize the behavior.
 	ShouldInclude func(reflect.Method) bool
+
+	// ExtraImports can add extra imports for a method
+	ExtraImports func(reflect.Method) []string
 }
 
 func (o *Options) SetDefaults() {
@@ -35,6 +38,12 @@ type Option func(*Options)
 func WithIncludeFunc(f func(reflect.Method) bool) Option {
 	return func(o *Options) {
 		o.ShouldInclude = f
+	}
+}
+
+func WithExtraImports(f func(reflect.Method) []string) Option {
+	return func(o *Options) {
+		o.ExtraImports = f
 	}
 }
 
@@ -116,11 +125,12 @@ func signature(name string, f any) string {
 }
 
 type serviceInfo struct {
-	Import      string
-	Name        string
-	PackageName string
-	ClientName  string
-	Signatures  []string
+	Import       string
+	Name         string
+	PackageName  string
+	ClientName   string
+	Signatures   []string
+	ExtraImports []string
 }
 
 func getServiceInfo(client any, opts *Options) serviceInfo {
@@ -133,19 +143,22 @@ func getServiceInfo(client any, opts *Options) serviceInfo {
 	name := csr.ToPascal(pkgName)
 	clientName := name + "Client"
 	signatures := make([]string, 0)
+	extraImports := make([]string, 0)
 	for i := 0; i < t.NumMethod(); i++ {
 		method := t.Method(i)
 		if opts.ShouldInclude(method) {
 			sig := signature(method.Name, v.Method(i).Interface())
 			signatures = append(signatures, sig)
 		}
+		extraImports = append(extraImports, opts.ExtraImports(method)...)
 	}
 	return serviceInfo{
-		Import:      pkgPath,
-		Name:        name,
-		PackageName: pkgName,
-		ClientName:  clientName,
-		Signatures:  signatures,
+		Import:       pkgPath,
+		Name:         name,
+		PackageName:  pkgName,
+		ClientName:   clientName,
+		Signatures:   signatures,
+		ExtraImports: extraImports,
 	}
 }
 
