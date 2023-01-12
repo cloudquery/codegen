@@ -41,9 +41,12 @@ type InterfacesClient interface {
 
 func TestGenerate(t *testing.T) {
 	dir := t.TempDir()
-	err := Generate([]any{&Client{}}, dir, WithIncludeFunc(func(m reflect.Method) bool {
-		return MethodHasAnyPrefix(m, []string{"List"}) && MethodHasAnySuffix(m, []string{"Tables"})
-	}))
+	err := Generate([]any{&Client{}}, dir,
+		WithIncludeFunc(func(m reflect.Method) bool {
+			return MethodHasAnyPrefix(m, []string{"List"}) && MethodHasAnySuffix(m, []string{"Tables"})
+		}),
+		WithExtraImports(func(m reflect.Method) []string { return []string{"net/http"} },
+		))
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}

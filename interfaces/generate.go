@@ -31,6 +31,9 @@ func (o *Options) SetDefaults() {
 	if o.ShouldInclude == nil {
 		o.ShouldInclude = func(reflect.Method) bool { return true }
 	}
+	if o.ExtraImports == nil {
+		o.ExtraImports = func(reflect.Method) []string { return nil }
+	}
 }
 
 type Option func(*Options)
