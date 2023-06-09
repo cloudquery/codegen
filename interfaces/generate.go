@@ -8,6 +8,7 @@ import (
 	"os"
 	"path"
 	"reflect"
+	"regexp"
 	"strings"
 	"text/template"
 
@@ -87,6 +88,19 @@ func Generate(clients []any, dir string, opts ...Option) error {
 	return nil
 }
 
+func normalizedGenericTypeName(str string) string {
+	// Generic output types have the full import path in the string value, so we need to normalize it
+	pattern := regexp.MustCompile(`\[(.*?)\]`)
+	groups := pattern.FindStringSubmatch((str))
+	if len(groups) < 2 {
+		return str
+	}
+
+	typeName := groups[1]
+	normalizedGenericTypeName := strings.Split(typeName, "/")
+	return pattern.ReplaceAllString(str, "["+normalizedGenericTypeName[len(normalizedGenericTypeName)-1]+"]")
+}
+
 // Adapted from https://stackoverflow.com/a/54129236
 func signature(name string, f any) string {
 	t := reflect.TypeOf(f)
@@ -117,7 +131,7 @@ func signature(name string, f any) string {
 			if i > 0 {
 				buf.WriteString(", ")
 			}
-			buf.WriteString(t.Out(i).String())
+			buf.WriteString(normalizedGenericTypeName(t.Out(i).String()))
 		}
 		if numOut > 1 {
 			buf.WriteString(")")
