@@ -125,7 +125,13 @@ func normalizedGenericTypeName(str string) string {
 
 	typeName := groups[1]
 	normalizedGenericTypeName := strings.Split(typeName, "/")
-	return pattern.ReplaceAllString(str, "["+normalizedGenericTypeName[len(normalizedGenericTypeName)-1]+"]")
+	importName := normalizedGenericTypeName[len(normalizedGenericTypeName)-1]
+	versionPattern := regexp.MustCompile(`/v\d+\.`)
+	if versionPattern.MatchString(typeName) {
+		// Example typeName: github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/appconfiguration/armappconfiguration/v2.ConfigurationStoresClientCreateResponse
+		importName = normalizedGenericTypeName[len(normalizedGenericTypeName)-2] + "." + strings.Split(normalizedGenericTypeName[len(normalizedGenericTypeName)-1], ".")[1]
+	}
+	return pattern.ReplaceAllString(str, "["+importName+"]")
 }
 
 // Adapted from https://stackoverflow.com/a/54129236
@@ -192,7 +198,11 @@ func getClientInfo(client any, opts *Options) clientInfo {
 	t := v.Type()
 	pkgPath := t.Elem().PkgPath()
 	parts := strings.Split(pkgPath, "/")
+	versionPattern := regexp.MustCompile(`/v\d+$`)
 	pkgName := parts[len(parts)-1]
+	if versionPattern.MatchString(pkgPath) {
+		pkgName = parts[len(parts)-2]
+	}
 	clientName := t.Elem().Name()
 	signatures := make([]string, 0)
 	extraImports := make([]string, 0)
