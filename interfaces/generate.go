@@ -12,7 +12,7 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/cloudquery/plugin-sdk/caser"
+	"golang.org/x/exp/maps"
 )
 
 //go:embed templates/*.go.tpl
@@ -51,6 +51,31 @@ func WithExtraImports(f func(reflect.Method) []string) Option {
 	}
 }
 
+func getTemplateDataFromClientInfos(clientInfos []clientInfo) []serviceTemplateData {
+	services := make([]serviceTemplateData, 0)
+	serviceMap := make(map[string][]clientInfo)
+	for _, clientInfo := range clientInfos {
+		serviceMap[clientInfo.PackageName] = append(serviceMap[clientInfo.PackageName], clientInfo)
+	}
+	for packageName, clientInfos := range serviceMap {
+		imports := make(map[string]bool)
+		clientsTemplateData := make([]clientTemplateData, 0)
+		for _, clientInfo := range clientInfos {
+			imports[clientInfo.Import] = true
+			for _, extraImport := range clientInfo.ExtraImports {
+				imports[extraImport] = true
+			}
+			clientsTemplateData = append(clientsTemplateData, clientTemplateData{Name: clientInfo.ClientName, Signatures: clientInfo.Signatures})
+		}
+		services = append(services, serviceTemplateData{
+			PackageName: packageName,
+			Imports:     maps.Keys(imports),
+			Clients:     clientsTemplateData,
+		})
+	}
+	return services
+}
+
 // Generate generates service interfaces to be used for generating
 // mocks. The clients passed in as the first argument should be structs that will be used to
 // generate the service interfaces. The second argument, dir, is the path to the output
@@ -62,9 +87,9 @@ func Generate(clients []any, dir string, opts ...Option) error {
 	}
 	options.SetDefaults()
 
-	services := make([]serviceInfo, 0)
+	clientInfos := make([]clientInfo, 0)
 	for _, client := range clients {
-		services = append(services, getServiceInfo(client, options))
+		clientInfos = append(clientInfos, getClientInfo(client, options))
 	}
 
 	// write individual service files
@@ -72,6 +97,8 @@ func Generate(clients []any, dir string, opts ...Option) error {
 	if err != nil {
 		return err
 	}
+
+	services := getTemplateDataFromClientInfos(clientInfos)
 
 	for _, service := range services {
 		buff := bytes.Buffer{}
@@ -81,7 +108,7 @@ func Generate(clients []any, dir string, opts ...Option) error {
 		filePath := path.Join(dir, fmt.Sprintf("%s.go", service.PackageName))
 		err := formatAndWriteFile(filePath, buff)
 		if err != nil {
-			return fmt.Errorf("failed to format and write file for service %v: %w", service.Name, err)
+			return fmt.Errorf("failed to format and write file for service %v: %w", service, err)
 		}
 	}
 
@@ -141,24 +168,32 @@ func signature(name string, f any) string {
 	return buf.String()
 }
 
-type serviceInfo struct {
+type clientInfo struct {
 	Import       string
-	Name         string
 	PackageName  string
 	ClientName   string
 	Signatures   []string
 	ExtraImports []string
 }
 
-func getServiceInfo(client any, opts *Options) serviceInfo {
+type clientTemplateData struct {
+	Name       string
+	Signatures []string
+}
+
+type serviceTemplateData struct {
+	PackageName string
+	Imports     []string
+	Clients     []clientTemplateData
+}
+
+func getClientInfo(client any, opts *Options) clientInfo {
 	v := reflect.ValueOf(client)
 	t := v.Type()
 	pkgPath := t.Elem().PkgPath()
 	parts := strings.Split(pkgPath, "/")
 	pkgName := parts[len(parts)-1]
-	csr := caser.New()
-	name := csr.ToPascal(pkgName)
-	clientName := name + "Client"
+	clientName := t.Elem().Name()
 	signatures := make([]string, 0)
 	extraImports := make([]string, 0)
 	for i := 0; i < t.NumMethod(); i++ {
@@ -169,9 +204,8 @@ func getServiceInfo(client any, opts *Options) serviceInfo {
 		}
 		extraImports = append(extraImports, opts.ExtraImports(method)...)
 	}
-	return serviceInfo{
+	return clientInfo{
 		Import:       pkgPath,
-		Name:         name,
 		PackageName:  pkgName,
 		ClientName:   clientName,
 		Signatures:   signatures,

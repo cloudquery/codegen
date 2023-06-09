@@ -2,15 +2,16 @@
 package services
 
 import (
-    "{{ .Import }}"
-    {{- range .ExtraImports }}
+    {{- range .Imports }}
     "{{ . }}"
     {{- end }}
 )
 
-//go:generate mockgen -package=mocks -destination=../mocks/{{.PackageName}}.go -source={{.PackageName}}.go {{.ClientName}}
-type {{.ClientName}} interface {
+{{ range .Clients }}
+//go:generate mockgen -package=mocks -destination=../mocks/{{$.PackageName}}.go -source={{$.PackageName}}.go {{.Name}}
+type {{.Name}} interface {
     {{- range $sig := .Signatures }}
     {{ $sig }}
     {{- end }}
 }
+{{ end }}
