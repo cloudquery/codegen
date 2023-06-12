@@ -12,6 +12,8 @@ import (
 	"strings"
 	"text/template"
 
+	"github.com/jpillora/longestcommon"
+
 	"golang.org/x/exp/maps"
 )
 
@@ -51,16 +53,41 @@ func WithExtraImports(f func(reflect.Method) []string) Option {
 	}
 }
 
+func getPackageNames(clientInfos []clientInfo) []string {
+	versionPattern := regexp.MustCompile(`/v\d+$`)
+	allImports := make([]string, len(clientInfos))
+	for i, clientInfo := range clientInfos {
+		allImports[i] = clientInfo.Import
+	}
+	// To get the shortest possible package name without collisions, we need to find the longest common prefix
+	importPrefix := longestcommon.Prefix(allImports)
+	packageNames := make([]string, len(clientInfos))
+	for i, clientInfo := range clientInfos {
+		var pkgName string
+		if clientInfo.Import == importPrefix {
+			pkgName = versionPattern.ReplaceAllString(clientInfo.Import, "")
+			pkgName = path.Base(pkgName)
+		} else {
+			pkgName = strings.TrimPrefix(clientInfo.Import, importPrefix)
+			pkgName = strings.ReplaceAll(versionPattern.ReplaceAllString(pkgName, ""), "/", "_")
+		}
+
+		packageNames[i] = strings.ReplaceAll(pkgName, "-", "")
+	}
+	return packageNames
+}
+
 func getTemplateDataFromClientInfos(clientInfos []clientInfo) []serviceTemplateData {
+	packageNames := getPackageNames(clientInfos)
 	services := make([]serviceTemplateData, 0)
 	serviceMap := make(map[string][]clientInfo)
-	for _, clientInfo := range clientInfos {
-		serviceMap[clientInfo.PackageName] = append(serviceMap[clientInfo.PackageName], clientInfo)
+	for i, clientInfo := range clientInfos {
+		serviceMap[packageNames[i]] = append(serviceMap[packageNames[i]], clientInfo)
 	}
-	for packageName, clientInfos := range serviceMap {
+	for packageName, infos := range serviceMap {
 		imports := make(map[string]bool)
 		clientsTemplateData := make([]clientTemplateData, 0)
-		for _, clientInfo := range clientInfos {
+		for _, clientInfo := range infos {
 			imports[clientInfo.Import] = true
 			for _, extraImport := range clientInfo.ExtraImports {
 				imports[extraImport] = true
@@ -105,7 +132,7 @@ func Generate(clients []any, dir string, opts ...Option) error {
 		if err := serviceTpl.Execute(&buff, service); err != nil {
 			return fmt.Errorf("failed to execute template: %w", err)
 		}
-		filePath := path.Join(dir, fmt.Sprintf("%s.go", service.PackageName))
+		filePath := path.Join(dir, service.PackageName, fmt.Sprintf("%s.go", service.PackageName))
 		err := formatAndWriteFile(filePath, buff)
 		if err != nil {
 			return fmt.Errorf("failed to format and write file for service %v: %w", service, err)
@@ -176,7 +203,6 @@ func signature(name string, f any) string {
 
 type clientInfo struct {
 	Import       string
-	PackageName  string
 	ClientName   string
 	Signatures   []string
 	ExtraImports []string
@@ -197,12 +223,6 @@ func getClientInfo(client any, opts *Options) clientInfo {
 	v := reflect.ValueOf(client)
 	t := v.Type()
 	pkgPath := t.Elem().PkgPath()
-	parts := strings.Split(pkgPath, "/")
-	versionPattern := regexp.MustCompile(`/v\d+$`)
-	pkgName := parts[len(parts)-1]
-	if versionPattern.MatchString(pkgPath) {
-		pkgName = parts[len(parts)-2]
-	}
 	clientName := t.Elem().Name()
 	signatures := make([]string, 0)
 	extraImports := make([]string, 0)
@@ -216,7 +236,6 @@ func getClientInfo(client any, opts *Options) clientInfo {
 	}
 	return clientInfo{
 		Import:       pkgPath,
-		PackageName:  pkgName,
 		ClientName:   clientName,
 		Signatures:   signatures,
 		ExtraImports: extraImports,
@@ -230,6 +249,9 @@ func formatAndWriteFile(filePath string, buff bytes.Buffer) error {
 		fmt.Printf("failed to format source: %s: %v\n", filePath, err)
 	} else {
 		content = formattedContent
+	}
+	if err := os.MkdirAll(path.Dir(filePath), 0755); err != nil {
+		return fmt.Errorf("failed to create directory %s: %w", path.Dir(filePath), err)
 	}
 	if err := os.WriteFile(filePath, content, 0644); err != nil {
 		return fmt.Errorf("failed to write file %s: %w", filePath, err)
