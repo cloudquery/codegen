@@ -250,7 +250,9 @@ func formatAndWriteFile(filePath string, buff bytes.Buffer) error {
 	} else {
 		content = formattedContent
 	}
-	os.MkdirAll(path.Dir(filePath), 0755)
+	if err := os.MkdirAll(path.Dir(filePath), 0755); err != nil {
+		return fmt.Errorf("failed to create directory %s: %w", path.Dir(filePath), err)
+	}
 	if err := os.WriteFile(filePath, content, 0644); err != nil {
 		return fmt.Errorf("failed to write file %s: %w", filePath, err)
 	}
