@@ -69,7 +69,7 @@ func getPackageNames(clientInfos []clientInfo) []string {
 			pkgName = path.Base(pkgName)
 		} else {
 			pkgName = strings.TrimPrefix(clientInfo.Import, importPrefix)
-			pkgName = strings.ReplaceAll(versionPattern.ReplaceAllString(pkgName, ""), "/", "")
+			pkgName = strings.ReplaceAll(versionPattern.ReplaceAllString(pkgName, ""), "/", "_")
 		}
 
 		packageNames[i] = strings.ReplaceAll(pkgName, "-", "")
