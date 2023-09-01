@@ -8,7 +8,7 @@ require (
 	github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/solutions/armmanagedapplications v1.1.1
 	github.com/google/go-cmp v0.5.9
 	github.com/jpillora/longestcommon v0.0.0-20161227235612-adb9d91ee629
-	golang.org/x/exp v0.0.0-20230728194245-b0cb94b80691
+	golang.org/x/exp v0.0.0-20230817173708-d852ddb80c63
 )
 
 require (
