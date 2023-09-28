@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"log"
 	"os"
+	"path"
 	"reflect"
 
 	"github.com/invopop/jsonschema"
@@ -22,7 +23,14 @@ func GenerateIntoFile(a any, filePath string) {
 		log.Fatalf("failed to generate JSON schema for %T", a)
 	}
 
+	ensureDir(filePath)
 	if err = os.WriteFile(filePath, data, 0o644); err != nil {
 		log.Fatalf("failed to write file %s: %s", filePath, err.Error())
+	}
+}
+
+func ensureDir(filePath string) {
+	if err := os.MkdirAll(path.Dir(filePath), os.ModePerm); err != nil {
+		log.Fatalf("failed to create dir for file %s: %v", filePath, err)
 	}
 }
