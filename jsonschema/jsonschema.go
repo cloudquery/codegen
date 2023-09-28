@@ -24,7 +24,7 @@ func GenerateIntoFile(a any, filePath string) {
 	}
 
 	ensureDir(filePath)
-	if err = os.WriteFile(filePath, data, 0o644); err != nil {
+	if err = os.WriteFile(filePath, append(data, '\n'), 0o644); err != nil {
 		log.Fatalf("failed to write file %s: %s", filePath, err.Error())
 	}
 }
