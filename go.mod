@@ -9,7 +9,7 @@ require (
 	github.com/google/go-cmp v0.5.9
 	github.com/invopop/jsonschema v0.10.0
 	github.com/jpillora/longestcommon v0.0.0-20161227235612-adb9d91ee629
-	golang.org/x/exp v0.0.0-20230817173708-d852ddb80c63
+	golang.org/x/exp v0.0.0-20230905200255-921286631fa9
 )
 
 require (
