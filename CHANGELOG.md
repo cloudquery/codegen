@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.3.3](https://github.com/cloudquery/codegen/compare/v0.3.2...v0.3.3) (2023-10-02)
+
+
+### Features
+
+* Add schema writing helper for gen code ([#29](https://github.com/cloudquery/codegen/issues/29)) ([2669d7e](https://github.com/cloudquery/codegen/commit/2669d7e12a9839edd288ac7f8f519e8077e74f01))
+
+
+### Bug Fixes
+
+* **deps:** Update golang.org/x/exp digest to 9212866 ([#30](https://github.com/cloudquery/codegen/issues/30)) ([6026688](https://github.com/cloudquery/codegen/commit/60266880c31e71bb2682c12da4d9102662a7b699))
+* **deps:** Update module github.com/Azure/azure-sdk-for-go/sdk/azcore to v1.7.2 ([#31](https://github.com/cloudquery/codegen/issues/31)) ([246d010](https://github.com/cloudquery/codegen/commit/246d0102e1a9b466d28113d25d2bdbd18bf702e3))
+* **deps:** Update module golang.org/x/net to v0.15.0 ([#34](https://github.com/cloudquery/codegen/issues/34)) ([44a2c4a](https://github.com/cloudquery/codegen/commit/44a2c4ab2ac95e360b8e87c31c857b6f9677bcd7))
+
 ## [0.3.2](https://github.com/cloudquery/codegen/compare/v0.3.1...v0.3.2) (2023-09-26)
 
 
