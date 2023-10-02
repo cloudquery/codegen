@@ -7,7 +7,7 @@ require (
 	github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/resources/armmanagedapplications v1.1.1
 	github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/solutions/armmanagedapplications v1.1.1
 	github.com/google/go-cmp v0.5.9
-	github.com/invopop/jsonschema v0.10.0
+	github.com/invopop/jsonschema v0.11.0
 	github.com/jpillora/longestcommon v0.0.0-20161227235612-adb9d91ee629
 	golang.org/x/exp v0.0.0-20230905200255-921286631fa9
 )
