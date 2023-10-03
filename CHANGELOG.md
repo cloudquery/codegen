@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.4](https://github.com/cloudquery/codegen/compare/v0.3.3...v0.3.4) (2023-10-03)
+
+
+### Features
+
+* Allow passing single package name for generation ([#37](https://github.com/cloudquery/codegen/issues/37)) ([b2e9af7](https://github.com/cloudquery/codegen/commit/b2e9af7b8539ba14eb0cc5e5c0155aebba2f5061))
+
 ## [0.3.3](https://github.com/cloudquery/codegen/compare/v0.3.2...v0.3.3) (2023-10-02)
 
 
