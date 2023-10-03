@@ -8,8 +8,8 @@ import (
 )
 
 {{ range .Clients }}
-//go:generate mockgen -package=mocks -destination=../mocks/{{$.PackageName}}.go -source={{$.PackageName}}.go {{.Name}}
-type {{.Name}} interface {
+//go:generate mockgen -package=mocks -destination=../mocks/{{$.FileName}}.go -source={{$.FileName}}.go {{.ClientName}}
+type {{.ClientName}} interface {
     {{- range $sig := .Signatures }}
     {{ $sig }}
     {{- end }}

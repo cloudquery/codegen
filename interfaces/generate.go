@@ -11,97 +11,10 @@ import (
 	"regexp"
 	"strings"
 	"text/template"
-
-	"github.com/jpillora/longestcommon"
-
-	"golang.org/x/exp/maps"
 )
 
 //go:embed templates/*.go.tpl
 var templatesFS embed.FS
-
-type Options struct {
-	// ShouldInclude tests whether a method should be included in the generated interfaces. If it returns true,
-	// the method will be included. MethodHasPrefix and MethodHasSuffix can be used inside a custom function here
-	// to customize the behavior.
-	ShouldInclude func(reflect.Method) bool
-
-	// ExtraImports can add extra imports for a method
-	ExtraImports func(reflect.Method) []string
-}
-
-func (o *Options) SetDefaults() {
-	if o.ShouldInclude == nil {
-		o.ShouldInclude = func(reflect.Method) bool { return true }
-	}
-	if o.ExtraImports == nil {
-		o.ExtraImports = func(reflect.Method) []string { return nil }
-	}
-}
-
-type Option func(*Options)
-
-func WithIncludeFunc(f func(reflect.Method) bool) Option {
-	return func(o *Options) {
-		o.ShouldInclude = f
-	}
-}
-
-func WithExtraImports(f func(reflect.Method) []string) Option {
-	return func(o *Options) {
-		o.ExtraImports = f
-	}
-}
-
-func getPackageNames(clientInfos []clientInfo) []string {
-	versionPattern := regexp.MustCompile(`/v\d+$`)
-	allImports := make([]string, len(clientInfos))
-	for i, clientInfo := range clientInfos {
-		allImports[i] = clientInfo.Import
-	}
-	// To get the shortest possible package name without collisions, we need to find the longest common prefix
-	importPrefix := longestcommon.Prefix(allImports)
-	packageNames := make([]string, len(clientInfos))
-	for i, clientInfo := range clientInfos {
-		var pkgName string
-		if clientInfo.Import == importPrefix {
-			pkgName = versionPattern.ReplaceAllString(clientInfo.Import, "")
-			pkgName = path.Base(pkgName)
-		} else {
-			pkgName = strings.TrimPrefix(clientInfo.Import, importPrefix)
-			pkgName = strings.ReplaceAll(versionPattern.ReplaceAllString(pkgName, ""), "/", "_")
-		}
-
-		packageNames[i] = strings.ReplaceAll(pkgName, "-", "")
-	}
-	return packageNames
-}
-
-func getTemplateDataFromClientInfos(clientInfos []clientInfo) []serviceTemplateData {
-	packageNames := getPackageNames(clientInfos)
-	services := make([]serviceTemplateData, 0)
-	serviceMap := make(map[string][]clientInfo)
-	for i, clientInfo := range clientInfos {
-		serviceMap[packageNames[i]] = append(serviceMap[packageNames[i]], clientInfo)
-	}
-	for packageName, infos := range serviceMap {
-		imports := make(map[string]bool)
-		clientsTemplateData := make([]clientTemplateData, 0)
-		for _, clientInfo := range infos {
-			imports[clientInfo.Import] = true
-			for _, extraImport := range clientInfo.ExtraImports {
-				imports[extraImport] = true
-			}
-			clientsTemplateData = append(clientsTemplateData, clientTemplateData{Name: clientInfo.ClientName, Signatures: clientInfo.Signatures})
-		}
-		services = append(services, serviceTemplateData{
-			PackageName: packageName,
-			Imports:     maps.Keys(imports),
-			Clients:     clientsTemplateData,
-		})
-	}
-	return services
-}
 
 // Generate generates service interfaces to be used for generating
 // mocks. The clients passed in as the first argument should be structs that will be used to
@@ -125,7 +38,7 @@ func Generate(clients []any, dir string, opts ...Option) error {
 		return err
 	}
 
-	services := getTemplateDataFromClientInfos(clientInfos)
+	services := getTemplateDataFromClientInfos(clientInfos, options)
 
 	for _, service := range services {
 		buff := bytes.Buffer{}
@@ -199,47 +112,6 @@ func signature(name string, f any) string {
 	}
 
 	return buf.String()
-}
-
-type clientInfo struct {
-	Import       string
-	ClientName   string
-	Signatures   []string
-	ExtraImports []string
-}
-
-type clientTemplateData struct {
-	Name       string
-	Signatures []string
-}
-
-type serviceTemplateData struct {
-	PackageName string
-	Imports     []string
-	Clients     []clientTemplateData
-}
-
-func getClientInfo(client any, opts *Options) clientInfo {
-	v := reflect.ValueOf(client)
-	t := v.Type()
-	pkgPath := t.Elem().PkgPath()
-	clientName := t.Elem().Name()
-	signatures := make([]string, 0)
-	extraImports := make([]string, 0)
-	for i := 0; i < t.NumMethod(); i++ {
-		method := t.Method(i)
-		if opts.ShouldInclude(method) {
-			sig := signature(method.Name, v.Method(i).Interface())
-			signatures = append(signatures, sig)
-		}
-		extraImports = append(extraImports, opts.ExtraImports(method)...)
-	}
-	return clientInfo{
-		Import:       pkgPath,
-		ClientName:   clientName,
-		Signatures:   signatures,
-		ExtraImports: extraImports,
-	}
 }
 
 func formatAndWriteFile(filePath string, buff bytes.Buffer) error {
