@@ -50,7 +50,6 @@ func getTemplateDataFromClientInfos(clientInfos []clientInfo, options *Options) 
 			Clients:     clientsTemplateData,
 		}
 		if len(options.SinglePackage) > 0 {
-			fmt.Printf("updating package name from %s to %s\n", svc.PackageName, options.SinglePackage)
 			svc.PackageName = options.SinglePackage
 		}
 		services = append(services, svc)
