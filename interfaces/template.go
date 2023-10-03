@@ -1,6 +1,9 @@
 package interfaces
 
 import (
+	"fmt"
+	"path"
+
 	"github.com/cloudquery/plugin-sdk/v4/caser"
 	"golang.org/x/exp/maps"
 )
@@ -14,6 +17,13 @@ type serviceTemplateData struct {
 	FileName    string
 	Imports     []string
 	Clients     []clientTemplateData
+}
+
+func (s serviceTemplateData) getFilePath(baseDir string) string {
+	if s.FileName == s.PackageName {
+		return path.Join(baseDir, s.PackageName, fmt.Sprintf("%s.go", s.PackageName))
+	}
+	return path.Join(baseDir, fmt.Sprintf("%s.go", s.FileName))
 }
 
 func getTemplateDataFromClientInfos(clientInfos []clientInfo, options *Options) []serviceTemplateData {

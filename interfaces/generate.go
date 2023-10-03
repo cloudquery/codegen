@@ -45,8 +45,7 @@ func Generate(clients []any, dir string, opts ...Option) error {
 		if err := serviceTpl.Execute(&buff, service); err != nil {
 			return fmt.Errorf("failed to execute template: %w", err)
 		}
-		filePath := path.Join(dir, service.PackageName, fmt.Sprintf("%s.go", service.PackageName))
-		err := formatAndWriteFile(filePath, buff)
+		err := formatAndWriteFile(service.getFilePath(dir), buff)
 		if err != nil {
 			return fmt.Errorf("failed to format and write file for service %v: %w", service, err)
 		}
