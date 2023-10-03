@@ -8,7 +8,7 @@ import (
 )
 
 {{ range .Clients }}
-//go:generate mockgen -package=mocks -destination=../mocks/{{$.PackageName}}.go -source={{$.PackageName}}.go {{.Name}}
+//go:generate mockgen -package=mocks -destination=../mocks/{{$.FileName}}.go -source={{$.FileName}}.go {{.Name}}
 type {{.Name}} interface {
     {{- range $sig := .Signatures }}
     {{ $sig }}

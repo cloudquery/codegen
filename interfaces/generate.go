@@ -12,8 +12,8 @@ import (
 	"strings"
 	"text/template"
 
+	"github.com/cloudquery/plugin-sdk/v4/caser"
 	"github.com/jpillora/longestcommon"
-
 	"golang.org/x/exp/maps"
 )
 
@@ -28,6 +28,10 @@ type Options struct {
 
 	// ExtraImports can add extra imports for a method
 	ExtraImports func(reflect.Method) []string
+
+	// SinglePackage allows to generate all passed clients into a single package.
+	// The clients will get their package name as prefix to the interface name (e.g., s3.Client -> S3Client)
+	SinglePackage string
 }
 
 func (o *Options) SetDefaults() {
@@ -50,6 +54,12 @@ func WithIncludeFunc(f func(reflect.Method) bool) Option {
 func WithExtraImports(f func(reflect.Method) []string) Option {
 	return func(o *Options) {
 		o.ExtraImports = f
+	}
+}
+
+func WithSinglePackage(name string) Option {
+	return func(o *Options) {
+		o.SinglePackage = name
 	}
 }
 
@@ -77,7 +87,7 @@ func getPackageNames(clientInfos []clientInfo) []string {
 	return packageNames
 }
 
-func getTemplateDataFromClientInfos(clientInfos []clientInfo) []serviceTemplateData {
+func getTemplateDataFromClientInfos(clientInfos []clientInfo, options *Options) []serviceTemplateData {
 	packageNames := getPackageNames(clientInfos)
 	services := make([]serviceTemplateData, 0)
 	serviceMap := make(map[string][]clientInfo)
@@ -92,13 +102,18 @@ func getTemplateDataFromClientInfos(clientInfos []clientInfo) []serviceTemplateD
 			for _, extraImport := range clientInfo.ExtraImports {
 				imports[extraImport] = true
 			}
-			clientsTemplateData = append(clientsTemplateData, clientTemplateData{Name: clientInfo.ClientName, Signatures: clientInfo.Signatures})
+			clientsTemplateData = append(clientsTemplateData, clientInfo.templateData(len(options.SinglePackage) > 0))
 		}
-		services = append(services, serviceTemplateData{
+		svc := serviceTemplateData{
 			PackageName: packageName,
+			FileName:    packageName,
 			Imports:     maps.Keys(imports),
 			Clients:     clientsTemplateData,
-		})
+		}
+		if len(options.SinglePackage) > 0 {
+			svc.PackageName = options.SinglePackage
+		}
+		services = append(services, svc)
 	}
 	return services
 }
@@ -125,15 +140,14 @@ func Generate(clients []any, dir string, opts ...Option) error {
 		return err
 	}
 
-	services := getTemplateDataFromClientInfos(clientInfos)
+	services := getTemplateDataFromClientInfos(clientInfos, options)
 
 	for _, service := range services {
 		buff := bytes.Buffer{}
 		if err := serviceTpl.Execute(&buff, service); err != nil {
 			return fmt.Errorf("failed to execute template: %w", err)
 		}
-		filePath := path.Join(dir, service.PackageName, fmt.Sprintf("%s.go", service.PackageName))
-		err := formatAndWriteFile(filePath, buff)
+		err := formatAndWriteFile(service.getFilePath(dir), buff)
 		if err != nil {
 			return fmt.Errorf("failed to format and write file for service %v: %w", service, err)
 		}
@@ -208,6 +222,17 @@ type clientInfo struct {
 	ExtraImports []string
 }
 
+func (c clientInfo) templateData(singlePackageMode bool) clientTemplateData {
+	var packageName string
+	if singlePackageMode {
+		packageName = caser.New().ToPascal(getPackageNames([]clientInfo{c})[0])
+	}
+	return clientTemplateData{
+		Name:       packageName + c.ClientName,
+		Signatures: c.Signatures,
+	}
+}
+
 type clientTemplateData struct {
 	Name       string
 	Signatures []string
@@ -215,8 +240,16 @@ type clientTemplateData struct {
 
 type serviceTemplateData struct {
 	PackageName string
+	FileName    string
 	Imports     []string
 	Clients     []clientTemplateData
+}
+
+func (s serviceTemplateData) getFilePath(baseDir string) string {
+	if s.FileName == s.PackageName {
+		return path.Join(baseDir, s.PackageName, fmt.Sprintf("%s.go", s.PackageName))
+	}
+	return path.Join(baseDir, fmt.Sprintf("%s.go", s.FileName))
 }
 
 func getClientInfo(client any, opts *Options) clientInfo {
