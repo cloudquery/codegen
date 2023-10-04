@@ -16,6 +16,6 @@ func TestSanitize(t *testing.T) {
 		"key": new(jsonschema.Schema),
 	}
 
-	require.NotPanics(t, func() { Sanitize(sc) })
+	require.NoError(t, Sanitize(sc))
 	require.Empty(t, sc.Definitions)
 }

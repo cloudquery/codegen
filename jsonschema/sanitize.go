@@ -1,15 +1,27 @@
 package jsonschema
 
 import (
+	"encoding/json"
 	"net/url"
 	"strings"
 
 	"github.com/invopop/jsonschema"
-	"golang.org/x/exp/maps"
 )
 
-func Sanitize(sc *jsonschema.Schema) {
-	refs := collectRefs(sc)
+func Sanitize(sc *jsonschema.Schema) error {
+	data, err := json.MarshalIndent(sc, "", "  ")
+	if err != nil {
+		return err
+	}
+
+	refs := make(map[string]bool)
+	for _, line := range strings.Split(string(data), "\n") {
+		line = strings.TrimSpace(line)
+		const refPfx = `"$ref": `
+		if strings.HasPrefix(line, refPfx) {
+			refs[unescapeRef(strings.Trim(strings.TrimSuffix(strings.TrimPrefix(line, refPfx), ","), `"`))] = true
+		}
+	}
 
 	for key := range sc.Definitions {
 		if _, ok := refs[key]; !ok {
@@ -18,23 +30,18 @@ func Sanitize(sc *jsonschema.Schema) {
 	}
 
 	for p := sc.Properties.Oldest(); p != nil; p = p.Next() {
-		Sanitize(p.Value)
+		if err := Sanitize(p.Value); err != nil {
+			return err
+		}
 	}
+	for _, def := range sc.Definitions {
+		if err := Sanitize(def); err != nil {
+			return err
+		}
+	}
+
+	return nil
 }
-
-func collectRefs(sc *jsonschema.Schema) map[string]bool {
-	refs := make(map[string]bool)
-	if len(sc.Ref) > 0 {
-		refs[unescapeRef(sc.Ref)] = true
-	}
-
-	for p := sc.Properties.Oldest(); p != nil; p = p.Next() {
-		maps.Copy(refs, collectRefs(p.Value))
-	}
-
-	return refs
-}
-
 func unescapeRef(ref string) string {
 	ref = strings.TrimPrefix(ref, "#/$defs/")
 
