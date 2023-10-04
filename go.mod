@@ -10,6 +10,7 @@ require (
 	github.com/google/go-cmp v0.5.9
 	github.com/invopop/jsonschema v0.11.0
 	github.com/jpillora/longestcommon v0.0.0-20161227235612-adb9d91ee629
+	github.com/stretchr/testify v1.8.4
 	golang.org/x/exp v0.0.0-20230905200255-921286631fa9
 )
 
@@ -21,8 +22,10 @@ require (
 	github.com/Azure/azure-sdk-for-go/sdk/internal v1.3.0 // indirect
 	github.com/bahlo/generic-list-go v0.2.0 // indirect
 	github.com/buger/jsonparser v1.1.1 // indirect
+	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/kr/text v0.2.0 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
+	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/wk8/go-ordered-map/v2 v2.1.8 // indirect
 	golang.org/x/net v0.15.0 // indirect
 	golang.org/x/text v0.13.0 // indirect

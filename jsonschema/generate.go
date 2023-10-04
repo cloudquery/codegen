@@ -13,6 +13,7 @@ import (
 // defined by https://github.com/invopop/jsonschema
 func Generate(a any) ([]byte, error) {
 	sc := (&jsonschema.Reflector{RequiredFromJSONSchemaTags: true, NamesWithPkg: true}).Reflect(a)
+	Sanitize(sc)
 	return json.MarshalIndent(sc, "", "  ")
 }
 
