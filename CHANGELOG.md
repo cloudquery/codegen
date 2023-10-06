@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.3.5](https://github.com/cloudquery/codegen/compare/v0.3.4...v0.3.5) (2023-10-06)
+
+
+### Bug Fixes
+
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.12.1 ([#40](https://github.com/cloudquery/codegen/issues/40)) ([98aa56c](https://github.com/cloudquery/codegen/commit/98aa56ccd10aa214226778b79203f2067bb5b6aa))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.12.2 ([#42](https://github.com/cloudquery/codegen/issues/42)) ([7e845b6](https://github.com/cloudquery/codegen/commit/7e845b60e90bf0d177f41474269b560d38ee7e8a))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.12.3 ([#43](https://github.com/cloudquery/codegen/issues/43)) ([b537cc6](https://github.com/cloudquery/codegen/commit/b537cc6f16d0925cd1e087ab12c5e0e1bd135296))
+* Fix type name clashing & nullability issues ([#39](https://github.com/cloudquery/codegen/issues/39)) ([6940313](https://github.com/cloudquery/codegen/commit/69403134c4e982cd0be5643dce8fcfa00a116285))
+
 ## [0.3.4](https://github.com/cloudquery/codegen/compare/v0.3.3...v0.3.4) (2023-10-03)
 
 
