@@ -22,9 +22,9 @@ func Example_basicSchema() {
 	// {
 	//   "$schema": "https://json-schema.org/draft/2020-12/schema",
 	//   "$id": "https://github.com/cloudquery/codegen/jsonschema_test/basic",
-	//   "$ref": "#/$defs/github.com~1cloudquery~1codegen~1jsonschema_test~1basic",
+	//   "$ref": "#/$defs/basic",
 	//   "$defs": {
-	//     "github.com/cloudquery/codegen/jsonschema_test/basic": {
+	//     "basic": {
 	//       "properties": {
 	//         "a": {
 	//           "type": "string",
