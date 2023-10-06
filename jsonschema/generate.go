@@ -12,7 +12,11 @@ import (
 // Generate returns a formatted JSON schema for the input struct, according to the tags
 // defined by https://github.com/invopop/jsonschema
 func Generate(a any) ([]byte, error) {
-	sc := (&jsonschema.Reflector{RequiredFromJSONSchemaTags: true}).Reflect(a)
+	sc := (&jsonschema.Reflector{RequiredFromJSONSchemaTags: true, NullableFromType: true}).Reflect(a)
+	if err := Sanitize(sc); err != nil {
+		return nil, err
+	}
+
 	return json.MarshalIndent(sc, "", "  ")
 }
 
