@@ -15,7 +15,7 @@ require (
 )
 
 // https://github.com/invopop/jsonschema/pull/106
-replace github.com/invopop/jsonschema => github.com/cloudquery/jsonschema v0.0.0-20231006094144-b42fc04b92bb
+replace github.com/invopop/jsonschema => github.com/cloudquery/jsonschema v0.0.0-20231008093019-d7c8940339dc
 
 require (
 	github.com/Azure/azure-sdk-for-go/sdk/azcore v1.7.2 // indirect
