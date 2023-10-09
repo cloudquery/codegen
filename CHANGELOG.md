@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.6](https://github.com/cloudquery/codegen/compare/v0.3.5...v0.3.6) (2023-10-09)
+
+
+### Bug Fixes
+
+* Proper shadowng resolution in `jsonschema` ([#45](https://github.com/cloudquery/codegen/issues/45)) ([3369b45](https://github.com/cloudquery/codegen/commit/3369b452547a5d6bb34c84027043796095674ccc))
+
 ## [0.3.5](https://github.com/cloudquery/codegen/compare/v0.3.4...v0.3.5) (2023-10-06)
 
 
