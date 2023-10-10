@@ -31,7 +31,6 @@ func Example_basicSchema() {
 	//           "minLength": 2
 	//         }
 	//       },
-	//       "additionalProperties": false,
 	//       "type": "object",
 	//       "required": [
 	//         "a"
