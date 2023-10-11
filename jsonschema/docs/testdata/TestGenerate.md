@@ -1,1 +1,18 @@
 # Spec
+
+* `regions` (`[]string`) (nullable)
+* `accounts` ([`[]Account`](#Account) (nullable)
+* `org` ([`Org`](#Org)) (nullable)
+* `aws_debug` (`boolean`)
+* `max_retries` (`integer`) (nullable)
+* `max_backoff` (`integer`) (nullable)
+* `custom_endpoint_url` (`string`)
+* `custom_endpoint_hostname_immutable` (`boolean`) (nullable)
+* `custom_endpoint_partition_id` (`string`)
+* `custom_endpoint_signing_region` (`string`)
+* `initialization_concurrency` (`integer`) (default=`4`)
+* `concurrency` (`integer`) (default=`50000`)
+* `use_paid_apis` (`boolean`) (default=`false`)
+* `table_options` ([`TableOptions`](#TableOptions)) (nullable)
+* `event_based_sync` ([`EventBasedSync`](#EventBasedSync)) (nullable)
+* `scheduler` ([`Strategy`](#Strategy))
