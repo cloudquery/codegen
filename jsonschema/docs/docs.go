@@ -58,6 +58,7 @@ func generate(definitions jsonschema.Definitions, ref string, level int, buff *s
 
 func writeDefinition(ref reference, sc *jsonschema.Schema, buff *strings.Builder) []reference {
 	buff.WriteString(header(ref))
+	buff.WriteString("\n")
 
 	refs := make([]reference, 0, sc.Properties.Len()) // prealloc to some meaningful len
 	for prop := sc.Properties.Oldest(); prop != nil; prop = prop.Next() {
