@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"regexp"
 	"slices"
+	"strconv"
 	"strings"
 
 	"github.com/invopop/jsonschema"
@@ -117,7 +118,8 @@ func writeProperty(property *jsonschema.Schema, required bool, buff *strings.Bui
 	}
 
 	if len(property.Pattern) > 0 {
-		_, _ = fmt.Fprintf(buff, " (pattern: `%s`)", property.Pattern)
+		pattern := strings.Trim(strconv.Quote(property.Pattern), `""`)
+		_, _ = fmt.Fprintf(buff, " (pattern: `%s`)", pattern)
 	}
 
 	if len(property.Enum) > 0 {
