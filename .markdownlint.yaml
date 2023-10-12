@@ -1,3 +1,5 @@
 default: true
 # Line Length
 MD013: false
+# Inline HTML
+MD033: false
