@@ -51,7 +51,7 @@ func generate(definitions jsonschema.Definitions, ref string, level int, buff *s
 
 		// we prepend references to make the docs more localized
 		references = append(writeDefinition(curr, currSchema, buff), references...)
-		toc += "\n" + strings.Repeat("  ", curr.level-level) + "* " + linkTo(curr.key)
+		toc += "\n" + strings.Repeat("  ", curr.level-level-1) + "* " + linkTo(curr.key)
 	}
 	return toc, nil
 }
