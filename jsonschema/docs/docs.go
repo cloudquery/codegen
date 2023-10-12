@@ -148,9 +148,6 @@ func mapType(sc *jsonschema.Schema) (_type string, ref string, ok bool) {
 	}
 	pfx := `map[string]`
 	_type, ref = propertyTypeNoSuffix(sc.AdditionalProperties)
-	if len(ref) > 0 {
-
-	}
 	return pfx + _type, ref, true
 }
 
