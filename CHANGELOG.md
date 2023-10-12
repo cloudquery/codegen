@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.3.7](https://github.com/cloudquery/codegen/compare/v0.3.6...v0.3.7) (2023-10-12)
+
+
+### Features
+
+* Use `-` instead of `_` for clashing names ([#51](https://github.com/cloudquery/codegen/issues/51)) ([575512a](https://github.com/cloudquery/codegen/commit/575512a5971268c4637468d95dc547c732ded5f4))
+
+
+### Bug Fixes
+
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.12.4 ([#48](https://github.com/cloudquery/codegen/issues/48)) ([82d1648](https://github.com/cloudquery/codegen/commit/82d1648702c6579e68c8522eafcd51be611cff15))
+
 ## [0.3.6](https://github.com/cloudquery/codegen/compare/v0.3.5...v0.3.6) (2023-10-09)
 
 
