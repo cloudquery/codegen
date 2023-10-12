@@ -17,8 +17,8 @@ func Generate(schema []byte, headerLevel int) (string, error) {
 	}
 
 	buff := new(strings.Builder)
-	err := generate(root.Definitions, []reference{{key: unwrapRef(root.Ref), level: headerLevel}}, buff)
-	return buff.String(), err
+	toc, err := generate(root.Definitions, unwrapRef(root.Ref), headerLevel, buff)
+	return toc + "\n\n" + buff.String(), err
 }
 
 type reference struct {
@@ -26,8 +26,12 @@ type reference struct {
 	level int
 }
 
-func generate(definitions jsonschema.Definitions, references []reference, buff *strings.Builder) error {
+func generate(definitions jsonschema.Definitions, ref string, level int, buff *strings.Builder) (toc string, err error) {
 	processed := make(map[string]struct{}, len(definitions))
+	references := make([]reference, 1, len(definitions))
+	references[0] = reference{key: ref, level: level + 1} // +1 as toc is on the level
+
+	toc = strings.Repeat("#", level) + " Table of contents"
 	var curr reference
 	for len(references) > 0 {
 		curr, references = references[0], references[1:]
@@ -42,19 +46,20 @@ func generate(definitions jsonschema.Definitions, references []reference, buff *
 
 		currSchema, ok := definitions[curr.key]
 		if !ok {
-			return fmt.Errorf("missing definition for key %q, possibly incomplete schema", curr.key)
+			return toc, fmt.Errorf("missing definition for key %q, possibly incomplete schema", curr.key)
 		}
 
 		// we prepend references to make the docs more localized
 		references = append(writeDefinition(curr, currSchema, buff), references...)
+		toc += "\n" + strings.Repeat("  ", curr.level-level) + "* [`" + trimClashingSuffix(curr.key) + "`](#" + curr.key + ")"
 	}
-	return nil
+	return toc, nil
 }
 
 func writeDefinition(ref reference, sc *jsonschema.Schema, buff *strings.Builder) []reference {
 	buff.WriteString(strings.Repeat("#", ref.level))
 	buff.WriteString(` <a name="` + ref.key + `"></a>`) // add anchor
-	buff.WriteString(unwrapRef(ref.key))
+	buff.WriteString(trimClashingSuffix(ref.key))
 
 	refs := make([]reference, 0, sc.Properties.Len()) // prealloc to some meaningful len
 	for prop := sc.Properties.Oldest(); prop != nil; prop = prop.Next() {
