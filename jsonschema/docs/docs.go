@@ -190,7 +190,7 @@ func unwrapRef(ref string) string {
 }
 
 func trimClashingSuffix(ref string) string {
-	clashingRef := regexp.MustCompile(`^(.+)_\d+$`)
+	clashingRef := regexp.MustCompile(`^(.+)[_-]\d+$`)
 	if !clashingRef.MatchString(ref) {
 		return ref
 	}
