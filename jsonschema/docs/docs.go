@@ -58,8 +58,8 @@ func generate(definitions jsonschema.Definitions, ref string, level int, buff *s
 
 func writeDefinition(ref reference, sc *jsonschema.Schema, buff *strings.Builder) []reference {
 	buff.WriteString(strings.Repeat("#", min(ref.level, 6))) // h6 is max
+	buff.WriteString(` <a name="` + ref.key + `"></a>`)      // add anchor
 	buff.WriteString(trimClashingSuffix(ref.key))
-	buff.WriteString("\n\n<a name=\"" + ref.key + "\"></a>\n") // add anchor
 
 	refs := make([]reference, 0, sc.Properties.Len()) // prealloc to some meaningful len
 	for prop := sc.Properties.Oldest(); prop != nil; prop = prop.Next() {
