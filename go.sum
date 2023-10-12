@@ -18,8 +18,8 @@ github.com/bahlo/generic-list-go v0.2.0 h1:5sz/EEAK+ls5wF+NeqDpk5+iNdMDXrh3z3nPn
 github.com/bahlo/generic-list-go v0.2.0/go.mod h1:2KvAjgMlE5NNynlg/5iLrrCCZ2+5xWbdbCW3pNTGyYg=
 github.com/buger/jsonparser v1.1.1 h1:2PnMjfWD7wBILjqQbt530v576A/cAbQvEW9gGIpYMUs=
 github.com/buger/jsonparser v1.1.1/go.mod h1:6RYKKt7H4d4+iWqouImQ9R2FZql3VbhNgx27UK13J/0=
-github.com/cloudquery/jsonschema v0.0.0-20231008093019-d7c8940339dc h1:QTRBZypds6EPqBOIOagrTAIGHzpxiqU1e779HKBWY4w=
-github.com/cloudquery/jsonschema v0.0.0-20231008093019-d7c8940339dc/go.mod h1:ffZ5Km5SWWRAIN6wbDXItl95euhFz2uON45H2qjYt+0=
+github.com/cloudquery/jsonschema v0.0.0-20231012111802-b28735982a93 h1:Rgtj0YMsk5BGD76Y38xCAHEtfOguxntnJO/q+oCAry4=
+github.com/cloudquery/jsonschema v0.0.0-20231012111802-b28735982a93/go.mod h1:ffZ5Km5SWWRAIN6wbDXItl95euhFz2uON45H2qjYt+0=
 github.com/cloudquery/plugin-sdk/v4 v4.12.4 h1:kdaUD7qNktq8yNXUG+wRlyMCbCaT8RTD7CQ8m2Q2p3w=
 github.com/cloudquery/plugin-sdk/v4 v4.12.4/go.mod h1:3KXAk8+ZvrjUUPrl0ozbJCwsFJMwvC9ODPzY7UJOqb8=
 github.com/coreos/go-systemd/v22 v22.5.0/go.mod h1:Y58oyj3AT4RCenI/lSvhwexgC+NSVTIJ3seZv2GcEnc=
