@@ -12,7 +12,7 @@ import (
 var jsonSchema []byte
 
 func TestGenerate(t *testing.T) {
-	doc, err := Generate(jsonSchema, 0)
+	doc, err := Generate(jsonSchema, 1)
 	require.NoError(t, err)
 
 	cupaloy.New(
