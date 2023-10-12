@@ -145,7 +145,7 @@ func propertyType(sc *jsonschema.Schema) (_type string, ref string) {
 	_type, ref = propertyTypeNoSuffix(sc)
 	_type = "`" + _type + "`" // backticks for type name
 	if len(ref) > 0 {
-		_type = `[` + _type + `](#` + ref + `)` // link
+		_type = `[` + _type + `](#` + anchorValue(ref) + `)` // link
 	}
 	_type = `(` + _type + `)` // wrap in brackets
 	return _type, ref
