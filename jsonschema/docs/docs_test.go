@@ -15,8 +15,5 @@ func TestGenerate(t *testing.T) {
 	doc, err := Generate(jsonSchema, 1)
 	require.NoError(t, err)
 
-	cupaloy.New(
-		cupaloy.SnapshotFileExtension(".md"),
-		cupaloy.SnapshotSubdirectory("testdata"),
-	).SnapshotT(t, doc)
+	cupaloy.New(cupaloy.SnapshotFileExtension(".md")).SnapshotT(t, doc)
 }
