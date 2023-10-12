@@ -14,8 +14,8 @@ require (
 	golang.org/x/exp v0.0.0-20230905200255-921286631fa9
 )
 
-// https://github.com/invopop/jsonschema/pull/106
-replace github.com/invopop/jsonschema => github.com/cloudquery/jsonschema v0.0.0-20231008093019-d7c8940339dc
+// github.com/cloudquery/jsonschema @ cqmain
+replace github.com/invopop/jsonschema => github.com/cloudquery/jsonschema v0.0.0-20231012111802-b28735982a93
 
 require (
 	github.com/Azure/azure-sdk-for-go/sdk/azcore v1.7.2 // indirect
