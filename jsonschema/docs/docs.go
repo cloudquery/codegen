@@ -57,8 +57,8 @@ func generate(definitions jsonschema.Definitions, ref string, level int, buff *s
 }
 
 func writeDefinition(ref reference, sc *jsonschema.Schema, buff *strings.Builder) []reference {
-	buff.WriteString(strings.Repeat("#", ref.level))
-	buff.WriteString(` <a name="` + ref.key + `"></a>`) // add anchor
+	buff.WriteString(strings.Repeat("#", min(ref.level, 6))) // h6 is max
+	buff.WriteString(` <a name="` + ref.key + `"></a>`)      // add anchor
 	buff.WriteString(trimClashingSuffix(ref.key))
 
 	refs := make([]reference, 0, sc.Properties.Len()) // prealloc to some meaningful len
@@ -102,34 +102,20 @@ func unwrapNullable(sc *jsonschema.Schema) (*jsonschema.Schema, bool) {
 }
 
 func propertyType(sc *jsonschema.Schema) (_type string, ref string) {
-	if ref = unwrapRef(sc.Ref); len(ref) > 0 {
-		_type, ref = propertyTypeNoSuffix(sc)
-		return "([`" + _type + `)`, ref
+	_type, ref = propertyTypeNoSuffix(sc)
+	_type = "`" + _type + "`" // backticks for type name
+	if len(ref) > 0 {
+		_type = `[` + _type + `](#` + ref + `)` // link
 	}
-
-	if sc.Type != "array" {
-		_type, ref = propertyTypeNoSuffix(sc)
-		return "(`" + _type + `)`, ref
-	}
-
-	// arrays are a bit tricky
-	item, nullable := unwrapNullable(sc.Items)
-	pfx := "(`[]"
-	if len(item.Ref) > 0 {
-		pfx = "([`[]"
-	}
-	if nullable {
-		pfx += "*"
-	}
-	_type, ref = propertyTypeNoSuffix(item)
-	return pfx + _type + `)`, ref
+	_type = `(` + _type + `)` // wrap in brackets
+	return _type, ref
 }
 
 func propertyTypeNoSuffix(sc *jsonschema.Schema) (_type string, ref string) {
 	sc, _ = unwrapNullable(sc)
 
 	if ref = unwrapRef(sc.Ref); len(ref) > 0 {
-		return trimClashingSuffix(ref) + "`](#" + ref + ")", ref
+		return trimClashingSuffix(ref), ref
 	}
 
 	if _type, ref, ok := mapType(sc); ok {
@@ -137,7 +123,7 @@ func propertyTypeNoSuffix(sc *jsonschema.Schema) (_type string, ref string) {
 	}
 
 	if sc.Type != "array" {
-		return sc.Type + "`", ""
+		return sc.Type, ""
 	}
 
 	// arrays are a bit tricky
@@ -156,6 +142,9 @@ func mapType(sc *jsonschema.Schema) (_type string, ref string, ok bool) {
 	}
 	pfx := `map[string]`
 	_type, ref = propertyTypeNoSuffix(sc.AdditionalProperties)
+	if len(ref) > 0 {
+
+	}
 	return pfx + _type, ref, true
 }
 
