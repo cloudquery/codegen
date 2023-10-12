@@ -46,7 +46,10 @@
     * [`EventBasedSync`](#EventBasedSync)
     * [`Strategy`](#Strategy)
 
-## <a name="Spec"></a>Spec
+##Spec
+
+<a name="Spec"></a>
+
 * `regions` (`[]string`) (nullable)
 * `accounts` ([`[]Account`](#Account)) (nullable)
 * `org` ([`Org`](#Org)) (nullable)
@@ -64,7 +67,10 @@
 * `event_based_sync` ([`EventBasedSync`](#EventBasedSync)) (nullable)
 * `scheduler` ([`Strategy`](#Strategy))
 
-### <a name="Account"></a>Account
+###Account
+
+<a name="Account"></a>
+
 * `id` (`string`) (required)
 * `account_name` (`string`)
 * `local_profile` (`string`)
@@ -74,7 +80,10 @@
 * `default_region` (`string`)
 * `regions` (`[]string`) (nullable)
 
-### <a name="Org"></a>Org
+###Org
+
+<a name="Org"></a>
+
 * `admin_account` ([`Account`](#Account)) (nullable)
 * `member_trusted_principal` ([`Account`](#Account)) (nullable)
 * `member_role_name` (`string`) (required)
@@ -85,7 +94,10 @@
 * `skip_organization_units` (`[]string`) (nullable)
 * `skip_member_accounts` (`[]string`) (nullable)
 
-### <a name="TableOptions"></a>TableOptions
+###TableOptions
+
+<a name="TableOptions"></a>
+
 * `aws_accessanalyzer_analyzer_findings` ([`AccessAnalyzerFindings`](#AccessAnalyzerFindings)) (nullable)
 * `aws_cloudtrail_events` ([`CloudtrailEvents`](#CloudtrailEvents)) (nullable)
 * `aws_alpha_cloudwatch_metrics` ([`CloudwatchMetrics`](#CloudwatchMetrics)) (nullable)
@@ -94,55 +106,91 @@
 * `aws_inspector2_findings` ([`Inspector2Findings`](#Inspector2Findings)) (nullable)
 * `aws_securityhub_findings` ([`SecurityHubFindings`](#SecurityHubFindings)) (nullable)
 
-#### <a name="AccessAnalyzerFindings"></a>AccessAnalyzerFindings
+####AccessAnalyzerFindings
+
+<a name="AccessAnalyzerFindings"></a>
+
 * `list_findings` ([`[]CustomAccessAnalyzerListFindingsInput`](#CustomAccessAnalyzerListFindingsInput)) (nullable)
 
-##### <a name="CustomAccessAnalyzerListFindingsInput"></a>CustomAccessAnalyzerListFindingsInput
+#####CustomAccessAnalyzerListFindingsInput
+
+<a name="CustomAccessAnalyzerListFindingsInput"></a>
+
 * `Filter` ([`map[string]Criterion`](#Criterion)) (nullable)
 * `MaxResults` (`integer`) (nullable)
 * `Sort` ([`SortCriteria`](#SortCriteria)) (nullable)
 
-###### <a name="Criterion"></a>Criterion
+######Criterion
+
+<a name="Criterion"></a>
+
 * `Contains` (`[]string`) (nullable)
 * `Eq` (`[]string`) (nullable)
 * `Exists` (`boolean`) (nullable)
 * `Neq` (`[]string`) (nullable)
 
-###### <a name="SortCriteria"></a>SortCriteria
+######SortCriteria
+
+<a name="SortCriteria"></a>
+
 * `AttributeName` (`string`) (nullable)
 * `OrderBy` (`string`)
 
-#### <a name="CloudtrailEvents"></a>CloudtrailEvents
+####CloudtrailEvents
+
+<a name="CloudtrailEvents"></a>
+
 * `lookup_events` ([`[]CustomCloudtrailLookupEventsInput`](#CustomCloudtrailLookupEventsInput)) (nullable)
 
-##### <a name="CustomCloudtrailLookupEventsInput"></a>CustomCloudtrailLookupEventsInput
+#####CustomCloudtrailLookupEventsInput
+
+<a name="CustomCloudtrailLookupEventsInput"></a>
+
 * `EndTime` (`string`) (nullable)
 * `EventCategory` (`string`)
 * `LookupAttributes` ([`[]LookupAttribute`](#LookupAttribute)) (nullable)
 * `MaxResults` (`integer`) (nullable)
 * `StartTime` (`string`) (nullable)
 
-###### <a name="LookupAttribute"></a>LookupAttribute
+######LookupAttribute
+
+<a name="LookupAttribute"></a>
+
 * `AttributeKey` (`string`)
 * `AttributeValue` (`string`) (nullable)
 
-#### <a name="CloudwatchMetrics"></a>CloudwatchMetrics
+####CloudwatchMetrics
 
-#### <a name="CostExplorerAPIs"></a>CostExplorerAPIs
+<a name="CloudwatchMetrics"></a>
+
+
+####CostExplorerAPIs
+
+<a name="CostExplorerAPIs"></a>
+
 * `get_cost_and_usage` ([`[]CustomGetCostAndUsageInput`](#CustomGetCostAndUsageInput)) (nullable)
 
-##### <a name="CustomGetCostAndUsageInput"></a>CustomGetCostAndUsageInput
+#####CustomGetCostAndUsageInput
+
+<a name="CustomGetCostAndUsageInput"></a>
+
 * `Granularity` (`string`)
 * `Metrics` (`[]string`) (nullable)
 * `TimePeriod` ([`DateInterval`](#DateInterval)) (nullable)
 * `Filter` ([`Expression`](#Expression)) (nullable)
 * `GroupBy` ([`[]GroupDefinition`](#GroupDefinition)) (nullable)
 
-###### <a name="DateInterval"></a>DateInterval
+######DateInterval
+
+<a name="DateInterval"></a>
+
 * `End` (`string`) (nullable)
 * `Start` (`string`) (nullable)
 
-###### <a name="Expression"></a>Expression
+######Expression
+
+<a name="Expression"></a>
+
 * `And` ([`[]Expression`](#Expression)) (nullable)
 * `CostCategories` ([`CostCategoryValues`](#CostCategoryValues)) (nullable)
 * `Dimensions` ([`DimensionValues`](#DimensionValues)) (nullable)
@@ -150,29 +198,47 @@
 * `Or` ([`[]Expression`](#Expression)) (nullable)
 * `Tags` ([`TagValues`](#TagValues)) (nullable)
 
-###### <a name="CostCategoryValues"></a>CostCategoryValues
+######CostCategoryValues
+
+<a name="CostCategoryValues"></a>
+
 * `Key` (`string`) (nullable)
 * `MatchOptions` (`[]string`) (nullable)
 * `Values` (`[]string`) (nullable)
 
-###### <a name="DimensionValues"></a>DimensionValues
+######DimensionValues
+
+<a name="DimensionValues"></a>
+
 * `Key` (`string`)
 * `MatchOptions` (`[]string`) (nullable)
 * `Values` (`[]string`) (nullable)
 
-###### <a name="TagValues"></a>TagValues
+######TagValues
+
+<a name="TagValues"></a>
+
 * `Key` (`string`) (nullable)
 * `MatchOptions` (`[]string`) (nullable)
 * `Values` (`[]string`) (nullable)
 
-###### <a name="GroupDefinition"></a>GroupDefinition
+######GroupDefinition
+
+<a name="GroupDefinition"></a>
+
 * `Key` (`string`) (nullable)
 * `Type` (`string`)
 
-#### <a name="ECSTasks"></a>ECSTasks
+####ECSTasks
+
+<a name="ECSTasks"></a>
+
 * `list_tasks` ([`[]CustomECSListTasksInput`](#CustomECSListTasksInput)) (nullable)
 
-##### <a name="CustomECSListTasksInput"></a>CustomECSListTasksInput
+#####CustomECSListTasksInput
+
+<a name="CustomECSListTasksInput"></a>
+
 * `ContainerInstance` (`string`) (nullable)
 * `DesiredStatus` (`string`)
 * `Family` (`string`) (nullable)
@@ -181,15 +247,24 @@
 * `ServiceName` (`string`) (nullable)
 * `StartedBy` (`string`) (nullable)
 
-#### <a name="Inspector2Findings"></a>Inspector2Findings
+####Inspector2Findings
+
+<a name="Inspector2Findings"></a>
+
 * `list_findings` ([`[]CustomInspector2ListFindingsInput`](#CustomInspector2ListFindingsInput)) (nullable)
 
-##### <a name="CustomInspector2ListFindingsInput"></a>CustomInspector2ListFindingsInput
+#####CustomInspector2ListFindingsInput
+
+<a name="CustomInspector2ListFindingsInput"></a>
+
 * `FilterCriteria` ([`FilterCriteria`](#FilterCriteria)) (nullable)
 * `MaxResults` (`integer`) (nullable)
 * `SortCriteria` ([`SortCriteria`](#SortCriteria_1)) (nullable)
 
-###### <a name="FilterCriteria"></a>FilterCriteria
+######FilterCriteria
+
+<a name="FilterCriteria"></a>
+
 * `AwsAccountId` ([`[]StringFilter`](#StringFilter)) (nullable)
 * `CodeVulnerabilityDetectorName` ([`[]StringFilter`](#StringFilter)) (nullable)
 * `CodeVulnerabilityDetectorTags` ([`[]StringFilter`](#StringFilter)) (nullable)
@@ -233,28 +308,46 @@
 * `VulnerabilitySource` ([`[]StringFilter`](#StringFilter)) (nullable)
 * `VulnerablePackages` ([`[]PackageFilter`](#PackageFilter)) (nullable)
 
-###### <a name="StringFilter"></a>StringFilter
+######StringFilter
+
+<a name="StringFilter"></a>
+
 * `Comparison` (`string`)
 * `Value` (`string`) (nullable)
 
-###### <a name="DateFilter"></a>DateFilter
+######DateFilter
+
+<a name="DateFilter"></a>
+
 * `EndInclusive` (`string`) (nullable)
 * `StartInclusive` (`string`) (nullable)
 
-###### <a name="NumberFilter"></a>NumberFilter
+######NumberFilter
+
+<a name="NumberFilter"></a>
+
 * `LowerInclusive` (`number`) (nullable)
 * `UpperInclusive` (`number`) (nullable)
 
-###### <a name="PortRangeFilter"></a>PortRangeFilter
+######PortRangeFilter
+
+<a name="PortRangeFilter"></a>
+
 * `BeginInclusive` (`integer`) (nullable)
 * `EndInclusive` (`integer`) (nullable)
 
-###### <a name="MapFilter"></a>MapFilter
+######MapFilter
+
+<a name="MapFilter"></a>
+
 * `Comparison` (`string`)
 * `Key` (`string`) (nullable)
 * `Value` (`string`) (nullable)
 
-###### <a name="PackageFilter"></a>PackageFilter
+######PackageFilter
+
+<a name="PackageFilter"></a>
+
 * `Architecture` ([`StringFilter`](#StringFilter)) (nullable)
 * `Epoch` ([`NumberFilter`](#NumberFilter)) (nullable)
 * `Name` ([`StringFilter`](#StringFilter)) (nullable)
@@ -263,19 +356,31 @@
 * `SourceLayerHash` ([`StringFilter`](#StringFilter)) (nullable)
 * `Version` ([`StringFilter`](#StringFilter)) (nullable)
 
-###### <a name="SortCriteria_1"></a>SortCriteria
+######SortCriteria
+
+<a name="SortCriteria_1"></a>
+
 * `Field` (`string`)
 * `SortOrder` (`string`)
 
-#### <a name="SecurityHubFindings"></a>SecurityHubFindings
+####SecurityHubFindings
+
+<a name="SecurityHubFindings"></a>
+
 * `get_findings` ([`[]CustomSecurityHubGetFindingsInput`](#CustomSecurityHubGetFindingsInput)) (nullable)
 
-##### <a name="CustomSecurityHubGetFindingsInput"></a>CustomSecurityHubGetFindingsInput
+#####CustomSecurityHubGetFindingsInput
+
+<a name="CustomSecurityHubGetFindingsInput"></a>
+
 * `Filters` ([`AwsSecurityFindingFilters`](#AwsSecurityFindingFilters)) (nullable)
 * `MaxResults` (`integer`)
 * `SortCriteria` ([`[]SortCriterion`](#SortCriterion)) (nullable)
 
-###### <a name="AwsSecurityFindingFilters"></a>AwsSecurityFindingFilters
+######AwsSecurityFindingFilters
+
+<a name="AwsSecurityFindingFilters"></a>
+
 * `AwsAccountId` ([`[]StringFilter`](#StringFilter_1)) (nullable)
 * `CompanyName` ([`[]StringFilter`](#StringFilter_1)) (nullable)
 * `ComplianceAssociatedStandardsId` ([`[]StringFilter`](#StringFilter_1)) (nullable)
@@ -374,46 +479,79 @@
 * `WorkflowState` ([`[]StringFilter`](#StringFilter_1)) (nullable)
 * `WorkflowStatus` ([`[]StringFilter`](#StringFilter_1)) (nullable)
 
-###### <a name="StringFilter_1"></a>StringFilter
+######StringFilter
+
+<a name="StringFilter_1"></a>
+
 * `Comparison` (`string`)
 * `Value` (`string`) (nullable)
 
-###### <a name="NumberFilter_1"></a>NumberFilter
+######NumberFilter
+
+<a name="NumberFilter_1"></a>
+
 * `Eq` (`number`)
 * `Gte` (`number`)
 * `Lte` (`number`)
 
-###### <a name="DateFilter_1"></a>DateFilter
+######DateFilter
+
+<a name="DateFilter_1"></a>
+
 * `DateRange` ([`DateRange`](#DateRange)) (nullable)
 * `End` (`string`) (nullable)
 * `Start` (`string`) (nullable)
 
-###### <a name="DateRange"></a>DateRange
+######DateRange
+
+<a name="DateRange"></a>
+
 * `Unit` (`string`)
 * `Value` (`integer`)
 
-###### <a name="KeywordFilter"></a>KeywordFilter
+######KeywordFilter
+
+<a name="KeywordFilter"></a>
+
 * `Value` (`string`) (nullable)
 
-###### <a name="IpFilter"></a>IpFilter
+######IpFilter
+
+<a name="IpFilter"></a>
+
 * `Cidr` (`string`) (nullable)
 
-###### <a name="MapFilter_1"></a>MapFilter
+######MapFilter
+
+<a name="MapFilter_1"></a>
+
 * `Comparison` (`string`)
 * `Key` (`string`) (nullable)
 * `Value` (`string`) (nullable)
 
-###### <a name="BooleanFilter"></a>BooleanFilter
+######BooleanFilter
+
+<a name="BooleanFilter"></a>
+
 * `Value` (`boolean`)
 
-###### <a name="SortCriterion"></a>SortCriterion
+######SortCriterion
+
+<a name="SortCriterion"></a>
+
 * `Field` (`string`) (nullable)
 * `SortOrder` (`string`)
 
-### <a name="EventBasedSync"></a>EventBasedSync
+###EventBasedSync
+
+<a name="EventBasedSync"></a>
+
 * `full_sync` (`boolean`) (nullable)
 * `account` ([`Account`](#Account))
 * `kinesis_stream_arn` (`string`) (required)
 * `start_time` (`string`) (nullable)
 
-### <a name="Strategy"></a>Strategy
+###Strategy
+
+<a name="Strategy"></a>
+
