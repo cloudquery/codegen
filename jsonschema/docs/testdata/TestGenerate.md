@@ -30,17 +30,17 @@
             * [`PortRangeFilter`](#PortRangeFilter)
             * [`MapFilter`](#MapFilter)
             * [`PackageFilter`](#PackageFilter)
-          * [`SortCriteria`](#SortCriteria_1)
+          * [`SortCriteria`](#SortCriteria-1)
       * [`SecurityHubFindings`](#SecurityHubFindings)
         * [`CustomSecurityHubGetFindingsInput`](#CustomSecurityHubGetFindingsInput)
           * [`AwsSecurityFindingFilters`](#AwsSecurityFindingFilters)
-            * [`StringFilter`](#StringFilter_1)
-            * [`NumberFilter`](#NumberFilter_1)
-            * [`DateFilter`](#DateFilter_1)
+            * [`StringFilter`](#StringFilter-1)
+            * [`NumberFilter`](#NumberFilter-1)
+            * [`DateFilter`](#DateFilter-1)
               * [`DateRange`](#DateRange)
             * [`KeywordFilter`](#KeywordFilter)
             * [`IpFilter`](#IpFilter)
-            * [`MapFilter`](#MapFilter_1)
+            * [`MapFilter`](#MapFilter-1)
             * [`BooleanFilter`](#BooleanFilter)
           * [`SortCriterion`](#SortCriterion)
     * [`EventBasedSync`](#EventBasedSync)
@@ -264,7 +264,7 @@
 * `SourceLayerHash` ([`StringFilter`](#StringFilter)) (nullable)
 * `Version` ([`StringFilter`](#StringFilter)) (nullable)
 
-###### <a name="SortCriteria_1"></a>SortCriteria
+###### <a name="SortCriteria-1"></a>SortCriteria
 * `Field` (`string`)
 * `SortOrder` (`string`)
 
@@ -375,16 +375,16 @@
 * `WorkflowState` ([`[]StringFilter`](#StringFilter_1)) (nullable)
 * `WorkflowStatus` ([`[]StringFilter`](#StringFilter_1)) (nullable)
 
-###### <a name="StringFilter_1"></a>StringFilter
+###### <a name="StringFilter-1"></a>StringFilter
 * `Comparison` (`string`)
 * `Value` (`string`) (nullable)
 
-###### <a name="NumberFilter_1"></a>NumberFilter
+###### <a name="NumberFilter-1"></a>NumberFilter
 * `Eq` (`number`)
 * `Gte` (`number`)
 * `Lte` (`number`)
 
-###### <a name="DateFilter_1"></a>DateFilter
+###### <a name="DateFilter-1"></a>DateFilter
 * `DateRange` ([`DateRange`](#DateRange)) (nullable)
 * `End` (`string`) (nullable)
 * `Start` (`string`) (nullable)
@@ -399,7 +399,7 @@
 ###### <a name="IpFilter"></a>IpFilter
 * `Cidr` (`string`) (nullable)
 
-###### <a name="MapFilter_1"></a>MapFilter
+###### <a name="MapFilter-1"></a>MapFilter
 * `Comparison` (`string`)
 * `Key` (`string`) (nullable)
 * `Value` (`string`) (nullable)

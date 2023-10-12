@@ -51,15 +51,13 @@ func generate(definitions jsonschema.Definitions, ref string, level int, buff *s
 
 		// we prepend references to make the docs more localized
 		references = append(writeDefinition(curr, currSchema, buff), references...)
-		toc += "\n" + strings.Repeat("  ", curr.level-level) + "* [`" + trimClashingSuffix(curr.key) + "`](#" + curr.key + ")"
+		toc += "\n" + strings.Repeat("  ", curr.level-level) + "* " + linkTo(curr.key)
 	}
 	return toc, nil
 }
 
 func writeDefinition(ref reference, sc *jsonschema.Schema, buff *strings.Builder) []reference {
-	buff.WriteString(strings.Repeat("#", min(ref.level, 6))) // h6 is max
-	buff.WriteString(` <a name="` + ref.key + `"></a>`)      // add anchor
-	buff.WriteString(trimClashingSuffix(ref.key))
+	buff.WriteString(header(ref))
 
 	refs := make([]reference, 0, sc.Properties.Len()) // prealloc to some meaningful len
 	for prop := sc.Properties.Oldest(); prop != nil; prop = prop.Next() {
@@ -71,6 +69,10 @@ func writeDefinition(ref reference, sc *jsonschema.Schema, buff *strings.Builder
 	}
 
 	return refs
+}
+
+func header(ref reference) string {
+	return strings.Repeat("#", min(ref.level, 6)) + ` <a name="` + anchorValue(ref.key) + `"></a>` + trimClashingSuffix(ref.key)
 }
 
 func docProperty(key string, property *jsonschema.Schema, required bool, buff *strings.Builder) (ref string) {
@@ -163,4 +165,12 @@ func trimClashingSuffix(ref string) string {
 	}
 
 	return clashingRef.FindStringSubmatch(ref)[1]
+}
+
+func linkTo(key string) string {
+	return "[`" + trimClashingSuffix(key) + "`](#" + anchorValue(key) + ")"
+}
+
+func anchorValue(key string) string {
+	return strings.ReplaceAll(key, "_", "-")
 }
