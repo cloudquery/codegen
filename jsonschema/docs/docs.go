@@ -31,7 +31,7 @@ func generate(definitions jsonschema.Definitions, ref string, level int, buff *s
 	references := make([]reference, 1, len(definitions))
 	references[0] = reference{key: ref, level: level + 1} // +1 as toc is on the level
 
-	toc = strings.Repeat("#", level) + " Table of contents"
+	toc = strings.Repeat("#", level) + " Table of contents\n"
 	var curr reference
 	for len(references) > 0 {
 		curr, references = references[0], references[1:]

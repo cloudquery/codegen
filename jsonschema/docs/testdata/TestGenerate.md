@@ -1,4 +1,5 @@
 # Table of contents
+
   * [`Spec`](#Spec)
     * [`Account`](#Account)
     * [`Org`](#Org)
