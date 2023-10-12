@@ -68,7 +68,8 @@
 * `id` (`string`) (required)
 * `account_name` (`string`)
 * `local_profile` (`string`)
-* `role_arn` (`string`)
+* `role_arn` (`string`) (pattern=`^arn(:[^:
+]*){5}([:/].*)?$`)
 * `role_session_name` (`string`)
 * `external_id` (`string`)
 * `default_region` (`string`)
@@ -413,7 +414,8 @@
 ### <a name="EventBasedSync"></a>EventBasedSync
 * `full_sync` (`boolean`) (nullable)
 * `account` ([`Account`](#Account))
-* `kinesis_stream_arn` (`string`) (required)
+* `kinesis_stream_arn` (`string`) (required) (pattern=`^arn(:[^:
+]*){5}([:/].*)?$`)
 * `start_time` (`string`) (nullable)
 
 ### <a name="Strategy"></a>Strategy

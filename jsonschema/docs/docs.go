@@ -91,6 +91,10 @@ func docProperty(key string, property *jsonschema.Schema, required bool, buff *s
 		buff.WriteString(fmt.Sprintf(" (default=`%v`)", property.Default))
 	}
 
+	if len(property.Pattern) > 0 {
+		buff.WriteString(fmt.Sprintf(" (pattern=`%s`)", property.Pattern))
+	}
+
 	return ref
 }
 
