@@ -60,6 +60,21 @@ func writeDefinition(ref reference, sc *jsonschema.Schema, buff *strings.Builder
 	buff.WriteString(header(ref))
 	buff.WriteString("\n")
 
+	if len(sc.Title) > 0 {
+		buff.WriteString("\n")
+		buff.WriteString(sc.Title)
+		buff.WriteString("\n")
+	}
+
+	if sc.Properties.Len() == 0 {
+		buff.WriteString("\n")
+		newRef := writeInlineDefinition(sc, slices.Contains(sc.Required, ref.key), buff)
+		if len(newRef) > 0 {
+			return []reference{{key: newRef, level: ref.level + 1}}
+		}
+		return nil
+	}
+
 	refs := make([]reference, 0, sc.Properties.Len()) // prealloc to some meaningful len
 	for prop := sc.Properties.Oldest(); prop != nil; prop = prop.Next() {
 		buff.WriteString("\n")
@@ -72,13 +87,20 @@ func writeDefinition(ref reference, sc *jsonschema.Schema, buff *strings.Builder
 	return refs
 }
 
+func writeInlineDefinition(sc *jsonschema.Schema, required bool, buff *strings.Builder) (ref string) {
+	return writeProperty(sc, required, buff)
+}
+
 func header(ref reference) string {
 	return strings.Repeat("#", min(ref.level, 6)) + ` <a name="` + anchorValue(ref.key) + `"></a>` + trimClashingSuffix(ref.key)
 }
 
 func docProperty(key string, property *jsonschema.Schema, required bool, buff *strings.Builder) (ref string) {
 	buff.WriteString("* `" + key + "` ")
+	return writeProperty(property, required, buff)
+}
 
+func writeProperty(property *jsonschema.Schema, required bool, buff *strings.Builder) (ref string) {
 	sc, nullable := unwrapNullable(property)
 	propType, ref := propertyType(sc)
 	buff.WriteString(propType)
@@ -91,11 +113,22 @@ func docProperty(key string, property *jsonschema.Schema, required bool, buff *s
 	}
 
 	if property.Default != nil {
-		buff.WriteString(fmt.Sprintf(" (default=`%v`)", property.Default))
+		_, _ = fmt.Fprintf(buff, " (default: `%v`)", property.Default)
 	}
 
 	if len(property.Pattern) > 0 {
-		buff.WriteString(fmt.Sprintf(" (pattern=`%s`)", property.Pattern))
+		_, _ = fmt.Fprintf(buff, " (pattern: `%s`)", property.Pattern)
+	}
+
+	if len(property.Enum) > 0 {
+		buff.WriteString(" (possible values: ")
+		for i, e := range property.Enum {
+			if i > 0 {
+				buff.WriteString(", ")
+			}
+			_, _ = fmt.Fprintf(buff, "`%v`", e)
+		}
+		buff.WriteString(")")
 	}
 
 	return ref

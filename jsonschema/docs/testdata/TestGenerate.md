@@ -12,6 +12,10 @@
         * [`CustomCloudtrailLookupEventsInput`](#CustomCloudtrailLookupEventsInput)
           * [`LookupAttribute`](#LookupAttribute)
       * [`CloudwatchMetrics`](#CloudwatchMetrics)
+        * [`CloudwatchMetric`](#CloudwatchMetric)
+          * [`CloudwatchListMetricsInput`](#CloudwatchListMetricsInput)
+            * [`DimensionFilter`](#DimensionFilter)
+          * [`CloudwatchGetMetricStatisticsInput`](#CloudwatchGetMetricStatisticsInput)
       * [`CostExplorerAPIs`](#CostExplorerAPIs)
         * [`CustomGetCostAndUsageInput`](#CustomGetCostAndUsageInput)
           * [`DateInterval`](#DateInterval)
@@ -59,9 +63,9 @@
 * `custom_endpoint_hostname_immutable` (`boolean`) (nullable)
 * `custom_endpoint_partition_id` (`string`)
 * `custom_endpoint_signing_region` (`string`)
-* `initialization_concurrency` (`integer`) (default=`4`)
-* `concurrency` (`integer`) (default=`50000`)
-* `use_paid_apis` (`boolean`) (default=`false`)
+* `initialization_concurrency` (`integer`) (default: `4`)
+* `concurrency` (`integer`) (default: `50000`)
+* `use_paid_apis` (`boolean`) (default: `false`)
 * `table_options` ([`TableOptions`](#TableOptions)) (nullable)
 * `event_based_sync` ([`EventBasedSync`](#EventBasedSync)) (nullable)
 * `scheduler` ([`Strategy`](#Strategy))
@@ -71,7 +75,7 @@
 * `id` (`string`) (required)
 * `account_name` (`string`)
 * `local_profile` (`string`)
-* `role_arn` (`string`) (pattern=`^arn(:[^:
+* `role_arn` (`string`) (pattern: `^arn(:[^:
 ]*){5}([:/].*)?$`)
 * `role_session_name` (`string`)
 * `external_id` (`string`)
@@ -141,6 +145,35 @@
 
 #### <a name="CloudwatchMetrics"></a>CloudwatchMetrics
 
+([`[]CloudwatchMetric`](#CloudwatchMetric))
+
+##### <a name="CloudwatchMetric"></a>CloudwatchMetric
+
+* `list_metrics` ([`CloudwatchListMetricsInput`](#CloudwatchListMetricsInput))
+* `get_metric_statistics` ([`[]CloudwatchGetMetricStatisticsInput`](#CloudwatchGetMetricStatisticsInput)) (nullable)
+
+###### <a name="CloudwatchListMetricsInput"></a>CloudwatchListMetricsInput
+
+* `Dimensions` ([`[]DimensionFilter`](#DimensionFilter)) (nullable)
+* `IncludeLinkedAccounts` (`boolean`)
+* `MetricName` (`string`) (nullable)
+* `Namespace` (`string`) (nullable)
+* `OwningAccount` (`string`) (nullable)
+* `RecentlyActive` (`string`)
+
+###### <a name="DimensionFilter"></a>DimensionFilter
+
+* `Name` (`string`) (nullable)
+* `Value` (`string`) (nullable)
+
+###### <a name="CloudwatchGetMetricStatisticsInput"></a>CloudwatchGetMetricStatisticsInput
+
+* `EndTime` (`string`) (nullable)
+* `Period` (`integer`) (nullable)
+* `StartTime` (`string`) (nullable)
+* `ExtendedStatistics` (`[]string`) (nullable)
+* `Statistics` (`[]string`) (nullable)
+* `Unit` (`string`)
 
 #### <a name="CostExplorerAPIs"></a>CostExplorerAPIs
 
@@ -201,7 +234,7 @@
 * `DesiredStatus` (`string`)
 * `Family` (`string`) (nullable)
 * `LaunchType` (`string`)
-* `MaxResults` (`integer`) (nullable) (default=`100`)
+* `MaxResults` (`integer`) (nullable) (default: `100`)
 * `ServiceName` (`string`) (nullable)
 * `StartedBy` (`string`) (nullable)
 
@@ -460,9 +493,12 @@
 
 * `full_sync` (`boolean`) (nullable)
 * `account` ([`Account`](#Account))
-* `kinesis_stream_arn` (`string`) (required) (pattern=`^arn(:[^:
+* `kinesis_stream_arn` (`string`) (required) (pattern: `^arn(:[^:
 ]*){5}([:/].*)?$`)
 * `start_time` (`string`) (nullable)
 
 ### <a name="Strategy"></a>Strategy
 
+CloudQuery scheduling strategy
+
+(`string`) (default: `dfs`) (possible values: `dfs`, `round-robin`, `shuffle`)
