@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.8](https://github.com/cloudquery/codegen/compare/v0.3.7...v0.3.8) (2023-10-13)
+
+
+### Bug Fixes
+
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.12.5 ([#52](https://github.com/cloudquery/codegen/issues/52)) ([efdd4d8](https://github.com/cloudquery/codegen/commit/efdd4d8e713bbe46f950a98e007e4473055f0aa2))
+* Don't limit `format` for JSON schema ([#54](https://github.com/cloudquery/codegen/issues/54)) ([e49afd4](https://github.com/cloudquery/codegen/commit/e49afd4bc1657511317f40b0444a6df4dca69e42))
+
 ## [0.3.7](https://github.com/cloudquery/codegen/compare/v0.3.6...v0.3.7) (2023-10-12)
 
 
