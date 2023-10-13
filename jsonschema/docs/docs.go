@@ -118,7 +118,7 @@ func writeProperty(property *jsonschema.Schema, required bool, buff *strings.Bui
 	}
 
 	if len(property.Pattern) > 0 {
-		pattern := strings.Trim(strconv.Quote(property.Pattern), `""`)
+		pattern := strings.Trim(strconv.Quote(property.Pattern), `"`)
 		_, _ = fmt.Fprintf(buff, " (pattern: `%s`)", pattern)
 	}
 
