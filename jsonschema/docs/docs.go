@@ -113,13 +113,17 @@ func writeProperty(property *jsonschema.Schema, required bool, buff *strings.Bui
 		buff.WriteString(" (required)")
 	}
 
-	if property.Default != nil {
-		_, _ = fmt.Fprintf(buff, " (default: `%v`)", property.Default)
+	if len(property.Format) > 0 {
+		_, _ = fmt.Fprintf(buff, " ([format](https://json-schema.org/draft/2020-12/json-schema-validation#section-7): `%s`)", property.Format)
 	}
 
 	if len(property.Pattern) > 0 {
 		pattern := strings.Trim(strconv.Quote(property.Pattern), `"`)
-		_, _ = fmt.Fprintf(buff, " (pattern: `%s`)", pattern)
+		_, _ = fmt.Fprintf(buff, " ([pattern](https://json-schema.org/draft/2020-12/json-schema-validation#section-6.3.3): `%s`)", pattern)
+	}
+
+	if property.Default != nil {
+		_, _ = fmt.Fprintf(buff, " (default: `%v`)", property.Default)
 	}
 
 	if len(property.Enum) > 0 {

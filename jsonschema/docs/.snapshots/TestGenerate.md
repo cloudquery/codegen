@@ -75,7 +75,7 @@
 * `id` (`string`) (required)
 * `account_name` (`string`)
 * `local_profile` (`string`)
-* `role_arn` (`string`) (pattern: `^arn(:[^:\n]*){5}([:/].*)?$`)
+* `role_arn` (`string`) ([pattern](https://json-schema.org/draft/2020-12/json-schema-validation#section-6.3.3): `^arn(:[^:\n]*){5}([:/].*)?$`)
 * `role_session_name` (`string`)
 * `external_id` (`string`)
 * `default_region` (`string`)
@@ -492,7 +492,7 @@
 
 * `full_sync` (`boolean`) (nullable)
 * `account` ([`Account`](#Account))
-* `kinesis_stream_arn` (`string`) (required) (pattern: `^arn(:[^:\n]*){5}([:/].*)?$`)
+* `kinesis_stream_arn` (`string`) (required) ([pattern](https://json-schema.org/draft/2020-12/json-schema-validation#section-6.3.3): `^arn(:[^:\n]*){5}([:/].*)?$`)
 * `start_time` (`string`) (nullable)
 
 ### <a name="Strategy"></a>Strategy
