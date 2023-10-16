@@ -6,7 +6,7 @@ require (
 	github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/appconfiguration/armappconfiguration/v2 v2.0.0
 	github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/resources/armmanagedapplications v1.1.1
 	github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/solutions/armmanagedapplications v1.1.1
-	github.com/cloudquery/plugin-sdk/v4 v4.14.0
+	github.com/cloudquery/plugin-sdk/v4 v4.14.1
 	github.com/google/go-cmp v0.5.9
 	github.com/invopop/jsonschema v0.11.0
 	github.com/jpillora/longestcommon v0.0.0-20161227235612-adb9d91ee629
