@@ -68,6 +68,12 @@ func writeDefinition(ref reference, sc *jsonschema.Schema, buff *strings.Builder
 		buff.WriteString("\n")
 	}
 
+	if len(sc.Description) > 0 {
+		buff.WriteString("\n")
+		buff.WriteString(sc.Description)
+		buff.WriteString("\n")
+	}
+
 	if sc.Properties.Len() == 0 {
 		buff.WriteString("\n")
 		newRef := writeInlineDefinition(sc, slices.Contains(sc.Required, ref.key), buff)
