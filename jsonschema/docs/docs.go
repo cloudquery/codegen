@@ -238,6 +238,10 @@ func propertyType(sc *jsonschema.Schema) (_type string, ref string) {
 func propertyTypeNoSuffix(sc *jsonschema.Schema) (_type string, ref string) {
 	sc, _ = unwrapNullable(sc)
 
+	if isAnything(sc) {
+		return "anything", ""
+	}
+
 	if ref = unwrapRef(sc.Ref); len(ref) > 0 {
 		return trimClashingSuffix(ref), ref
 	}
@@ -258,6 +262,14 @@ func propertyTypeNoSuffix(sc *jsonschema.Schema) (_type string, ref string) {
 	}
 	_type, ref = propertyTypeNoSuffix(item)
 	return pfx + _type, ref
+}
+
+func isAnything(sc *jsonschema.Schema) bool {
+	data, err := json.Marshal(sc)
+	if err != nil {
+		panic(err)
+	}
+	return string(data) == "true"
 }
 
 func mapType(sc *jsonschema.Schema) (_type string, ref string, ok bool) {

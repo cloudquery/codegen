@@ -17,7 +17,7 @@
 ### <a name="Engine"></a>Engine
 
 * `name` (`string`) ([pattern](https://json-schema.org/draft/2020-12/json-schema-validation#section-6.3.3): `^.*MergeTree$`) (default: `MergeTree`)
-* `parameters` (`[]`) (nullable)
+* `parameters` (`[]anything`) (nullable)
 
 ### <a name="Duration"></a>Duration
 
