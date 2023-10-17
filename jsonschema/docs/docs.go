@@ -3,6 +3,7 @@ package docs
 import (
 	"encoding/json"
 	"fmt"
+	"math/big"
 	"regexp"
 	"slices"
 	"strconv"
@@ -113,22 +114,28 @@ func writeProperty(property *jsonschema.Schema, required bool, buff *strings.Bui
 		buff.WriteString(" (required)")
 	}
 
-	if len(property.Format) > 0 {
-		_, _ = fmt.Fprintf(buff, " ([format](https://json-schema.org/draft/2020-12/json-schema-validation#section-7): `%s`)", property.Format)
+	writeValueAnnotations(sc, buff)
+
+	return ref
+}
+
+func writeValueAnnotations(sc *jsonschema.Schema, buff *strings.Builder) {
+	if len(sc.Format) > 0 {
+		_, _ = fmt.Fprintf(buff, " ([format](https://json-schema.org/draft/2020-12/json-schema-validation#section-7): `%s`)", sc.Format)
 	}
 
-	if len(property.Pattern) > 0 {
-		pattern := strings.Trim(strconv.Quote(property.Pattern), `"`)
+	if len(sc.Pattern) > 0 {
+		pattern := strings.Trim(strconv.Quote(sc.Pattern), `"`)
 		_, _ = fmt.Fprintf(buff, " ([pattern](https://json-schema.org/draft/2020-12/json-schema-validation#section-6.3.3): `%s`)", pattern)
 	}
 
-	if property.Default != nil {
-		_, _ = fmt.Fprintf(buff, " (default: `%v`)", property.Default)
+	if borders := valueBorders(sc); len(borders) > 0 {
+		_, _ = fmt.Fprintf(buff, " (range: `%s`)", borders)
 	}
 
-	if len(property.Enum) > 0 {
+	if len(sc.Enum) > 0 {
 		buff.WriteString(" (possible values: ")
-		for i, e := range property.Enum {
+		for i, e := range sc.Enum {
 			if i > 0 {
 				buff.WriteString(", ")
 			}
@@ -137,7 +144,78 @@ func writeProperty(property *jsonschema.Schema, required bool, buff *strings.Bui
 		buff.WriteString(")")
 	}
 
-	return ref
+	if sc.Default != nil {
+		_, _ = fmt.Fprintf(buff, " (default: `%v`)", sc.Default)
+	}
+}
+
+func valueBorders(sc *jsonschema.Schema) string {
+	var l string
+	switch {
+	case len(sc.Minimum) == 0:
+		if len(sc.ExclusiveMinimum) > 0 {
+			l = "(" + string(sc.ExclusiveMinimum)
+		}
+	case len(sc.ExclusiveMinimum) == 0:
+		if len(sc.Minimum) > 0 {
+			l = "[" + string(sc.Minimum)
+		}
+	default:
+		lVal, _, err := big.ParseFloat(string(sc.Minimum), 10, 1000, big.ToZero)
+		if err != nil {
+			panic(fmt.Sprintf("minimum=%q is not a correct number: %s", sc.Minimum, err.Error()))
+		}
+		lValExcl, _, err := big.ParseFloat(string(sc.Minimum), 10, 1000, big.ToZero)
+		if err != nil {
+			panic(fmt.Sprintf("eclusiveMinimum=%q is not a correct number: %s", sc.Minimum, err.Error()))
+		}
+		if lVal.Cmp(lValExcl) <= 0 {
+			l = "(" + string(sc.ExclusiveMinimum)
+		} else {
+			l = "[" + string(sc.Minimum)
+		}
+	}
+
+	var r string
+	switch {
+	case len(sc.Maximum) == 0:
+		if len(sc.ExclusiveMaximum) > 0 {
+			r = string(sc.ExclusiveMaximum) + ")"
+		}
+	case len(sc.ExclusiveMaximum) == 0:
+		if len(sc.Maximum) > 0 {
+			r = string(sc.Maximum) + "]"
+		}
+	default:
+		rVal, _, err := big.ParseFloat(string(sc.Maximum), 10, 1000, big.ToZero)
+		if err != nil {
+			panic(fmt.Sprintf("maximum=%q is not a correct number: %s", sc.Minimum, err.Error()))
+		}
+		rValExcl, _, err := big.ParseFloat(string(sc.ExclusiveMaximum), 10, 1000, big.ToZero)
+		if err != nil {
+			panic(fmt.Sprintf("eclusiveMaximum=%q is not a correct number: %s", sc.Minimum, err.Error()))
+		}
+		if rVal.Cmp(rValExcl) >= 0 {
+			r = string(sc.ExclusiveMaximum) + ")"
+		} else {
+			r = string(sc.Maximum) + "]"
+		}
+	}
+
+	switch {
+	case len(l) == 0:
+		if len(r) > 0 {
+			return "(-∞," + r
+		}
+	case len(r) == 0:
+		if len(l) > 0 {
+			return l + ",+∞)"
+		}
+	default:
+		return l + "," + r
+	}
+
+	return ""
 }
 
 func unwrapNullable(sc *jsonschema.Schema) (*jsonschema.Schema, bool) {

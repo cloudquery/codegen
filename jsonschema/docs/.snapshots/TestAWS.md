@@ -57,14 +57,14 @@
 * `accounts` ([`[]Account`](#Account)) (nullable)
 * `org` ([`Org`](#Org)) (nullable)
 * `aws_debug` (`boolean`)
-* `max_retries` (`integer`) (nullable)
-* `max_backoff` (`integer`) (nullable)
+* `max_retries` (`integer`) (nullable) (default: `10`)
+* `max_backoff` (`integer`) (nullable) (default: `30`)
 * `custom_endpoint_url` (`string`)
 * `custom_endpoint_hostname_immutable` (`boolean`) (nullable)
 * `custom_endpoint_partition_id` (`string`)
 * `custom_endpoint_signing_region` (`string`)
-* `initialization_concurrency` (`integer`) (default: `4`)
-* `concurrency` (`integer`) (default: `50000`)
+* `initialization_concurrency` (`integer`) (range: `[1,+∞)`) (default: `4`)
+* `concurrency` (`integer`) (range: `[1,+∞)`) (default: `50000`)
 * `use_paid_apis` (`boolean`) (default: `false`)
 * `table_options` ([`TableOptions`](#TableOptions)) (nullable)
 * `event_based_sync` ([`EventBasedSync`](#EventBasedSync)) (nullable)
@@ -131,11 +131,11 @@
 
 ##### <a name="CustomCloudtrailLookupEventsInput"></a>CustomCloudtrailLookupEventsInput
 
-* `EndTime` (`string`) (nullable)
+* `EndTime` (`string`) (nullable) ([format](https://json-schema.org/draft/2020-12/json-schema-validation#section-7): `date-time`)
 * `EventCategory` (`string`)
 * `LookupAttributes` ([`[]LookupAttribute`](#LookupAttribute)) (nullable)
 * `MaxResults` (`integer`) (nullable)
-* `StartTime` (`string`) (nullable)
+* `StartTime` (`string`) (nullable) ([format](https://json-schema.org/draft/2020-12/json-schema-validation#section-7): `date-time`)
 
 ###### <a name="LookupAttribute"></a>LookupAttribute
 
@@ -167,9 +167,9 @@
 
 ###### <a name="CloudwatchGetMetricStatisticsInput"></a>CloudwatchGetMetricStatisticsInput
 
-* `EndTime` (`string`) (nullable)
+* `EndTime` (`string`) (nullable) ([format](https://json-schema.org/draft/2020-12/json-schema-validation#section-7): `date-time`)
 * `Period` (`integer`) (nullable)
-* `StartTime` (`string`) (nullable)
+* `StartTime` (`string`) (nullable) ([format](https://json-schema.org/draft/2020-12/json-schema-validation#section-7): `date-time`)
 * `ExtendedStatistics` (`[]string`) (nullable)
 * `Statistics` (`[]string`) (nullable)
 * `Unit` (`string`)
@@ -233,7 +233,7 @@
 * `DesiredStatus` (`string`)
 * `Family` (`string`) (nullable)
 * `LaunchType` (`string`)
-* `MaxResults` (`integer`) (nullable) (default: `100`)
+* `MaxResults` (`integer`) (nullable) (range: `[1,100]`) (default: `100`)
 * `ServiceName` (`string`) (nullable)
 * `StartedBy` (`string`) (nullable)
 
@@ -299,8 +299,8 @@
 
 ###### <a name="DateFilter"></a>DateFilter
 
-* `EndInclusive` (`string`) (nullable)
-* `StartInclusive` (`string`) (nullable)
+* `EndInclusive` (`string`) (nullable) ([format](https://json-schema.org/draft/2020-12/json-schema-validation#section-7): `date-time`)
+* `StartInclusive` (`string`) (nullable) ([format](https://json-schema.org/draft/2020-12/json-schema-validation#section-7): `date-time`)
 
 ###### <a name="NumberFilter"></a>NumberFilter
 
@@ -340,7 +340,7 @@
 ##### <a name="CustomSecurityHubGetFindingsInput"></a>CustomSecurityHubGetFindingsInput
 
 * `Filters` ([`AwsSecurityFindingFilters`](#AwsSecurityFindingFilters)) (nullable)
-* `MaxResults` (`integer`)
+* `MaxResults` (`integer`) (range: `[1,100]`) (default: `100`)
 * `SortCriteria` ([`[]SortCriterion`](#SortCriterion)) (nullable)
 
 ###### <a name="AwsSecurityFindingFilters"></a>AwsSecurityFindingFilters
@@ -490,13 +490,13 @@
 
 ### <a name="EventBasedSync"></a>EventBasedSync
 
-* `full_sync` (`boolean`) (nullable)
+* `full_sync` (`boolean`) (nullable) (default: `true`)
 * `account` ([`Account`](#Account))
 * `kinesis_stream_arn` (`string`) (required) ([pattern](https://json-schema.org/draft/2020-12/json-schema-validation#section-6.3.3): `^arn(:[^:\n]*){5}([:/].*)?$`)
-* `start_time` (`string`) (nullable)
+* `start_time` (`string`) (nullable) ([format](https://json-schema.org/draft/2020-12/json-schema-validation#section-7): `date-time`) (default: `now`)
 
 ### <a name="Strategy"></a>Strategy
 
 CloudQuery scheduling strategy
 
-(`string`) (default: `dfs`) (possible values: `dfs`, `round-robin`, `shuffle`)
+(`string`) (possible values: `dfs`, `round-robin`, `shuffle`) (default: `dfs`)

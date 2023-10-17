@@ -4,19 +4,30 @@
 package docs
 
 import (
-	_ "embed"
+	"embed"
 	"testing"
 
 	"github.com/bradleyjkemp/cupaloy/v2"
 	"github.com/stretchr/testify/require"
 )
 
-//go:embed testdata/schema.json
-var jsonSchema []byte
+//go:embed testdata/*.json
+var schemaFS embed.FS
 
-func TestGenerate(t *testing.T) {
-	doc, err := Generate(jsonSchema, 1)
+func genSnapshot(t *testing.T, fileName string) {
+	data, err := schemaFS.ReadFile(fileName)
+	require.NoError(t, err)
+
+	doc, err := Generate(data, 1)
 	require.NoError(t, err)
 
 	cupaloy.New(cupaloy.SnapshotFileExtension(".md")).SnapshotT(t, doc)
+}
+
+func TestAWS(t *testing.T) {
+	genSnapshot(t, "testdata/aws.json")
+}
+
+func TestClickHouse(t *testing.T) {
+	genSnapshot(t, "testdata/clickhouse.json")
 }
