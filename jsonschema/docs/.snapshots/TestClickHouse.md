@@ -11,7 +11,7 @@
 * `engine` ([`Engine`](#Engine)) (nullable)
 * `ca_cert` (`string`)
 * `batch_size` (`integer`) (range: `[1,+∞)`) (default: `10000`)
-* `batch_size_bytes` (`integer`) (range: `[1,+∞)`) (default: `5.24288e+06`)
+* `batch_size_bytes` (`integer`) (range: `[1,+∞)`) (default: `5242880`)
 * `batch_timeout` ([`Duration`](#Duration)) (nullable) (default: `20s`)
 
 ### <a name="Engine"></a>Engine

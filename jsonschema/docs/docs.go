@@ -145,60 +145,62 @@ func writeValueAnnotations(sc *jsonschema.Schema, buff *strings.Builder) {
 	}
 
 	if sc.Default != nil {
-		_, _ = fmt.Fprintf(buff, " (default: `%v`)", sc.Default)
+		_, _ = fmt.Fprintf(buff, " (default: `%s`)", anyValue(sc.Default))
 	}
 }
 
+func anyValue(a any) string {
+	switch a := a.(type) {
+	case float32:
+		if float32(int64(a)) == a {
+			return fmt.Sprintf("%d", int64(a))
+		}
+	case float64:
+		if float64(int64(a)) == a {
+			return fmt.Sprintf("%d", int64(a))
+		}
+	}
+	return fmt.Sprintf("%v", a)
+}
+
 func valueBorders(sc *jsonschema.Schema) string {
+	minimum, _ := new(big.Rat).SetString(string(sc.Minimum))
+	exclMinimum, _ := new(big.Rat).SetString(string(sc.ExclusiveMinimum))
 	var l string
 	switch {
-	case len(sc.Minimum) == 0:
-		if len(sc.ExclusiveMinimum) > 0 {
-			l = "(" + string(sc.ExclusiveMinimum)
+	case minimum == nil:
+		if exclMinimum != nil {
+			l = "(" + exclMinimum.RatString()
 		}
-	case len(sc.ExclusiveMinimum) == 0:
-		if len(sc.Minimum) > 0 {
-			l = "[" + string(sc.Minimum)
+	case exclMinimum == nil:
+		if minimum != nil {
+			l = "[" + minimum.RatString()
 		}
 	default:
-		lVal, _, err := big.ParseFloat(string(sc.Minimum), 10, 1000, big.ToZero)
-		if err != nil {
-			panic(fmt.Sprintf("minimum=%q is not a correct number: %s", sc.Minimum, err.Error()))
-		}
-		lValExcl, _, err := big.ParseFloat(string(sc.Minimum), 10, 1000, big.ToZero)
-		if err != nil {
-			panic(fmt.Sprintf("eclusiveMinimum=%q is not a correct number: %s", sc.Minimum, err.Error()))
-		}
-		if lVal.Cmp(lValExcl) <= 0 {
-			l = "(" + string(sc.ExclusiveMinimum)
+		if minimum.Cmp(exclMinimum) <= 0 {
+			l = "(" + exclMinimum.RatString()
 		} else {
-			l = "[" + string(sc.Minimum)
+			l = "[" + minimum.RatString()
 		}
 	}
 
+	maximum, _ := new(big.Rat).SetString(string(sc.Maximum))
+	exclMaximum, _ := new(big.Rat).SetString(string(sc.ExclusiveMaximum))
 	var r string
 	switch {
-	case len(sc.Maximum) == 0:
-		if len(sc.ExclusiveMaximum) > 0 {
-			r = string(sc.ExclusiveMaximum) + ")"
+	case maximum == nil:
+		if exclMaximum != nil {
+			r = exclMaximum.RatString() + ")"
 		}
-	case len(sc.ExclusiveMaximum) == 0:
-		if len(sc.Maximum) > 0 {
-			r = string(sc.Maximum) + "]"
+	case exclMaximum == nil:
+		if maximum != nil {
+			r = maximum.RatString() + "]"
 		}
 	default:
-		rVal, _, err := big.ParseFloat(string(sc.Maximum), 10, 1000, big.ToZero)
-		if err != nil {
-			panic(fmt.Sprintf("maximum=%q is not a correct number: %s", sc.Minimum, err.Error()))
-		}
-		rValExcl, _, err := big.ParseFloat(string(sc.ExclusiveMaximum), 10, 1000, big.ToZero)
-		if err != nil {
-			panic(fmt.Sprintf("eclusiveMaximum=%q is not a correct number: %s", sc.Minimum, err.Error()))
-		}
-		if rVal.Cmp(rValExcl) >= 0 {
-			r = string(sc.ExclusiveMaximum) + ")"
+		if maximum.Cmp(exclMaximum) <= 0 {
+			r = exclMaximum.RatString() + ")"
 		} else {
-			r = string(sc.Maximum) + "]"
+			r = maximum.RatString() + "]"
 		}
 	}
 
