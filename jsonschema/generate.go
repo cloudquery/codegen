@@ -11,8 +11,15 @@ import (
 
 // Generate returns a formatted JSON schema for the input struct, according to the tags
 // defined by https://github.com/invopop/jsonschema
-func Generate(a any) ([]byte, error) {
-	sc := (&jsonschema.Reflector{RequiredFromJSONSchemaTags: true, NullableFromType: true}).Reflect(a)
+func Generate(a any, options ...Option) ([]byte, error) {
+	reflector := &jsonschema.Reflector{
+		RequiredFromJSONSchemaTags: true,
+		NullableFromType:           true,
+	}
+	for _, opt := range options {
+		opt(reflector)
+	}
+	sc := reflector.Reflect(a)
 	if err := Sanitize(sc); err != nil {
 		return nil, err
 	}
@@ -20,8 +27,8 @@ func Generate(a any) ([]byte, error) {
 	return json.MarshalIndent(sc, "", "  ")
 }
 
-func GenerateIntoFile(a any, filePath string) {
-	data, err := Generate(a)
+func GenerateIntoFile(a any, filePath string, options ...Option) {
+	data, err := Generate(a, options...)
 	if err != nil {
 		log.Fatalf("failed to generate JSON schema for %T", a)
 	}
