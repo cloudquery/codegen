@@ -42,7 +42,7 @@ func generate(definitions jsonschema.Definitions, ref string, level int, buff *s
 			continue
 		}
 		if len(processed) > 0 {
-			buff.WriteString("\n\n")
+			buff.WriteString("\n")
 		}
 		processed[curr.key] = struct{}{}
 
@@ -68,11 +68,7 @@ func writeDefinition(ref reference, sc *jsonschema.Schema, buff *strings.Builder
 		buff.WriteString("\n")
 	}
 
-	if len(sc.Description) > 0 {
-		buff.WriteString("\n")
-		buff.WriteString(sc.Description)
-		buff.WriteString("\n")
-	}
+	writeDescription(sc, buff)
 
 	if sc.Properties.Len() == 0 {
 		buff.WriteString("\n")
@@ -104,10 +100,22 @@ func header(ref reference) string {
 }
 
 func docProperty(key string, property *jsonschema.Schema, required bool, buff *strings.Builder) (ref string) {
-	buff.WriteString("* `" + key + "` ")
+	buff.WriteString("* `" + key + "`")
+	sc, _ := unwrapNullable(property)
+
+	if len(sc.Title) > 0 {
+		buff.WriteString(": ")
+		buff.WriteString(sc.Title)
+		buff.WriteString("\n  ")
+	} else {
+		// if no title is present we want the type definition inline
+		buff.WriteString(" ")
+	}
+
 	return writeProperty(property, required, buff)
 }
 
+// writeProperty starts off with the type definition without any line breaks & prefixes
 func writeProperty(property *jsonschema.Schema, required bool, buff *strings.Builder) (ref string) {
 	sc, nullable := unwrapNullable(property)
 	propType, ref := propertyType(sc)
@@ -121,8 +129,21 @@ func writeProperty(property *jsonschema.Schema, required bool, buff *strings.Bui
 	}
 
 	writeValueAnnotations(sc, buff)
+	buff.WriteString("\n")
+
+	writeDescription(sc, buff)
 
 	return ref
+}
+
+func writeDescription(sc *jsonschema.Schema, buff *strings.Builder) {
+	if len(sc.Description) == 0 {
+		return
+	}
+
+	buff.WriteString("\n  ")
+	buff.WriteString(strings.ReplaceAll(sc.Description, "\n", "\n  "))
+	buff.WriteString("\n")
 }
 
 func writeValueAnnotations(sc *jsonschema.Schema, buff *strings.Builder) {
