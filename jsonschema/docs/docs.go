@@ -147,6 +147,11 @@ func writeDescription(sc *jsonschema.Schema, buff *strings.Builder) {
 }
 
 func writeValueAnnotations(sc *jsonschema.Schema, buff *strings.Builder) {
+	if sc.Type == "array" {
+		// tricky, we will traverse the items first
+		writeValueAnnotations(sc.Items, buff)
+	}
+
 	if len(sc.Format) > 0 {
 		_, _ = fmt.Fprintf(buff, " ([format](https://json-schema.org/draft/2020-12/json-schema-validation#section-7): `%s`)", sc.Format)
 	}
@@ -186,6 +191,12 @@ func anyValue(a any) string {
 		if float64(int64(a)) == a {
 			return fmt.Sprintf("%d", int64(a))
 		}
+	case []any:
+		elems := make([]string, len(a))
+		for i, v := range a {
+			elems[i] = anyValue(v)
+		}
+		return fmt.Sprintf("%+v", elems)
 	}
 	return fmt.Sprintf("%v", a)
 }
