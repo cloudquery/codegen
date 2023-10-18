@@ -141,12 +141,9 @@ func writeDescription(sc *jsonschema.Schema, buff *strings.Builder) {
 		return
 	}
 
-	parts := strings.Split(sc.Description, "\n")
-	for _, part := range parts {
-		buff.WriteString("\n  ")
-		buff.WriteString(part)
-		buff.WriteString("\n")
-	}
+	buff.WriteString("\n  ")
+	buff.WriteString(strings.ReplaceAll(sc.Description, "\n", "\n  "))
+	buff.WriteString("\n")
 }
 
 func writeValueAnnotations(sc *jsonschema.Schema, buff *strings.Builder) {
