@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.3.9](https://github.com/cloudquery/codegen/compare/v0.3.8...v0.3.9) (2023-10-18)
+
+
+### Features
+
+* Add options appicable to `jsonschema.Reflector` prior to generation ([#60](https://github.com/cloudquery/codegen/issues/60)) ([2cace1e](https://github.com/cloudquery/codegen/commit/2cace1edb1c861b55645dc5d836412892284b90d))
+* Generate docs from JSON schema ([#50](https://github.com/cloudquery/codegen/issues/50)) ([ce84add](https://github.com/cloudquery/codegen/commit/ce84add411260e6dfca16ea39eb4470aaa99c108))
+
+
+### Bug Fixes
+
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.13.0 ([#55](https://github.com/cloudquery/codegen/issues/55)) ([507131a](https://github.com/cloudquery/codegen/commit/507131aa70aebbabf53e0f681350d7e94a1f894c))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.14.0 ([#57](https://github.com/cloudquery/codegen/issues/57)) ([31ade81](https://github.com/cloudquery/codegen/commit/31ade818b71b53cf1f62b47195a921e912cf5945))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.14.1 ([#58](https://github.com/cloudquery/codegen/issues/58)) ([6002349](https://github.com/cloudquery/codegen/commit/60023492d46202cf72d0aa7b96e35a47aba038bf))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.15.0 ([#59](https://github.com/cloudquery/codegen/issues/59)) ([2c6f5a8](https://github.com/cloudquery/codegen/commit/2c6f5a80299610265d67390d606a449582bb0544))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.15.1 ([#61](https://github.com/cloudquery/codegen/issues/61)) ([dca6592](https://github.com/cloudquery/codegen/commit/dca65923c6a813ecfd097aee2d7690b21ed9e180))
+
 ## [0.3.8](https://github.com/cloudquery/codegen/compare/v0.3.7...v0.3.8) (2023-10-13)
 
 
