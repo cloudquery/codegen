@@ -130,21 +130,54 @@
 
 ### <a name="Account"></a>Account
 
+  This is used to specify one or more accounts to extract information from.
+
 * `id` (`string`) (required)
+
+  Will be used as an alias in the source plugin and in the logs.
 
 * `account_name` (`string`)
 
+  Will be used as an alias in the source plugin and in the logs.
+
 * `local_profile` (`string`)
 
-* `role_arn` (`string`) ([pattern](https://json-schema.org/draft/2020-12/json-schema-validation#section-6.3.3): `^arn(:[^:\n]*){5}([:/].*)?$`)
+  [Local profile](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html) to use to authenticate this account with.
+  Please note this should be set to the name of the profile.
+  
+  For example, with the following credentials file:
+  
+    ```ini copy
+    [default]
+    aws_access_key_id=xxxx
+    aws_secret_access_key=xxxx
+  
+    [user1]
+    aws_access_key_id=xxxx
+    aws_secret_access_key=xxxx
+    ```
+  
+  `local_profile` should be set to either `default` or `user1`.
+
+* `role_arn` (`string`) ([pattern](https://json-schema.org/draft/2020-12/json-schema-validation#section-6.3.3): `^(arn(:[^:\n]*){5}([:/].*)?)?$`)
+
+  If specified will use this to assume role.
 
 * `role_session_name` (`string`)
 
+  If specified will use this session name when assume role to `role_arn`.
+
 * `external_id` (`string`)
 
-* `default_region` (`string`)
+  If specified will use this when assuming role to `role_arn`.
+
+* `default_region` (`string`) (default: `us-east-1`)
+
+  If specified, this region will be used as the default region for the account.
 
 * `regions` (`[]string`) (nullable)
+
+  Regions to use for this account. Defaults to global `regions` setting.
 
 ### <a name="Org"></a>Org
 
