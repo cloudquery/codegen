@@ -55,35 +55,78 @@
 
 * `regions` (`[]string`) (nullable)
 
+  Regions to use.
+
 * `accounts` ([`[]Account`](#Account)) (nullable)
+
+  List of all accounts to fetch information from.
 
 * `org` ([`Org`](#Org)) (nullable)
 
+  In AWS organization mode, CloudQuery will source all accounts underneath automatically.
+
 * `aws_debug` (`boolean`)
+
+  If `true`, will log AWS debug logs, including retries and other request/response metadata.
 
 * `max_retries` (`integer`) (nullable) (default: `10`)
 
+  Defines the maximum number of times an API request will be retried.
+
 * `max_backoff` (`integer`) (nullable) (default: `30`)
+
+  Defines the duration between retry attempts.
 
 * `custom_endpoint_url` (`string`)
 
+  The base URL endpoint the SDK API clients will use to make API calls to.
+  The SDK will suffix URI path and query elements to this endpoint.
+
 * `custom_endpoint_hostname_immutable` (`boolean`) (nullable)
+
+  Specifies if the endpoint's hostname can be modified by the SDK's API client.
+  When using something like LocalStack make sure to set it equal to `true`.
 
 * `custom_endpoint_partition_id` (`string`)
 
+  The AWS partition the endpoint belongs to.
+
 * `custom_endpoint_signing_region` (`string`)
+
+  The region that should be used for signing the request to the endpoint.
 
 * `initialization_concurrency` (`integer`) (range: `[1,+∞)`) (default: `4`)
 
+  During initialization the AWS source plugin fetches information about each account and region.
+  This setting controls how many accounts can be initialized concurrently.
+  Only configurations with many accounts (either hardcoded or discovered via Organizations)
+  should require modifying this setting, to either lower it to avoid rate limit errors, or to increase it to speed up the initialization process.
+
 * `concurrency` (`integer`) (range: `[1,+∞)`) (default: `50000`)
+
+  The best effort maximum number of Go routines to use. Lower this number to reduce memory usage.
 
 * `use_paid_apis` (`boolean`) (default: `false`)
 
+  When set to `true` plugin will sync data from APIs that incur a fee.
+  Currently only `aws_costexplorer*` and `aws_alpha_cloudwatch_metric*` tables require this flag to be set to `true`.
+
 * `table_options` ([`TableOptions`](#TableOptions)) (nullable)
+
+  This is a preview feature (for more information about `preview` features look at [plugin versioning](/docs/plugins/sources/aws/versioning))
+  that enables users to override the default options for specific tables.
+  The root of the object takes a table name, and the next level takes an API method name.
+  The final level is the actual input object as defined by the API.
 
 * `event_based_sync` ([`EventBasedSync`](#EventBasedSync)) (nullable)
 
+  This feature is available only in premium version of the plugin.
+
 * `scheduler` ([`Strategy`](#Strategy))
+
+  The scheduler to use when determining the priority of resources to sync.
+  
+  For more information about this, see [performance tuning](/docs/advanced-topics/performance-tuning).
 
 ### <a name="Account"></a>Account
 
