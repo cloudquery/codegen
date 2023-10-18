@@ -2,7 +2,7 @@
 
 * [`Spec`](#Spec)
   * [`Account`](#Account)
-  * [`Org`](#Org)
+  * [`Organization`](#Organization)
   * [`TableOptions`](#TableOptions)
     * [`AccessAnalyzerFindings`](#AccessAnalyzerFindings)
       * [`CustomAccessAnalyzerListFindingsInput`](#CustomAccessAnalyzerListFindingsInput)
@@ -61,7 +61,7 @@
 
   List of all accounts to fetch information from.
 
-* `org` ([`Org`](#Org)) (nullable)
+* `org` ([`Organization`](#Organization)) (nullable)
 
   In AWS organization mode, CloudQuery will source all accounts underneath automatically.
 
@@ -179,25 +179,52 @@
 
   Regions to use for this account. Defaults to global `regions` setting.
 
-### <a name="Org"></a>Org
+### <a name="Organization"></a>Organization
+
+  Organization mode spec used to source all accounts underneath automatically.
 
 * `admin_account` ([`Account`](#Account)) (nullable)
 
+  Configuration for how to grab credentials from an admin account.
+
 * `member_trusted_principal` ([`Account`](#Account)) (nullable)
+
+  Configuration for how to specify the principle to use in order to assume a role in the member accounts.
 
 * `member_role_name` (`string`) (required)
 
+  Role name that CloudQuery should use to assume a role in the member account from the admin account.
+  
+  Note: This is not a full ARN, it is just the name.
+
 * `member_role_session_name` (`string`)
+
+  Overrides the default session name.
 
 * `member_external_id` (`string`)
 
+  Specify an external ID for use in the trust policy.
+
 * `member_regions` (`[]string`) (nullable)
+
+  Limit fetching resources within this specific account to only these regions.
+  This will override any regions specified in the provider block.
+  You can specify all regions by using the `*` character as the only argument in the array.
 
 * `organization_units` (`[]string`) (nullable)
 
+  List of Organizational Units that CloudQuery should use to source accounts from.
+  If you specify an OU, CloudQuery will also traverse nested OUs.
+
 * `skip_organization_units` (`[]string`) (nullable)
 
+  List of Organizational Units to skip.
+  This is useful in conjunction with `organization_units` if there are child OUs that should be ignored.
+
 * `skip_member_accounts` (`[]string`) (nullable)
+
+  List of OU member accounts to skip.
+  This is useful if there are accounts under the selected OUs that should be ignored.
 
 ### <a name="TableOptions"></a>TableOptions
 
