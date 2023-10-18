@@ -33,6 +33,10 @@ func TestAWS(t *testing.T) {
 	genSnapshot(t, "testdata/aws.json")
 }
 
+func TestGCP(t *testing.T) {
+	genSnapshot(t, "testdata/gcp.json")
+}
+
 func TestClickHouse(t *testing.T) {
 	genSnapshot(t, "testdata/clickhouse.json")
 }

@@ -209,12 +209,12 @@
   This will override any regions specified in the provider block.
   You can specify all regions by using the `*` character as the only argument in the array.
 
-* `organization_units` (`[]string`) (nullable)
+* `organization_units` (`[]string`) (nullable) ([pattern](https://json-schema.org/draft/2020-12/json-schema-validation#section-6.3.3): `^((ou-[0-9a-z]{4,32}-[a-z0-9]{8,32})|(r-[0-9a-z]{4,32}))$`)
 
   List of Organizational Units that CloudQuery should use to source accounts from.
   If you specify an OU, CloudQuery will also traverse nested OUs.
 
-* `skip_organization_units` (`[]string`) (nullable)
+* `skip_organization_units` (`[]string`) (nullable) ([pattern](https://json-schema.org/draft/2020-12/json-schema-validation#section-6.3.3): `^((ou-[0-9a-z]{4,32}-[a-z0-9]{8,32})|(r-[0-9a-z]{4,32}))$`)
 
   List of Organizational Units to skip.
   This is useful in conjunction with `organization_units` if there are child OUs that should be ignored.
