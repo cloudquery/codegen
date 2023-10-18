@@ -115,8 +115,6 @@
 
   This is a preview feature (for more information about `preview` features look at [plugin versioning](/docs/plugins/sources/aws/versioning))
   that enables users to override the default options for specific tables.
-  The root of the object takes a table name, and the next level takes an API method name.
-  The final level is the actual input object as defined by the API.
 
 * `event_based_sync` ([`EventBasedSync`](#EventBasedSync)) (nullable)
 
@@ -228,19 +226,35 @@
 
 ### <a name="TableOptions"></a>TableOptions
 
+  TableOptions allows users to override the default options for specific tables.
+
 * `aws_accessanalyzer_analyzer_findings` ([`AccessAnalyzerFindings`](#AccessAnalyzerFindings)) (nullable)
+
+  Override options for `aws_accessanalyzer_analyzer_findings` table.
 
 * `aws_cloudtrail_events` ([`CloudtrailEvents`](#CloudtrailEvents)) (nullable)
 
+  Override options for `aws_cloudtrail_events` table.
+
 * `aws_alpha_cloudwatch_metrics` ([`CloudwatchMetrics`](#CloudwatchMetrics)) (nullable)
+
+  Override options for `aws_alpha_cloudwatch_metrics` table.
 
 * `aws_alpha_costexplorer_cost_custom` ([`CostExplorerAPIs`](#CostExplorerAPIs)) (nullable)
 
+  Override options for `aws_alpha_costexplorer_cost_custom` table.
+
 * `aws_ecs_cluster_tasks` ([`ECSTasks`](#ECSTasks)) (nullable)
+
+  Override options for `aws_ecs_cluster_tasks` table.
 
 * `aws_inspector2_findings` ([`Inspector2Findings`](#Inspector2Findings)) (nullable)
 
+  Override options for `aws_inspector2_findings` table.
+
 * `aws_securityhub_findings` ([`SecurityHubFindings`](#SecurityHubFindings)) (nullable)
+
+  Override options for `aws_securityhub_findings` table.
 
 #### <a name="AccessAnalyzerFindings"></a>AccessAnalyzerFindings
 
@@ -1770,13 +1784,23 @@
 
 ### <a name="EventBasedSync"></a>EventBasedSync
 
+  Event-based sync configuration.
+
 * `full_sync` (`boolean`) (nullable) (default: `true`)
+
+  Whether the full sync will be performed for the tables prior to engaging the event-based sync mode.
 
 * `account` ([`Account`](#Account))
 
+  Account spec to configure sync.
+
 * `kinesis_stream_arn` (`string`) (required) ([pattern](https://json-schema.org/draft/2020-12/json-schema-validation#section-6.3.3): `^arn(:[^:\n]*){5}([:/].*)?$`)
 
+  Amazon Kinesis stream ARN to subscribe to.
+
 * `start_time` (`string`) (nullable) ([format](https://json-schema.org/draft/2020-12/json-schema-validation#section-7): `date-time`) (default: `now`)
+
+  The timestamp of the data record from which to start reading.
 
 ### <a name="Strategy"></a>Strategy
 
