@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.3.10](https://github.com/cloudquery/codegen/compare/v0.3.9...v0.3.10) (2023-10-19)
+
+
+### Bug Fixes
+
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.15.2 ([#62](https://github.com/cloudquery/codegen/issues/62)) ([62b2b3c](https://github.com/cloudquery/codegen/commit/62b2b3cf4ea1b6619d46ed370548553b27aca1b2))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.15.3 ([#65](https://github.com/cloudquery/codegen/issues/65)) ([59c2e73](https://github.com/cloudquery/codegen/commit/59c2e73fff8e446d572d51b9776afa0a00faf38c))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.16.0 ([#66](https://github.com/cloudquery/codegen/issues/66)) ([ca20b06](https://github.com/cloudquery/codegen/commit/ca20b06f3682151ae2fd31c1a8eaaefe4d79b16e))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.16.1 ([#68](https://github.com/cloudquery/codegen/issues/68)) ([3ad81d3](https://github.com/cloudquery/codegen/commit/3ad81d3a6e0723d3e143804f86250ed2d991d7fe))
+* Properly handle arrays in JSON schema docs ([#64](https://github.com/cloudquery/codegen/issues/64)) ([d16a154](https://github.com/cloudquery/codegen/commit/d16a154f9b149f33e3f38cf945cf70b2926976f6))
+
 ## [0.3.9](https://github.com/cloudquery/codegen/compare/v0.3.8...v0.3.9) (2023-10-18)
 
 
