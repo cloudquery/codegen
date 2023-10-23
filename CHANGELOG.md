@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.11](https://github.com/cloudquery/codegen/compare/v0.3.10...v0.3.11) (2023-10-23)
+
+
+### Bug Fixes
+
+* Resolve nested JSON schemas in documentation generation ([#69](https://github.com/cloudquery/codegen/issues/69)) ([27c517a](https://github.com/cloudquery/codegen/commit/27c517aca799376c64da94366bb72b2a13717155))
+
 ## [0.3.10](https://github.com/cloudquery/codegen/compare/v0.3.9...v0.3.10) (2023-10-19)
 
 
