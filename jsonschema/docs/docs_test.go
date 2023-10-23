@@ -40,3 +40,7 @@ func TestGCP(t *testing.T) {
 func TestClickHouse(t *testing.T) {
 	genSnapshot(t, "testdata/clickhouse.json")
 }
+
+func TestFiletypes(t *testing.T) {
+	genSnapshot(t, "testdata/filetypes.json")
+}

@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"math/big"
-	"regexp"
 	"slices"
 	"strconv"
 	"strings"
@@ -19,19 +18,18 @@ func Generate(schema []byte, headerLevel int) (string, error) {
 	}
 
 	buff := new(strings.Builder)
-	toc, err := generate(root.Definitions, unwrapRef(root.Ref), headerLevel, buff)
+	toc, err := generate(&root, headerLevel, buff)
 	return toc + "\n\n" + buff.String(), err
 }
 
-type reference struct {
-	key   string
-	level int
-}
-
-func generate(definitions jsonschema.Definitions, ref string, level int, buff *strings.Builder) (toc string, err error) {
-	processed := make(map[string]struct{}, len(definitions))
-	references := make([]reference, 1, len(definitions))
-	references[0] = reference{key: ref, level: level + 1} // +1 as toc is on the level
+func generate(root *jsonschema.Schema, level int, buff *strings.Builder) (toc string, err error) {
+	processed := make(map[refKey]struct{}, len(root.Definitions))
+	references := make([]reference, 1, len(root.Definitions))
+	references[0] = reference{
+		key:         refKey{id: root.ID, key: root.Ref},
+		level:       level + 1,
+		definitions: root.Definitions,
+	} // +1 as toc is on the level
 
 	toc = strings.Repeat("#", level) + " Table of contents\n"
 	var curr reference
@@ -46,20 +44,20 @@ func generate(definitions jsonschema.Definitions, ref string, level int, buff *s
 		}
 		processed[curr.key] = struct{}{}
 
-		currSchema, ok := definitions[curr.key]
-		if !ok {
-			return toc, fmt.Errorf("missing definition for key %q, possibly incomplete schema", curr.key)
+		currSchema, err := curr.schema()
+		if err != nil {
+			return toc, err
 		}
 
 		// we prepend references to make the docs more localized
 		references = append(writeDefinition(curr, currSchema, buff), references...)
-		toc += "\n" + strings.Repeat("  ", curr.level-level-1) + "* " + linkTo(curr.key)
+		toc += "\n" + strings.Repeat("  ", curr.level-level-1) + "* " + curr.key.link()
 	}
 	return toc, nil
 }
 
 func writeDefinition(ref reference, sc *jsonschema.Schema, buff *strings.Builder) []reference {
-	buff.WriteString(header(ref))
+	buff.WriteString(ref.header())
 	buff.WriteString("\n")
 
 	if len(sc.Title) > 0 {
@@ -72,34 +70,23 @@ func writeDefinition(ref reference, sc *jsonschema.Schema, buff *strings.Builder
 
 	if sc.Properties.Len() == 0 {
 		buff.WriteString("\n")
-		newRef := writeInlineDefinition(sc, slices.Contains(sc.Required, ref.key), buff)
-		if len(newRef) > 0 {
-			return []reference{{key: newRef, level: ref.level + 1}}
-		}
-		return nil
+		return ref.newReferences(sc, writeInlineDefinition(sc, false, buff))
 	}
 
 	refs := make([]reference, 0, sc.Properties.Len()) // prealloc to some meaningful len
 	for prop := sc.Properties.Oldest(); prop != nil; prop = prop.Next() {
 		buff.WriteString("\n")
-		newRef := docProperty(prop.Key, prop.Value, slices.Contains(sc.Required, prop.Key), buff)
-		if len(newRef) > 0 {
-			refs = append(refs, reference{key: newRef, level: ref.level + 1})
-		}
+		refs = append(refs, ref.newReferences(sc, docProperty(prop.Key, prop.Value, slices.Contains(sc.Required, prop.Key), buff))...)
 	}
 
 	return refs
 }
 
-func writeInlineDefinition(sc *jsonschema.Schema, required bool, buff *strings.Builder) (ref string) {
+func writeInlineDefinition(sc *jsonschema.Schema, required bool, buff *strings.Builder) (refs []refKey) {
 	return writeProperty(sc, required, buff)
 }
 
-func header(ref reference) string {
-	return strings.Repeat("#", min(ref.level, 6)) + ` <a name="` + anchorValue(ref.key) + `"></a>` + trimClashingSuffix(ref.key)
-}
-
-func docProperty(key string, property *jsonschema.Schema, required bool, buff *strings.Builder) (ref string) {
+func docProperty(key string, property *jsonschema.Schema, required bool, buff *strings.Builder) (refs []refKey) {
 	buff.WriteString("* `" + key + "`")
 	sc, _ := unwrapNullable(property)
 
@@ -116,9 +103,9 @@ func docProperty(key string, property *jsonschema.Schema, required bool, buff *s
 }
 
 // writeProperty starts off with the type definition without any line breaks & prefixes
-func writeProperty(property *jsonschema.Schema, required bool, buff *strings.Builder) (ref string) {
+func writeProperty(property *jsonschema.Schema, required bool, buff *strings.Builder) (refs []refKey) {
 	sc, nullable := unwrapNullable(property)
-	propType, ref := propertyType(sc)
+	propType, refs := propertyType(sc)
 	buff.WriteString(propType)
 	if nullable {
 		buff.WriteString(" (nullable)")
@@ -133,7 +120,7 @@ func writeProperty(property *jsonschema.Schema, required bool, buff *strings.Bui
 
 	writeDescription(sc, buff)
 
-	return ref
+	return refs
 }
 
 func writeDescription(sc *jsonschema.Schema, buff *strings.Builder) {
@@ -144,6 +131,8 @@ func writeDescription(sc *jsonschema.Schema, buff *strings.Builder) {
 	buff.WriteString("\n  ")
 	buff.WriteString(strings.ReplaceAll(sc.Description, "\n", "\n  "))
 	buff.WriteString("\n")
+
+	sc.Description = "" // already used
 }
 
 func writeValueAnnotations(sc *jsonschema.Schema, buff *strings.Builder) {
@@ -171,7 +160,7 @@ func writeValueAnnotations(sc *jsonschema.Schema, buff *strings.Builder) {
 			if i > 0 {
 				buff.WriteString(", ")
 			}
-			_, _ = fmt.Fprintf(buff, "`%v`", e)
+			_, _ = fmt.Fprintf(buff, "`%v`", anyValue(e))
 		}
 		buff.WriteString(")")
 	}
@@ -183,6 +172,11 @@ func writeValueAnnotations(sc *jsonschema.Schema, buff *strings.Builder) {
 
 func anyValue(a any) string {
 	switch a := a.(type) {
+	case string:
+		if len(a) == 0 {
+			// Markdown needs at least 1 space to represent empty string
+			return " "
+		}
 	case float32:
 		if float32(int64(a)) == a {
 			return fmt.Sprintf("%d", int64(a))
@@ -265,43 +259,53 @@ func unwrapNullable(sc *jsonschema.Schema) (*jsonschema.Schema, bool) {
 	return sc, false
 }
 
-func propertyType(sc *jsonschema.Schema) (_type string, ref string) {
-	_type, ref = propertyTypeNoSuffix(sc)
-	_type = "`" + _type + "`" // backticks for type name
-	if len(ref) > 0 {
-		_type = `[` + _type + `](#` + anchorValue(ref) + `)` // link
+func propertyType(sc *jsonschema.Schema) (_type string, refs []refKey) {
+	types := propertyTypeNoSuffix(sc)
+
+	if len(types) == 1 {
+		t := types[0]
+		return "(" + t.printable() + ")", t.refs()
 	}
-	_type = `(` + _type + `)` // wrap in brackets
-	return _type, ref
+
+	parts := make([]string, len(types)) // >1 part ~ oneOf/anyOf
+	for i, t := range types {
+		parts[i] = t.printable()
+		refs = append(refs, t.refs()...)
+	}
+
+	return "(" + strings.Join(parts[:len(parts)-1], ", ") + " or " + parts[len(parts)-1] + ")", refs
 }
 
-func propertyTypeNoSuffix(sc *jsonschema.Schema) (_type string, ref string) {
+func propertyTypeNoSuffix(sc *jsonschema.Schema) []typeReference {
 	sc, _ = unwrapNullable(sc)
 
 	if isAnything(sc) {
-		return "anything", ""
+		return []typeReference{{name: "anything"}}
 	}
 
-	if ref = unwrapRef(sc.Ref); len(ref) > 0 {
-		return trimClashingSuffix(ref), ref
+	if len(sc.Ref) > 0 {
+		ref := refKey{key: sc.Ref}
+		return []typeReference{{name: ref.name(), ref: &ref}}
 	}
 
-	if _type, ref, ok := mapType(sc); ok {
-		return _type, ref
+	if _types, ok := mapType(sc); ok {
+		return _types
 	}
 
-	if sc.Type != "array" {
-		return sc.Type, ""
+	if _types, ok := arrayType(sc); ok {
+		return _types
 	}
 
-	// arrays are a bit tricky
-	item, nullable := unwrapNullable(sc.Items)
-	pfx := "[]"
-	if nullable {
-		pfx += "*"
+	if _types, ok := anyOfType(sc); ok {
+		return _types
 	}
-	_type, ref = propertyTypeNoSuffix(item)
-	return pfx + _type, ref
+
+	if _types, ok := oneOfType(sc); ok {
+		return _types
+	}
+
+	// default case
+	return []typeReference{{name: sc.Type}}
 }
 
 func isAnything(sc *jsonschema.Schema) bool {
@@ -312,32 +316,62 @@ func isAnything(sc *jsonschema.Schema) bool {
 	return string(data) == "true"
 }
 
-func mapType(sc *jsonschema.Schema) (_type string, ref string, ok bool) {
-	if sc.Type != "object" || sc.AdditionalProperties == nil {
-		return "", "", false
+func isNothing(sc *jsonschema.Schema) bool {
+	data, err := json.Marshal(sc)
+	if err != nil {
+		panic(err)
+	}
+	return string(data) == "false"
+}
+
+func mapType(sc *jsonschema.Schema) (refs []typeReference, ok bool) {
+	if sc.Type != "object" || sc.AdditionalProperties == nil || isNothing(sc.AdditionalProperties) {
+		return nil, false
 	}
 	pfx := `map[string]`
-	_type, ref = propertyTypeNoSuffix(sc.AdditionalProperties)
-	return pfx + _type, ref, true
+	refs = propertyTypeNoSuffix(sc.AdditionalProperties)
+	for i := range refs {
+		refs[i].name = pfx + refs[i].name
+	}
+	return refs, true
 }
 
-func unwrapRef(ref string) string {
-	return strings.TrimPrefix(ref, "#/$defs/")
+func arrayType(sc *jsonschema.Schema) (refs []typeReference, ok bool) {
+	if sc.Type != "array" {
+		return nil, false
+	}
+	item, nullable := unwrapNullable(sc.Items)
+	pfx := "[]"
+	if nullable {
+		pfx += "*"
+	}
+	refs = propertyTypeNoSuffix(item)
+	for i := range refs {
+		refs[i].name = pfx + refs[i].name
+	}
+	return refs, true
 }
 
-func trimClashingSuffix(ref string) string {
-	clashingRef := regexp.MustCompile(`^(.+)[_-]\d+$`)
-	if !clashingRef.MatchString(ref) {
-		return ref
+func oneOfType(sc *jsonschema.Schema) (refs []typeReference, ok bool) {
+	if len(sc.OneOf) == 0 {
+		return nil, false
 	}
 
-	return clashingRef.FindStringSubmatch(ref)[1]
+	return ofTypes(sc.OneOf), true
 }
 
-func linkTo(key string) string {
-	return "[`" + trimClashingSuffix(key) + "`](#" + anchorValue(key) + ")"
+func anyOfType(sc *jsonschema.Schema) (refs []typeReference, ok bool) {
+	if len(sc.AnyOf) == 0 {
+		return nil, false
+	}
+
+	return ofTypes(sc.AnyOf), true
 }
 
-func anchorValue(key string) string {
-	return strings.ReplaceAll(key, "_", "-")
+func ofTypes(types []*jsonschema.Schema) []typeReference {
+	refs := make([]typeReference, 0, len(types))
+	for _, t := range types {
+		refs = append(refs, propertyTypeNoSuffix(t)...)
+	}
+	return refs
 }
