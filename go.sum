@@ -2,8 +2,8 @@ github.com/Azure/azure-sdk-for-go/sdk/azcore v1.8.0 h1:9kDVnTz3vbfweTqAUmk/a/pH5
 github.com/Azure/azure-sdk-for-go/sdk/azcore v1.8.0/go.mod h1:3Ug6Qzto9anB6mGlEdgYMDF5zHQ+wwhEaYR4s17PHMw=
 github.com/Azure/azure-sdk-for-go/sdk/azidentity v1.2.2 h1:uqM+VoHjVH6zdlkLF2b6O0ZANcHoj3rO0PoQ3jglUJA=
 github.com/Azure/azure-sdk-for-go/sdk/azidentity v1.2.2/go.mod h1:twTKAa1E6hLmSDjLhaCkbTMQKc7p/rNLU40rLxGEOCI=
-github.com/Azure/azure-sdk-for-go/sdk/internal v1.3.0 h1:sXr+ck84g/ZlZUOZiNELInmMgOsuGwdjjVkEIde0OtY=
-github.com/Azure/azure-sdk-for-go/sdk/internal v1.3.0/go.mod h1:okt5dMMTOFjX/aovMlrjvvXoPMBVSPzk9185BT0+eZM=
+github.com/Azure/azure-sdk-for-go/sdk/internal v1.4.0 h1:TuEMD+E+1aTjjLICGQOW6vLe8UWES7kopac9mUXL56Y=
+github.com/Azure/azure-sdk-for-go/sdk/internal v1.4.0/go.mod h1:s4kgfzA0covAXNicZHDMN58jExvcng2mC/DepXiF1EI=
 github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/appconfiguration/armappconfiguration/v2 v2.0.0 h1:PWMXyUvMZxxu+7nMMEQUvhkChyyL5QHZS09l0pFFNy0=
 github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/appconfiguration/armappconfiguration/v2 v2.0.0/go.mod h1:FYPwnyAC+Ym6BnAdb/9EEMut5U8mI/vxIP9lqcMIUiQ=
 github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/resources/armmanagedapplications v1.1.1 h1:/tJ5Wpv4WJMWhrvQ4efhm+DlBPdohOSSOWaJkp4QjWw=
