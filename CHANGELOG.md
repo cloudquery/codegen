@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.3.12](https://github.com/cloudquery/codegen/compare/v0.3.11...v0.3.12) (2023-11-01)
+
+
+### Bug Fixes
+
+* **deps:** Update github.com/apache/arrow/go/v14 digest to c49e242 ([#74](https://github.com/cloudquery/codegen/issues/74)) ([446ef65](https://github.com/cloudquery/codegen/commit/446ef6570ccca09092a058d82dd6ba85fad6b04a))
+* **deps:** Update golang.org/x/xerrors digest to 104605a ([#75](https://github.com/cloudquery/codegen/issues/75)) ([3e2b7b9](https://github.com/cloudquery/codegen/commit/3e2b7b9a36e5d70b80eca7788fac0ed8a76c81f8))
+* **deps:** Update module github.com/Azure/azure-sdk-for-go/sdk/azcore to v1.8.0 ([#78](https://github.com/cloudquery/codegen/issues/78)) ([deb996a](https://github.com/cloudquery/codegen/commit/deb996a9a430fab83e00278ee8ecc54918242f74))
+* **deps:** Update module github.com/Azure/azure-sdk-for-go/sdk/internal to v1.4.0 ([#79](https://github.com/cloudquery/codegen/issues/79)) ([72ba3ab](https://github.com/cloudquery/codegen/commit/72ba3abb4035918b01b2d3edcc4fae5edb3e0ea2))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.17.0 ([#71](https://github.com/cloudquery/codegen/issues/71)) ([cc4ee15](https://github.com/cloudquery/codegen/commit/cc4ee155bf0b331a7f4f480b0a745b1adff7c798))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.17.1 ([#73](https://github.com/cloudquery/codegen/issues/73)) ([5bcf9a4](https://github.com/cloudquery/codegen/commit/5bcf9a47bd002f3b9317fa89a23ba79e5323bca3))
+* **deps:** Update module github.com/google/go-cmp to v0.6.0 ([#80](https://github.com/cloudquery/codegen/issues/80)) ([bc9bc5d](https://github.com/cloudquery/codegen/commit/bc9bc5d5f92860c3e44777df67577384607baa17))
+* **deps:** Update module github.com/google/uuid to v1.4.0 ([#81](https://github.com/cloudquery/codegen/issues/81)) ([92d9bce](https://github.com/cloudquery/codegen/commit/92d9bce0093d054032c1301fbfad9f740fddee94))
+* **deps:** Update module github.com/mattn/go-isatty to v0.0.20 ([#76](https://github.com/cloudquery/codegen/issues/76)) ([6782398](https://github.com/cloudquery/codegen/commit/6782398ae18605970d2b0c22a20b95fde878b229))
+
 ## [0.3.11](https://github.com/cloudquery/codegen/compare/v0.3.10...v0.3.11) (2023-10-23)
 
 
