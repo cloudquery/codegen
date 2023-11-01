@@ -12,8 +12,8 @@ github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/solutions/armmanagedapplic
 github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/solutions/armmanagedapplications v1.1.1/go.mod h1:AA8RASHl5shSrLLA0/IpBbLNsoSJkjIm68X9EGDQRgo=
 github.com/AzureAD/microsoft-authentication-library-for-go v0.9.0 h1:UE9n9rkJF62ArLb1F3DEjRt8O3jLwMWdSoypKV4f3MU=
 github.com/AzureAD/microsoft-authentication-library-for-go v0.9.0/go.mod h1:kgDmCTgBzIEPFElEF+FK0SdjAor06dRq2Go927dnQ6o=
-github.com/apache/arrow/go/v14 v14.0.0-20230929201650-00efb06dc0de h1:+lnt1xsPwGBrp+23yUQySdsuELYpEUdcco4fWlYffi4=
-github.com/apache/arrow/go/v14 v14.0.0-20230929201650-00efb06dc0de/go.mod h1:/SqmdO2dsWqFHqQQeupnsr0ollL8C91n3x0I72rArY8=
+github.com/apache/arrow/go/v14 v14.0.0-20231031200323-c49e24273160 h1:SS1qi3A9YjKF2Y0AFQCNkwct4YRd0zN9ouk2x1CAyZg=
+github.com/apache/arrow/go/v14 v14.0.0-20231031200323-c49e24273160/go.mod h1:TqWp9yvMb9yZSxFNiij6cmZefm+1jw3oZU0L0w9lT7E=
 github.com/bahlo/generic-list-go v0.2.0 h1:5sz/EEAK+ls5wF+NeqDpk5+iNdMDXrh3z3nPnH1Wvgk=
 github.com/bahlo/generic-list-go v0.2.0/go.mod h1:2KvAjgMlE5NNynlg/5iLrrCCZ2+5xWbdbCW3pNTGyYg=
 github.com/bradleyjkemp/cupaloy/v2 v2.8.0 h1:any4BmKE+jGIaMpnU8YgH/I2LPiLBufr6oMMlVBbn9M=
