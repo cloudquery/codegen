@@ -9,7 +9,7 @@ require (
 	github.com/bradleyjkemp/cupaloy/v2 v2.8.0
 	github.com/cloudquery/plugin-sdk/v4 v4.19.0
 	github.com/google/go-cmp v0.6.0
-	github.com/invopop/jsonschema v0.11.0
+	github.com/invopop/jsonschema v0.12.0
 	github.com/jpillora/longestcommon v0.0.0-20161227235612-adb9d91ee629
 	github.com/stretchr/testify v1.8.4
 	golang.org/x/exp v0.0.0-20231127185646-65229373498e
