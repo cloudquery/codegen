@@ -10,7 +10,7 @@ import (
 
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/appconfiguration/armappconfiguration/v2"
 	resourcesarmmanagedapplications "github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/resources/armmanagedapplications"
-	solutionsarmmanagedapplications "github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/solutions/armmanagedapplications"
+	solutionsarmmanagedapplications "github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/solutions/armmanagedapplications/v2"
 	"github.com/google/go-cmp/cmp"
 )
 
@@ -96,7 +96,7 @@ var wantOutputOverlappingPackages = map[string]string{
 package solutions_armmanagedapplications
 
 import (
-	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/solutions/armmanagedapplications"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/solutions/armmanagedapplications/v2"
 )
 
 //go:generate mockgen -package=mocks -destination=../mocks/solutions_armmanagedapplications.go -source=solutions_armmanagedapplications.go ApplicationClient
