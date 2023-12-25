@@ -21,7 +21,7 @@ replace github.com/invopop/jsonschema => github.com/cloudquery/jsonschema v0.0.0
 require (
 	github.com/Azure/azure-sdk-for-go/sdk/azcore v1.9.1 // indirect
 	github.com/Azure/azure-sdk-for-go/sdk/internal v1.5.1 // indirect
-	github.com/apache/arrow/go/v15 v15.0.0-20231218151729-81e47b20b241 // indirect
+	github.com/apache/arrow/go/v15 v15.0.0-20231223155039-ec41209ea02b // indirect
 	github.com/bahlo/generic-list-go v0.2.0 // indirect
 	github.com/buger/jsonparser v1.1.1 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
