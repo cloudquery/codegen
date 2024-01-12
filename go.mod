@@ -7,7 +7,7 @@ require (
 	github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/resources/armmanagedapplications v1.2.0
 	github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/solutions/armmanagedapplications/v2 v2.1.0
 	github.com/bradleyjkemp/cupaloy/v2 v2.8.0
-	github.com/cloudquery/plugin-sdk/v4 v4.25.1
+	github.com/cloudquery/plugin-sdk/v4 v4.25.2
 	github.com/google/go-cmp v0.6.0
 	github.com/invopop/jsonschema v0.12.0
 	github.com/jpillora/longestcommon v0.0.0-20161227235612-adb9d91ee629
@@ -27,7 +27,7 @@ require (
 	github.com/Joker/jade v1.1.3 // indirect
 	github.com/Shopify/goreferrer v0.0.0-20220729165902-8cddb4f5de06 // indirect
 	github.com/andybalholm/brotli v1.0.6 // indirect
-	github.com/apache/arrow/go/v15 v15.0.0-20240107222100-de3130ede1a2 // indirect
+	github.com/apache/arrow/go/v15 v15.0.0-20240108124322-6d449060debb // indirect
 	github.com/apapsch/go-jsonmerge/v2 v2.0.0 // indirect
 	github.com/aymerick/douceur v0.2.0 // indirect
 	github.com/bahlo/generic-list-go v0.2.0 // indirect
