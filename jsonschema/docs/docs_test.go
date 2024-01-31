@@ -44,3 +44,7 @@ func TestClickHouse(t *testing.T) {
 func TestFiletypes(t *testing.T) {
 	genSnapshot(t, "testdata/filetypes.json")
 }
+
+func TestFileDestination(t *testing.T) {
+	genSnapshot(t, "testdata/file-destination.json")
+}
