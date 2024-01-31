@@ -1,9 +1,9 @@
 # Table of contents
 
 * [`FileSpec`](#FileSpec)
-  * [`CSVSpec`](#CSVSpec)
-  * [`JSONSpec`](#JSONSpec)
-  * [`ParquetSpec`](#ParquetSpec)
+  * [`Spec`](#Spec)
+  * [`Spec`](#Spec-1)
+  * [`Spec`](#Spec-2)
 
 ## <a name="FileSpec"></a>FileSpec
 
@@ -11,14 +11,14 @@
 
   Output format.
 
-* `format_spec` ([`CSVSpec`](#CSVSpec), [`JSONSpec`](#JSONSpec) or [`ParquetSpec`](#ParquetSpec)) (nullable)
+* `format_spec` ([`Spec`](#Spec), [`Spec`](#Spec-1) or [`Spec`](#Spec-2)) (nullable)
 
 * `compression` (`string`) (possible values: ` `, `gzip`)
 
   Compression type.
   Empty or missing stands for no compression.
 
-### <a name="CSVSpec"></a>CSVSpec
+### <a name="Spec"></a>Spec
 
   CloudQuery CSV file output spec.
 
@@ -30,13 +30,13 @@
 
   Character that will be used as the delimiter.
 
-### <a name="JSONSpec"></a>JSONSpec
+### <a name="Spec-1"></a>Spec
 
   CloudQuery JSON file output spec.
 
 (`object`)
 
-### <a name="ParquetSpec"></a>ParquetSpec
+### <a name="Spec-2"></a>Spec
 
   CloudQuery Parquet file output spec.
 
