@@ -1,9 +1,9 @@
 # Table of contents
 
 * [`Spec`](#Spec)
-  * [`Spec`](#Spec-1)
-  * [`Spec`](#Spec-2)
-  * [`Spec`](#Spec-3)
+  * [`CSVSpec`](#CSVSpec)
+  * [`JSONSpec`](#JSONSpec)
+  * [`ParquetSpec`](#ParquetSpec)
   * [`Duration`](#Duration)
 
 ## <a name="Spec"></a>Spec
@@ -12,7 +12,7 @@
 
   Output format.
 
-* `format_spec` ([`Spec`](#Spec-1), [`Spec`](#Spec-2) or [`Spec`](#Spec-3)) (nullable)
+* `format_spec` ([`CSVSpec`](#CSVSpec), [`JSONSpec`](#JSONSpec) or [`ParquetSpec`](#ParquetSpec)) (nullable)
 
 * `compression` (`string`) (possible values: ` `, `gzip`)
 
@@ -58,7 +58,7 @@
   
   Defaults to `30s` unless `no_rotate` is `true` (will be `0s` then).
 
-### <a name="Spec-1"></a>Spec
+### <a name="CSVSpec"></a>CSVSpec
 
   CloudQuery CSV file output spec.
 
@@ -70,13 +70,13 @@
 
   Character that will be used as the delimiter.
 
-### <a name="Spec-2"></a>Spec
+### <a name="JSONSpec"></a>JSONSpec
 
   CloudQuery JSON file output spec.
 
 (`object`)
 
-### <a name="Spec-3"></a>Spec
+### <a name="ParquetSpec"></a>ParquetSpec
 
   CloudQuery Parquet file output spec.
 
