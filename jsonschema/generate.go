@@ -1,6 +1,7 @@
 package jsonschema
 
 import (
+	"bytes"
 	"encoding/json"
 	"log"
 	"os"
@@ -24,7 +25,12 @@ func Generate(a any, options ...Option) ([]byte, error) {
 		return nil, err
 	}
 
-	return json.MarshalIndent(sc, "", "  ")
+	buff := new(bytes.Buffer)
+	enc := json.NewEncoder(buff)
+	enc.SetIndent("", "  ")
+	enc.SetEscapeHTML(false)
+	err := enc.Encode(sc)
+	return buff.Bytes(), err
 }
 
 func GenerateIntoFile(a any, filePath string, options ...Option) {
