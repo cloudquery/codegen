@@ -9,9 +9,10 @@ import (
 )
 
 type TestCase struct {
-	Name string
-	Spec string
-	Err  bool
+	Name         string
+	Spec         string
+	Err          bool
+	ErrorMessage string
 }
 
 func TestJSONSchema(t *testing.T, schema string, cases []TestCase) {
@@ -25,8 +26,9 @@ func TestJSONSchema(t *testing.T, schema string, cases []TestCase) {
 			var v any
 			require.NoErrorf(t, json.Unmarshal([]byte(tc.Spec), &v), "failed input:\n%s\n", tc.Spec)
 			err := validator.Validate(v)
-			if tc.Err {
+			if tc.Err || tc.ErrorMessage != "" {
 				require.Errorf(t, err, "failed input:\n%s\n", tc.Spec)
+				require.ErrorContains(t, err, tc.ErrorMessage)
 			} else {
 				require.NoErrorf(t, err, "failed input:\n%s\n", tc.Spec)
 			}
