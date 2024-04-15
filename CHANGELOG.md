@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.3.14](https://github.com/cloudquery/codegen/compare/v0.3.13...v0.3.14) (2024-04-15)
+
+
+### Features
+
+* Allow testing JSON schema error message ([#193](https://github.com/cloudquery/codegen/issues/193)) ([890096f](https://github.com/cloudquery/codegen/commit/890096f27f493bed0e698a64d34707c1a074513f))
+
+
+### Bug Fixes
+
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.36.2 ([#184](https://github.com/cloudquery/codegen/issues/184)) ([2991b2c](https://github.com/cloudquery/codegen/commit/2991b2c94bfbd27540391ffc99a0c1dd7fcf01e7))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.36.3 ([#186](https://github.com/cloudquery/codegen/issues/186)) ([885534b](https://github.com/cloudquery/codegen/commit/885534bcde47e8e75bf3c7c6a0d3843a28e8323a))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.36.4 ([#188](https://github.com/cloudquery/codegen/issues/188)) ([da7e6c9](https://github.com/cloudquery/codegen/commit/da7e6c937f6a99393ec212da3aa7eb9e35e43c24))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.36.5 ([#189](https://github.com/cloudquery/codegen/issues/189)) ([c970123](https://github.com/cloudquery/codegen/commit/c97012342f3c5367e786df7d5907c53f1549765a))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.37.0 ([#190](https://github.com/cloudquery/codegen/issues/190)) ([4e14bfe](https://github.com/cloudquery/codegen/commit/4e14bfec91d3b98216092d8f3f39e0f7123ca646))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.38.0 ([#191](https://github.com/cloudquery/codegen/issues/191)) ([6e45f5c](https://github.com/cloudquery/codegen/commit/6e45f5c573767b4fb49c0d26e38944e956622538))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.38.1 ([#192](https://github.com/cloudquery/codegen/issues/192)) ([fec6174](https://github.com/cloudquery/codegen/commit/fec61742a3ba0f2dfe777655105b09a9b9208552))
+
 ## [0.3.13](https://github.com/cloudquery/codegen/compare/v0.3.12...v0.3.13) (2024-04-01)
 
 
