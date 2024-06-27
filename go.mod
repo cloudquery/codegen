@@ -7,7 +7,7 @@ require (
 	github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/resources/armmanagedapplications v1.2.0
 	github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/solutions/armmanagedapplications/v2 v2.1.0
 	github.com/bradleyjkemp/cupaloy/v2 v2.8.0
-	github.com/cloudquery/plugin-sdk/v4 v4.48.0
+	github.com/cloudquery/plugin-sdk/v4 v4.49.0
 	github.com/google/go-cmp v0.6.0
 	github.com/invopop/jsonschema v0.12.0
 	github.com/jpillora/longestcommon v0.0.0-20161227235612-adb9d91ee629
@@ -53,7 +53,7 @@ require (
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/gorilla/css v1.0.1 // indirect
 	github.com/hashicorp/go-cleanhttp v0.5.2 // indirect
-	github.com/hashicorp/go-retryablehttp v0.7.5 // indirect
+	github.com/hashicorp/go-retryablehttp v0.7.7 // indirect
 	github.com/iris-contrib/schema v0.0.6 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
