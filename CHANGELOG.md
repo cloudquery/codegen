@@ -1,5 +1,38 @@
 # Changelog
 
+## [0.3.17](https://github.com/cloudquery/codegen/compare/v0.3.16...v0.3.17) (2024-07-01)
+
+
+### Bug Fixes
+
+* **deps:** Update dependency go to v1.21.11 ([#224](https://github.com/cloudquery/codegen/issues/224)) ([7b4433d](https://github.com/cloudquery/codegen/commit/7b4433de1ff6947b6713a50bab23199d52ad95c5))
+* **deps:** Update golang.org/x/exp digest to 7f521ea ([#233](https://github.com/cloudquery/codegen/issues/233)) ([52a2bf4](https://github.com/cloudquery/codegen/commit/52a2bf46655cd3fd67796be5e7a5e6da9cda717c))
+* **deps:** Update golang.org/x/exp digest to fd00a4e ([#214](https://github.com/cloudquery/codegen/issues/214)) ([598ef42](https://github.com/cloudquery/codegen/commit/598ef42add898194f06f67c8ffa1819fa6d0db13))
+* **deps:** Update golangci/golangci-lint-action action to v6 ([#216](https://github.com/cloudquery/codegen/issues/216)) ([539c701](https://github.com/cloudquery/codegen/commit/539c701d9c64bc904cb99a9447f40bdc7b2ebb79))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.41.0 ([#204](https://github.com/cloudquery/codegen/issues/204)) ([97ad401](https://github.com/cloudquery/codegen/commit/97ad401ebfd033ba6594175c1070b87f5cd4549a))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.41.1 ([#206](https://github.com/cloudquery/codegen/issues/206)) ([c490ecb](https://github.com/cloudquery/codegen/commit/c490ecba78bdc0c51ff59e5c1667faa4136fe894))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.42.0 ([#207](https://github.com/cloudquery/codegen/issues/207)) ([040d6bb](https://github.com/cloudquery/codegen/commit/040d6bbff3526cb3c944000095e0cf9203fbf315))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.42.1 ([#208](https://github.com/cloudquery/codegen/issues/208)) ([e1fd61d](https://github.com/cloudquery/codegen/commit/e1fd61d1ba305a5788d192ff349582f174f9a00e))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.42.2 ([#209](https://github.com/cloudquery/codegen/issues/209)) ([d4f25d0](https://github.com/cloudquery/codegen/commit/d4f25d0e8fdd94bd41eba3af7748304bb345118d))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.43.0 ([#210](https://github.com/cloudquery/codegen/issues/210)) ([e58fd0f](https://github.com/cloudquery/codegen/commit/e58fd0f74ba21ca7f7cc8ffd2ca28e3d81555be0))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.43.1 ([#211](https://github.com/cloudquery/codegen/issues/211)) ([8f46123](https://github.com/cloudquery/codegen/commit/8f4612370f48eab9962ea02c47e18e36324f410c))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.44.0 ([#212](https://github.com/cloudquery/codegen/issues/212)) ([e323ff1](https://github.com/cloudquery/codegen/commit/e323ff1c5bebc8b8a6b922fc3baf452584e773f1))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.44.1 ([#213](https://github.com/cloudquery/codegen/issues/213)) ([86a63f8](https://github.com/cloudquery/codegen/commit/86a63f81bdfa4b3d2654ac80d25a80d82c8f1ea9))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.44.2 ([#217](https://github.com/cloudquery/codegen/issues/217)) ([167fef6](https://github.com/cloudquery/codegen/commit/167fef63b6710d95bc261d9688c9a24c9a3a0c8f))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.45.0 ([#218](https://github.com/cloudquery/codegen/issues/218)) ([0b0f77c](https://github.com/cloudquery/codegen/commit/0b0f77c1795a8357d017e4ba654c6b4e70f0a5f9))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.45.1 ([#219](https://github.com/cloudquery/codegen/issues/219)) ([be2d887](https://github.com/cloudquery/codegen/commit/be2d887788cbd8c92aa20d6442892d95568dc767))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.45.2 ([#220](https://github.com/cloudquery/codegen/issues/220)) ([f7fabc3](https://github.com/cloudquery/codegen/commit/f7fabc39195859da9e5c7eba6cc81cc5f6ba00a4))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.45.3 ([#221](https://github.com/cloudquery/codegen/issues/221)) ([539f653](https://github.com/cloudquery/codegen/commit/539f65337b9e69ae8b495190fdc70bf3f3589a27))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.45.4 ([#222](https://github.com/cloudquery/codegen/issues/222)) ([5c1ceb7](https://github.com/cloudquery/codegen/commit/5c1ceb7046f7589b090d9ffb9cb33ccc093b2fa3))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.45.5 ([#223](https://github.com/cloudquery/codegen/issues/223)) ([e7c1617](https://github.com/cloudquery/codegen/commit/e7c1617f79c8c243439008f6193a504e2bb2859e))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.45.6 ([#226](https://github.com/cloudquery/codegen/issues/226)) ([57f6b0c](https://github.com/cloudquery/codegen/commit/57f6b0c9458284d32fe09cb14760ed85e3f1f90d))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.46.0 ([#227](https://github.com/cloudquery/codegen/issues/227)) ([a509dae](https://github.com/cloudquery/codegen/commit/a509daefc8cd89fa553faff1c914899adaa96597))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.46.1 ([#228](https://github.com/cloudquery/codegen/issues/228)) ([2973a5d](https://github.com/cloudquery/codegen/commit/2973a5db6fdf0e3f953f8149ab88def345de13e6))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.47.0 ([#229](https://github.com/cloudquery/codegen/issues/229)) ([f80ae4f](https://github.com/cloudquery/codegen/commit/f80ae4f7596f0c16e7bbc6722db25e5e845062bb))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.47.1 ([#230](https://github.com/cloudquery/codegen/issues/230)) ([dccb7b9](https://github.com/cloudquery/codegen/commit/dccb7b90da2dfd19b8b7dcd59ea5e9b3e9222c25))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.48.0 ([#231](https://github.com/cloudquery/codegen/issues/231)) ([f633dca](https://github.com/cloudquery/codegen/commit/f633dca1e1fb438b6230a43d1635927624670e12))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.49.0 ([#232](https://github.com/cloudquery/codegen/issues/232)) ([bea9110](https://github.com/cloudquery/codegen/commit/bea9110339261350f36461edffc4180409165d60))
+
 ## [0.3.16](https://github.com/cloudquery/codegen/compare/v0.3.15...v0.3.16) (2024-05-06)
 
 
