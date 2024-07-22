@@ -28,7 +28,7 @@ func TestJSONSchemaCases(t *testing.T) {
 				{
 					Name:         "invalid with error message",
 					Spec:         `{ "name": 1 }`,
-					ErrorMessage: "expected string, but got number",
+					ErrorMessage: "'/name': got number, want string",
 				},
 			},
 		},
