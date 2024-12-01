@@ -14,7 +14,7 @@ require (
 	github.com/invopop/jsonschema v0.12.0
 	github.com/jpillora/longestcommon v0.0.0-20161227235612-adb9d91ee629
 	github.com/stretchr/testify v1.9.0
-	golang.org/x/exp v0.0.0-20241009180824-f66d83c29e7c
+	golang.org/x/exp v0.0.0-20241108190413-2d47ceb2692f
 )
 
 // github.com/cloudquery/jsonschema @ cqmain
@@ -45,12 +45,12 @@ require (
 	github.com/thoas/go-funk v0.9.3 // indirect
 	github.com/wk8/go-ordered-map/v2 v2.1.8 // indirect
 	github.com/zeebo/xxh3 v1.0.2 // indirect
-	golang.org/x/mod v0.21.0 // indirect
-	golang.org/x/net v0.30.0 // indirect
-	golang.org/x/sync v0.8.0 // indirect
-	golang.org/x/sys v0.26.0 // indirect
-	golang.org/x/text v0.19.0 // indirect
-	golang.org/x/tools v0.26.0 // indirect
+	golang.org/x/mod v0.22.0 // indirect
+	golang.org/x/net v0.31.0 // indirect
+	golang.org/x/sync v0.9.0 // indirect
+	golang.org/x/sys v0.27.0 // indirect
+	golang.org/x/text v0.20.0 // indirect
+	golang.org/x/tools v0.27.0 // indirect
 	golang.org/x/xerrors v0.0.0-20231012003039-104605ab7028 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
