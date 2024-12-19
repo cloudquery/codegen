@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.23](https://github.com/cloudquery/codegen/compare/v0.3.22...v0.3.23) (2024-12-19)
+
+
+### Bug Fixes
+
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.72.1 ([#293](https://github.com/cloudquery/codegen/issues/293)) ([61957a2](https://github.com/cloudquery/codegen/commit/61957a21a98593b7288917eacc24ee4a5bfe2d80))
+* **deps:** Update module golang.org/x/net to v0.33.0 [SECURITY] ([#291](https://github.com/cloudquery/codegen/issues/291)) ([76fa05f](https://github.com/cloudquery/codegen/commit/76fa05fc8cdc9f01e6d14112cb2decf235236dcb))
+
 ## [0.3.22](https://github.com/cloudquery/codegen/compare/v0.3.21...v0.3.22) (2024-12-13)
 
 
