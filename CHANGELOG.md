@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.3.23](https://github.com/cloudquery/codegen/compare/v0.3.22...v0.3.23) (2025-02-01)
+
+
+### Bug Fixes
+
+* **deps:** Update dependency go to v1.23.4 ([#235](https://github.com/cloudquery/codegen/issues/235)) ([2d8b0f5](https://github.com/cloudquery/codegen/commit/2d8b0f5b6963ab9225ca8549f192f2431fc5c490))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.72.1 ([#293](https://github.com/cloudquery/codegen/issues/293)) ([61957a2](https://github.com/cloudquery/codegen/commit/61957a21a98593b7288917eacc24ee4a5bfe2d80))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.72.2 ([#294](https://github.com/cloudquery/codegen/issues/294)) ([872275b](https://github.com/cloudquery/codegen/commit/872275b1265a7446a2bf4e36eedf386b50838736))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.72.3 ([#295](https://github.com/cloudquery/codegen/issues/295)) ([8c3a8b6](https://github.com/cloudquery/codegen/commit/8c3a8b63aa853d9b671cac110621f3d566f825ad))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.72.4 ([#296](https://github.com/cloudquery/codegen/issues/296)) ([f6ff6cc](https://github.com/cloudquery/codegen/commit/f6ff6cc15de683425ee58d9316405e19ff454adc))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.72.5 ([#297](https://github.com/cloudquery/codegen/issues/297)) ([de966c9](https://github.com/cloudquery/codegen/commit/de966c9c905311c72f91bbc007241f7e9ffb3172))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.72.6 ([#299](https://github.com/cloudquery/codegen/issues/299)) ([24c9140](https://github.com/cloudquery/codegen/commit/24c9140ce738b59b1bc44967cb91d211e5b9e6c0))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.73.0 ([#300](https://github.com/cloudquery/codegen/issues/300)) ([6e0628e](https://github.com/cloudquery/codegen/commit/6e0628e13928574f5b0acd8d39d4f67272ef7a53))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.73.1 ([#301](https://github.com/cloudquery/codegen/issues/301)) ([80314f0](https://github.com/cloudquery/codegen/commit/80314f0ad0fe2f4a90d31606974b85cd616e8286))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.73.2 ([#302](https://github.com/cloudquery/codegen/issues/302)) ([d0130af](https://github.com/cloudquery/codegen/commit/d0130afbbb61381a2c17c1a91dcdbca00a27851a))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.73.3 ([#303](https://github.com/cloudquery/codegen/issues/303)) ([b7830ba](https://github.com/cloudquery/codegen/commit/b7830baa49cfaf8efd4ff9903df924faed95c8c6))
+* **deps:** Update module github.com/invopop/jsonschema to v0.13.0 ([#307](https://github.com/cloudquery/codegen/issues/307)) ([f083a97](https://github.com/cloudquery/codegen/commit/f083a9707549861155399b30110bdcdd6d85ebe6))
+* **deps:** Update module golang.org/x/net to v0.33.0 [SECURITY] ([#291](https://github.com/cloudquery/codegen/issues/291)) ([76fa05f](https://github.com/cloudquery/codegen/commit/76fa05fc8cdc9f01e6d14112cb2decf235236dcb))
+
 ## [0.3.22](https://github.com/cloudquery/codegen/compare/v0.3.21...v0.3.22) (2024-12-13)
 
 
