@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.24](https://github.com/cloudquery/codegen/compare/v0.3.23...v0.3.24) (2025-02-03)
+
+
+### Bug Fixes
+
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.73.4 ([#308](https://github.com/cloudquery/codegen/issues/308)) ([0da35d9](https://github.com/cloudquery/codegen/commit/0da35d9ced84922b1214f5573d91fcb2f0599cb6))
+
 ## [0.3.23](https://github.com/cloudquery/codegen/compare/v0.3.22...v0.3.23) (2025-02-01)
 
 
