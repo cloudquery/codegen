@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.3.24](https://github.com/cloudquery/codegen/compare/v0.3.23...v0.3.24) (2025-03-07)
+
+
+### Bug Fixes
+
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.73.4 ([#308](https://github.com/cloudquery/codegen/issues/308)) ([0da35d9](https://github.com/cloudquery/codegen/commit/0da35d9ced84922b1214f5573d91fcb2f0599cb6))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.74.0 ([#312](https://github.com/cloudquery/codegen/issues/312)) ([3be8e49](https://github.com/cloudquery/codegen/commit/3be8e49eb7168c4fc075fb65d36292476e0433c4))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.74.1 ([#313](https://github.com/cloudquery/codegen/issues/313)) ([57e5072](https://github.com/cloudquery/codegen/commit/57e5072475f44a49599d602fae36b112c67607b9))
+* **deps:** Update module github.com/google/go-cmp to v0.7.0 ([#311](https://github.com/cloudquery/codegen/issues/311)) ([62d850b](https://github.com/cloudquery/codegen/commit/62d850ba02d8417347bc77042a884e316b57a7f6))
+
 ## [0.3.23](https://github.com/cloudquery/codegen/compare/v0.3.22...v0.3.23) (2025-02-01)
 
 
