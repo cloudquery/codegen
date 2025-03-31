@@ -11,15 +11,24 @@ import (
 	"github.com/invopop/jsonschema"
 )
 
+func generateDoc(root jsonschema.Schema, headerLevel int) (string, error) {
+	buff := new(strings.Builder)
+	toc, err := generate(&root, headerLevel, buff)
+	return toc + "\n\n" + buff.String(), err
+}
+
+func GenerateFromSchema(schema jsonschema.Schema, headerLevel int) (string, error) {
+	root := schema
+	return generateDoc(root, headerLevel)
+
+}
+
 func Generate(schema []byte, headerLevel int) (string, error) {
 	var root jsonschema.Schema
 	if err := json.Unmarshal(schema, &root); err != nil {
 		return "", err
 	}
-
-	buff := new(strings.Builder)
-	toc, err := generate(&root, headerLevel, buff)
-	return toc + "\n\n" + buff.String(), err
+	return generateDoc(root, headerLevel)
 }
 
 func generate(root *jsonschema.Schema, level int, buff *strings.Builder) (toc string, err error) {
