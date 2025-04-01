@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.3.24](https://github.com/cloudquery/codegen/compare/v0.3.23...v0.3.24) (2025-04-01)
+
+
+### Features
+
+* Generate Documentation from struct ([#317](https://github.com/cloudquery/codegen/issues/317)) ([754353d](https://github.com/cloudquery/codegen/commit/754353dc1b547b26dfdb028c0ac71ff353406b9c))
+
+
+### Bug Fixes
+
+* **deps:** Update golang.org/x/exp digest to 054e65f ([#318](https://github.com/cloudquery/codegen/issues/318)) ([f9fe74d](https://github.com/cloudquery/codegen/commit/f9fe74dd7d0d23f7201d0d1d53676738cf3b69ca))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.73.4 ([#308](https://github.com/cloudquery/codegen/issues/308)) ([0da35d9](https://github.com/cloudquery/codegen/commit/0da35d9ced84922b1214f5573d91fcb2f0599cb6))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.74.0 ([#312](https://github.com/cloudquery/codegen/issues/312)) ([3be8e49](https://github.com/cloudquery/codegen/commit/3be8e49eb7168c4fc075fb65d36292476e0433c4))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.74.1 ([#313](https://github.com/cloudquery/codegen/issues/313)) ([57e5072](https://github.com/cloudquery/codegen/commit/57e5072475f44a49599d602fae36b112c67607b9))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.74.2 ([#315](https://github.com/cloudquery/codegen/issues/315)) ([4d19aaf](https://github.com/cloudquery/codegen/commit/4d19aaff0b3206a1f64697c8052add5170cfcdf6))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.75.0 ([#316](https://github.com/cloudquery/codegen/issues/316)) ([48c268a](https://github.com/cloudquery/codegen/commit/48c268a34896c82b73da3db84e35f39fcfd33191))
+* **deps:** Update module github.com/google/go-cmp to v0.7.0 ([#311](https://github.com/cloudquery/codegen/issues/311)) ([62d850b](https://github.com/cloudquery/codegen/commit/62d850ba02d8417347bc77042a884e316b57a7f6))
+* **deps:** Update module golang.org/x/net to v0.36.0 [SECURITY] ([#314](https://github.com/cloudquery/codegen/issues/314)) ([a0da0fd](https://github.com/cloudquery/codegen/commit/a0da0fd0660ed30b63bed683780d2deaa648ab39))
+
 ## [0.3.23](https://github.com/cloudquery/codegen/compare/v0.3.22...v0.3.23) (2025-02-01)
 
 
