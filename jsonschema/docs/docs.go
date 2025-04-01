@@ -18,9 +18,7 @@ func generateDoc(root jsonschema.Schema, headerLevel int) (string, error) {
 }
 
 func GenerateFromSchema(schema jsonschema.Schema, headerLevel int) (string, error) {
-	root := schema
-	return generateDoc(root, headerLevel)
-
+	return generateDoc(schema, headerLevel)
 }
 
 func Generate(schema []byte, headerLevel int) (string, error) {
