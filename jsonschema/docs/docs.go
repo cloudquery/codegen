@@ -17,6 +17,8 @@ func generateDoc(root jsonschema.Schema, headerLevel int) (string, error) {
 	return toc + "\n\n" + buff.String(), err
 }
 
+// GenerateFromSchema generates a markdown documentation from a jsonschema.Schema. During the writing process the `Comment` attribute can be overwritten
+// To avoid this use the `Generate` function which will not modify the original schema
 func GenerateFromSchema(schema jsonschema.Schema, headerLevel int) (string, error) {
 	return generateDoc(schema, headerLevel)
 }
