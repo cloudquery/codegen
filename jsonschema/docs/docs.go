@@ -131,7 +131,7 @@ func writeProperty(property *jsonschema.Schema, required bool, buff *strings.Bui
 }
 
 func writeDescription(sc *jsonschema.Schema, buff *strings.Builder) {
-	if len(sc.Description) == 0 {
+	if len(sc.Description) == 0 || sc.Comments == "skip_description" {
 		return
 	}
 
@@ -139,7 +139,7 @@ func writeDescription(sc *jsonschema.Schema, buff *strings.Builder) {
 	buff.WriteString(strings.ReplaceAll(sc.Description, "\n", "\n  "))
 	buff.WriteString("\n")
 
-	sc.Description = "" // already used
+	sc.Comments = "skip_description"
 }
 
 func writeValueAnnotations(sc *jsonschema.Schema, buff *strings.Builder) {
