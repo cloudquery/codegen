@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.25](https://github.com/cloudquery/codegen/compare/v0.3.24...v0.3.25) (2025-04-02)
+
+
+### Bug Fixes
+
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.76.0 ([#321](https://github.com/cloudquery/codegen/issues/321)) ([6ac2fcd](https://github.com/cloudquery/codegen/commit/6ac2fcd13c82f5f82bdea61f693fbdde90cd719d))
+* Make generating docs non destructive ([#323](https://github.com/cloudquery/codegen/issues/323)) ([eb90cda](https://github.com/cloudquery/codegen/commit/eb90cda66638d3115a2435abb24cc6a54bb08fd9))
+
 ## [0.3.24](https://github.com/cloudquery/codegen/compare/v0.3.23...v0.3.24) (2025-04-01)
 
 
