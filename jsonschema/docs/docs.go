@@ -17,6 +17,8 @@ func generateDoc(root jsonschema.Schema, headerLevel int) (string, error) {
 	return toc + "\n\n" + buff.String(), err
 }
 
+// GenerateFromSchema generates a markdown documentation from a jsonschema.Schema. During the writing process the `Comment` attribute can be overwritten
+// To avoid this use the `Generate` function which will not modify the original schema
 func GenerateFromSchema(schema jsonschema.Schema, headerLevel int) (string, error) {
 	return generateDoc(schema, headerLevel)
 }
@@ -131,7 +133,7 @@ func writeProperty(property *jsonschema.Schema, required bool, buff *strings.Bui
 }
 
 func writeDescription(sc *jsonschema.Schema, buff *strings.Builder) {
-	if len(sc.Description) == 0 {
+	if len(sc.Description) == 0 || sc.Comments == "skip_description" {
 		return
 	}
 
@@ -139,7 +141,7 @@ func writeDescription(sc *jsonschema.Schema, buff *strings.Builder) {
 	buff.WriteString(strings.ReplaceAll(sc.Description, "\n", "\n  "))
 	buff.WriteString("\n")
 
-	sc.Description = "" // already used
+	sc.Comments = "skip_description"
 }
 
 func writeValueAnnotations(sc *jsonschema.Schema, buff *strings.Builder) {

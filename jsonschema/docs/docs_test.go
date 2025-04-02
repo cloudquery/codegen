@@ -58,18 +58,18 @@ func TestGCP(t *testing.T) {
 
 func TestClickHouse(t *testing.T) {
 	genSnapshot(t, "testdata/clickhouse.json")
-	genSnapshot(t, "testdata/clickhouse.json")
+	genSnapshotStruct(t, "testdata/clickhouse.json")
 
 }
 
 func TestFiletypes(t *testing.T) {
 	genSnapshot(t, "testdata/filetypes.json")
-	genSnapshot(t, "testdata/filetypes.json")
+	genSnapshotStruct(t, "testdata/filetypes.json")
 
 }
 
 func TestFileDestination(t *testing.T) {
 	genSnapshot(t, "testdata/file-destination.json")
-	genSnapshot(t, "testdata/file-destination.json")
+	genSnapshotStruct(t, "testdata/file-destination.json")
 
 }
