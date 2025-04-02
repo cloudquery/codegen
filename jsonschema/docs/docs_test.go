@@ -28,8 +28,6 @@ func genSnapshot(t *testing.T, fileName string) {
 	doc, err := Generate(data, 1)
 	require.NoError(t, err)
 
-	// print(normalizeContent(doc))
-
 	cupaloy.New(cupaloy.SnapshotFileExtension(".md")).SnapshotT(t, normalizeContent(doc))
 }
 
