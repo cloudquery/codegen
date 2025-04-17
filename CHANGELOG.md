@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.27](https://github.com/cloudquery/codegen/compare/v0.3.26...v0.3.27) (2025-04-17)
+
+
+### Bug Fixes
+
+* **deps:** Update module golang.org/x/net to v0.38.0 [SECURITY] ([#326](https://github.com/cloudquery/codegen/issues/326)) ([3ecede4](https://github.com/cloudquery/codegen/commit/3ecede45d7597b0c426fb5bb280dfd483215b3ab))
+
 ## [0.3.26](https://github.com/cloudquery/codegen/compare/v0.3.25...v0.3.26) (2025-04-03)
 
 
