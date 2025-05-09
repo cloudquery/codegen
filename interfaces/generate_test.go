@@ -144,7 +144,11 @@ func TestGenerate(t *testing.T) {
 	if err != nil {
 		t.Fatalf("failed to open file: %v", err)
 	}
-	defer f.Close()
+	defer func() {
+		if err := f.Close(); err != nil {
+			t.Fatalf("failed to close file: %v", err)
+		}
+	}()
 	b, err := io.ReadAll(f)
 	if err != nil {
 		t.Fatalf("failed to read file: %v", err)
@@ -169,7 +173,11 @@ func TestGenerateMultipleClientsSamePackage(t *testing.T) {
 	if err != nil {
 		t.Fatalf("failed to open file: %v", err)
 	}
-	defer f.Close()
+	defer func() {
+		if err := f.Close(); err != nil {
+			t.Fatalf("failed to close file: %v", err)
+		}
+	}()
 	b, err := io.ReadAll(f)
 	if err != nil {
 		t.Fatalf("failed to read file: %v", err)
@@ -194,7 +202,11 @@ func TestGenerateNonV1(t *testing.T) {
 	if err != nil {
 		t.Fatalf("failed to open file: %v", err)
 	}
-	defer f.Close()
+	defer func() {
+		if err := f.Close(); err != nil {
+			t.Fatalf("failed to close file: %v", err)
+		}
+	}()
 	b, err := io.ReadAll(f)
 	if err != nil {
 		t.Fatalf("failed to read file: %v", err)
@@ -225,7 +237,11 @@ func TestGenerateOverlappingPackageNames(t *testing.T) {
 		if err != nil {
 			t.Fatalf("failed to open file: %v", err)
 		}
-		defer f.Close()
+		defer func() {
+			if err := f.Close(); err != nil {
+				t.Fatalf("failed to close file: %v", err)
+			}
+		}()
 		b, err := io.ReadAll(f)
 		if err != nil {
 			t.Fatalf("failed to read file: %v", err)
