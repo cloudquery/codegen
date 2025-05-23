@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.3.29](https://github.com/cloudquery/codegen/compare/v0.3.28...v0.3.29) (2025-05-23)
+
+
+### Bug Fixes
+
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.80.1 ([#336](https://github.com/cloudquery/codegen/issues/336)) ([7a6ff17](https://github.com/cloudquery/codegen/commit/7a6ff175fc3548d66d95a1f963323d6ffda838d5))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.80.2 ([#338](https://github.com/cloudquery/codegen/issues/338)) ([9adda19](https://github.com/cloudquery/codegen/commit/9adda19f82e7ab689334288546f01e75c45c5a46))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.80.3 ([#339](https://github.com/cloudquery/codegen/issues/339)) ([dc243c7](https://github.com/cloudquery/codegen/commit/dc243c7e38b2c4656b36cbaf9da577d13a83ac9b))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.81.0 ([#340](https://github.com/cloudquery/codegen/issues/340)) ([2012b96](https://github.com/cloudquery/codegen/commit/2012b9615c8bada88706889f2fc21093206f99fa))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.82.0 ([#341](https://github.com/cloudquery/codegen/issues/341)) ([beb7ec1](https://github.com/cloudquery/codegen/commit/beb7ec1e1198a7387a7b5fec30fe666e5b352e47))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.82.1 ([#342](https://github.com/cloudquery/codegen/issues/342)) ([639d4b6](https://github.com/cloudquery/codegen/commit/639d4b6adb6e711cb4fb83ebbadf2d0877bb43cb))
+
 ## [0.3.28](https://github.com/cloudquery/codegen/compare/v0.3.27...v0.3.28) (2025-05-09)
 
 
