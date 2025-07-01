@@ -8,7 +8,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/appconfiguration/armappconfiguration/v2"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/appconfiguration/armappconfiguration/v3"
 	resourcesarmmanagedapplications "github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/resources/armmanagedapplications"
 	solutionsarmmanagedapplications "github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/solutions/armmanagedapplications/v2"
 	"github.com/google/go-cmp/cmp"
