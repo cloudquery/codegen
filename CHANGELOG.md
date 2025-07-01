@@ -1,5 +1,28 @@
 # Changelog
 
+## [0.3.29](https://github.com/cloudquery/codegen/compare/v0.3.28...v0.3.29) (2025-07-01)
+
+
+### Bug Fixes
+
+* **deps:** Update dependency go to v1.24.4 ([#353](https://github.com/cloudquery/codegen/issues/353)) ([4da5ac3](https://github.com/cloudquery/codegen/commit/4da5ac33bf571e149b90833f6ac9eef182223508))
+* **deps:** Update golang.org/x/exp digest to b7579e2 ([#351](https://github.com/cloudquery/codegen/issues/351)) ([ad0e906](https://github.com/cloudquery/codegen/commit/ad0e906719ece6a76aed7eed5838666380cfe9cc))
+* **deps:** Update module github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/appconfiguration/armappconfiguration/v2 to v3 ([#349](https://github.com/cloudquery/codegen/issues/349)) ([9542739](https://github.com/cloudquery/codegen/commit/9542739cc142529b6d6d90e28e86791824c217d9))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.80.1 ([#336](https://github.com/cloudquery/codegen/issues/336)) ([7a6ff17](https://github.com/cloudquery/codegen/commit/7a6ff175fc3548d66d95a1f963323d6ffda838d5))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.80.2 ([#338](https://github.com/cloudquery/codegen/issues/338)) ([9adda19](https://github.com/cloudquery/codegen/commit/9adda19f82e7ab689334288546f01e75c45c5a46))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.80.3 ([#339](https://github.com/cloudquery/codegen/issues/339)) ([dc243c7](https://github.com/cloudquery/codegen/commit/dc243c7e38b2c4656b36cbaf9da577d13a83ac9b))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.81.0 ([#340](https://github.com/cloudquery/codegen/issues/340)) ([2012b96](https://github.com/cloudquery/codegen/commit/2012b9615c8bada88706889f2fc21093206f99fa))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.82.0 ([#341](https://github.com/cloudquery/codegen/issues/341)) ([beb7ec1](https://github.com/cloudquery/codegen/commit/beb7ec1e1198a7387a7b5fec30fe666e5b352e47))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.82.1 ([#342](https://github.com/cloudquery/codegen/issues/342)) ([639d4b6](https://github.com/cloudquery/codegen/commit/639d4b6adb6e711cb4fb83ebbadf2d0877bb43cb))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.82.2 ([#343](https://github.com/cloudquery/codegen/issues/343)) ([ad09e9d](https://github.com/cloudquery/codegen/commit/ad09e9d119e2b48a3e4c370badbd05da68a1c7ae))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.83.0 ([#344](https://github.com/cloudquery/codegen/issues/344)) ([2bfc5bd](https://github.com/cloudquery/codegen/commit/2bfc5bda7a52648670232485a76b8d117e8b2886))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.84.0 ([#345](https://github.com/cloudquery/codegen/issues/345)) ([2bba912](https://github.com/cloudquery/codegen/commit/2bba91280eb50ca7dd8e7bbc7c245a3b725e425d))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.84.1 ([#346](https://github.com/cloudquery/codegen/issues/346)) ([b23cac0](https://github.com/cloudquery/codegen/commit/b23cac04111856e287131ee4feac90eeaf7fcaaf))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.84.2 ([#347](https://github.com/cloudquery/codegen/issues/347)) ([c98a5ad](https://github.com/cloudquery/codegen/commit/c98a5ad505899983ba21294a25ec793803ca87dd))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.85.0 ([#348](https://github.com/cloudquery/codegen/issues/348)) ([6fdb653](https://github.com/cloudquery/codegen/commit/6fdb6535ff66109510b843c69d97b64283240007))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.86.0 ([#350](https://github.com/cloudquery/codegen/issues/350)) ([7bba222](https://github.com/cloudquery/codegen/commit/7bba2226f8888afdb3af8f4e3775b2c6b835d9fd))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.86.1 ([#354](https://github.com/cloudquery/codegen/issues/354)) ([670107a](https://github.com/cloudquery/codegen/commit/670107a3c11b470f445ee4ed24870f4dd045bee8))
+
 ## [0.3.28](https://github.com/cloudquery/codegen/compare/v0.3.27...v0.3.28) (2025-05-09)
 
 
