@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.3.32](https://github.com/cloudquery/codegen/compare/v0.3.31...v0.3.32) (2025-09-29)
+
+
+### Bug Fixes
+
+* **deps:** Update golang.org/x/exp digest to 645b1fa ([#367](https://github.com/cloudquery/codegen/issues/367)) ([b08f3ba](https://github.com/cloudquery/codegen/commit/b08f3ba16eab148e03db338938af6f938493233a))
+* **deps:** Update golang.org/x/exp digest to 8b4c13b ([#372](https://github.com/cloudquery/codegen/issues/372)) ([449fc02](https://github.com/cloudquery/codegen/commit/449fc024744cd3c1cdb74c4d94bc89aa094f2d15))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.87.2 ([#360](https://github.com/cloudquery/codegen/issues/360)) ([55d36fc](https://github.com/cloudquery/codegen/commit/55d36fcfde7af9b4808cdd678b10113067a1adb5))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.87.3 ([#362](https://github.com/cloudquery/codegen/issues/362)) ([45ff30b](https://github.com/cloudquery/codegen/commit/45ff30b1ce56a6a86cff6535ad207fc2c93efe79))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.87.4 ([#364](https://github.com/cloudquery/codegen/issues/364)) ([c31464c](https://github.com/cloudquery/codegen/commit/c31464cb884c92ea7a5f18096667adec19b82831))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.88.0 ([#365](https://github.com/cloudquery/codegen/issues/365)) ([883fc61](https://github.com/cloudquery/codegen/commit/883fc61feb7add9d98468e7f5ea17f8b7a7f5708))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.88.1 ([#366](https://github.com/cloudquery/codegen/issues/366)) ([b1d387a](https://github.com/cloudquery/codegen/commit/b1d387a204bbddf5a44f7813036d37570eb3fa0c))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.89.0 ([#371](https://github.com/cloudquery/codegen/issues/371)) ([87ae2ac](https://github.com/cloudquery/codegen/commit/87ae2ac474867e94c79edc5b7d72c5dfddea28c4))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.89.1 ([#376](https://github.com/cloudquery/codegen/issues/376)) ([a249ef5](https://github.com/cloudquery/codegen/commit/a249ef576c03672a381f4c87db4e657f0d363bbb))
+* **deps:** Update module github.com/stretchr/testify to v1.11.0 ([#374](https://github.com/cloudquery/codegen/issues/374)) ([a804a0f](https://github.com/cloudquery/codegen/commit/a804a0fefdf41e5f805875619401a251311c8f51))
+
 ## [0.3.31](https://github.com/cloudquery/codegen/compare/v0.3.30...v0.3.31) (2025-07-09)
 
 
