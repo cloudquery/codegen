@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.33](https://github.com/cloudquery/codegen/compare/v0.3.32...v0.3.33) (2025-10-01)
+
+
+### Bug Fixes
+
+* **deps:** Update golang.org/x/exp digest to df92998 ([#378](https://github.com/cloudquery/codegen/issues/378)) ([4a3e1e3](https://github.com/cloudquery/codegen/commit/4a3e1e39e2802329ecdb4601bfb7f4abc614cacd))
+* **deps:** Update module github.com/stretchr/testify to v1.11.1 ([#379](https://github.com/cloudquery/codegen/issues/379)) ([fad80b2](https://github.com/cloudquery/codegen/commit/fad80b22703c7fd5cdc0e7f30bdacfa7ac6a393e))
+
 ## [0.3.32](https://github.com/cloudquery/codegen/compare/v0.3.31...v0.3.32) (2025-09-29)
 
 
