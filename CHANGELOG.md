@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.3.33](https://github.com/cloudquery/codegen/compare/v0.3.32...v0.3.33) (2025-11-03)
+
+
+### Bug Fixes
+
+* **deps:** Update golang.org/x/exp digest to a4bb9ff ([#387](https://github.com/cloudquery/codegen/issues/387)) ([20d7778](https://github.com/cloudquery/codegen/commit/20d777823ad42f536007a6331f3c4df0c272c6a4))
+* **deps:** Update golang.org/x/exp digest to df92998 ([#378](https://github.com/cloudquery/codegen/issues/378)) ([4a3e1e3](https://github.com/cloudquery/codegen/commit/4a3e1e39e2802329ecdb4601bfb7f4abc614cacd))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.90.0 ([#385](https://github.com/cloudquery/codegen/issues/385)) ([1d0a9b8](https://github.com/cloudquery/codegen/commit/1d0a9b805e6db4dceb3ba69e4d41fafc2e4c0db1))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.91.0 ([#386](https://github.com/cloudquery/codegen/issues/386)) ([337763b](https://github.com/cloudquery/codegen/commit/337763bc168effa007c54e52ce8013dc71fcf247))
+* **deps:** Update module github.com/stretchr/testify to v1.11.1 ([#379](https://github.com/cloudquery/codegen/issues/379)) ([fad80b2](https://github.com/cloudquery/codegen/commit/fad80b22703c7fd5cdc0e7f30bdacfa7ac6a393e))
+
 ## [0.3.32](https://github.com/cloudquery/codegen/compare/v0.3.31...v0.3.32) (2025-09-29)
 
 
