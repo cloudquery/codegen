@@ -40,7 +40,7 @@ jobs:
       - name: Generate coverage report
         if: always() && matrix.os == 'ubuntu-latest'
         run: go tool cover -html coverage.out -o coverage.html
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v6
         if: always() && matrix.os == 'ubuntu-latest'
         with:
           name: Code coverage
