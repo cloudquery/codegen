@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.35](https://github.com/cloudquery/codegen/compare/v0.3.34...v0.3.35) (2026-01-02)
+
+
+### Bug Fixes
+
+* Revert "fix(deps): Update dependency go to v1.25.5 ([#382](https://github.com/cloudquery/codegen/issues/382))" ([#400](https://github.com/cloudquery/codegen/issues/400)) ([fc3b925](https://github.com/cloudquery/codegen/commit/fc3b9252ff45a5c59555a3d455d52cab88282e30))
+
 ## [0.3.34](https://github.com/cloudquery/codegen/compare/v0.3.33...v0.3.34) (2026-01-02)
 
 
