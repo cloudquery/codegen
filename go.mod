@@ -1,6 +1,6 @@
 module github.com/cloudquery/codegen
 
-go 1.24.4
+go 1.25.5
 
 require (
 	github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/appconfiguration/armappconfiguration/v3 v3.0.0
