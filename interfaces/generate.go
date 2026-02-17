@@ -156,23 +156,44 @@ func Generate(clients []any, dir string, opts ...Option) error {
 	return nil
 }
 
+func normalizeFullTypeName(typeName string) string {
+	// Preserve pointer prefix
+	prefix := ""
+	if strings.HasPrefix(typeName, "*") {
+		prefix = "*"
+		typeName = typeName[1:]
+	}
+
+	versionPattern := regexp.MustCompile(`/v\d+\.`)
+	parts := strings.Split(typeName, "/")
+	importName := parts[len(parts)-1]
+	if versionPattern.MatchString(typeName) {
+		// Example typeName: github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/appconfiguration/armappconfiguration/v2.ConfigurationStoresClientCreateResponse
+		importName = parts[len(parts)-2] + "." + strings.Split(parts[len(parts)-1], ".")[1]
+	}
+	return prefix + importName
+}
+
 func normalizedGenericTypeName(str string) string {
 	// Generic output types have the full import path in the string value, so we need to normalize it
-	pattern := regexp.MustCompile(`\[(.*?)\]`)
-	groups := pattern.FindStringSubmatch((str))
+	pattern := regexp.MustCompile(`\[(.*)\]`)
+	groups := pattern.FindStringSubmatch(str)
 	if len(groups) < 2 {
 		return str
 	}
 
-	typeName := groups[1]
-	normalizedGenericTypeName := strings.Split(typeName, "/")
-	importName := normalizedGenericTypeName[len(normalizedGenericTypeName)-1]
-	versionPattern := regexp.MustCompile(`/v\d+\.`)
-	if versionPattern.MatchString(typeName) {
-		// Example typeName: github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/appconfiguration/armappconfiguration/v2.ConfigurationStoresClientCreateResponse
-		importName = normalizedGenericTypeName[len(normalizedGenericTypeName)-2] + "." + strings.Split(normalizedGenericTypeName[len(normalizedGenericTypeName)-1], ".")[1]
+	// Handle multiple type parameters (e.g. iter.Seq2[*github.com/.../github.Artifact,error])
+	typeParams := strings.Split(groups[1], ",")
+	normalized := make([]string, len(typeParams))
+	for i, tp := range typeParams {
+		tp = strings.TrimSpace(tp)
+		if strings.Contains(tp, "/") {
+			normalized[i] = normalizeFullTypeName(tp)
+		} else {
+			normalized[i] = tp
+		}
 	}
-	return pattern.ReplaceAllString(str, "["+importName+"]")
+	return pattern.ReplaceAllString(str, "["+strings.Join(normalized, ", ")+"]")
 }
 
 // Adapted from https://stackoverflow.com/a/54129236

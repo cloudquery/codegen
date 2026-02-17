@@ -129,6 +129,59 @@ type ConfigurationStoresClient interface {
 `,
 }
 
+func TestNormalizedGenericTypeName(t *testing.T) {
+	tests := []struct {
+		name  string
+		input string
+		want  string
+	}{
+		{
+			name:  "no generics",
+			input: "github.Response",
+			want:  "github.Response",
+		},
+		{
+			name:  "single type param without pointer (existing behavior)",
+			input: "interfaces.Pager[github.com/cloudquery/codegen/interfaces.Response]",
+			want:  "interfaces.Pager[interfaces.Response]",
+		},
+		{
+			name:  "single type param with versioned import",
+			input: "runtime.Pager[github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/appconfiguration/armappconfiguration/v2.ConfigurationStoresClientListResponse]",
+			want:  "runtime.Pager[armappconfiguration.ConfigurationStoresClientListResponse]",
+		},
+		{
+			name:  "two type params with pointer (iter.Seq2 style)",
+			input: "iter.Seq2[*github.com/google/go-github/v83/github.Artifact,error]",
+			want:  "iter.Seq2[*github.Artifact, error]",
+		},
+		{
+			name:  "two type params without pointer",
+			input: "iter.Seq2[github.com/google/go-github/v83/github.Artifact,error]",
+			want:  "iter.Seq2[github.Artifact, error]",
+		},
+		{
+			name:  "two type params both with full paths",
+			input: "iter.Seq2[*github.com/google/go-github/v83/github.Artifact,*github.com/google/go-github/v83/github.Response]",
+			want:  "iter.Seq2[*github.Artifact, *github.Response]",
+		},
+		{
+			name:  "single type param with pointer and versioned import",
+			input: "runtime.Pager[*github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/appconfiguration/armappconfiguration/v2.ConfigurationStoresClientListResponse]",
+			want:  "runtime.Pager[*armappconfiguration.ConfigurationStoresClientListResponse]",
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := normalizedGenericTypeName(tt.input)
+			if diff := cmp.Diff(got, tt.want); diff != "" {
+				t.Errorf("normalizedGenericTypeName(%q) mismatch (-got +want):\n%s", tt.input, diff)
+			}
+		})
+	}
+}
+
 func TestGenerate(t *testing.T) {
 	dir := t.TempDir()
 	err := Generate([]any{&Client{}}, dir,
