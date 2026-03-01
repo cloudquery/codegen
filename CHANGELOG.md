@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.38](https://github.com/cloudquery/codegen/compare/v0.3.37...v0.3.38) (2026-03-01)
+
+
+### Bug Fixes
+
+* **deps:** Update golang.org/x/exp digest to 3dfff04 ([#412](https://github.com/cloudquery/codegen/issues/412)) ([28e9880](https://github.com/cloudquery/codegen/commit/28e9880ffdaaec3fbb1c8619c28c3a1541f39d49))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.94.3 ([#410](https://github.com/cloudquery/codegen/issues/410)) ([144ce71](https://github.com/cloudquery/codegen/commit/144ce71e8c164466d6e46d330f141eb09fcef7f2))
+
 ## [0.3.37](https://github.com/cloudquery/codegen/compare/v0.3.36...v0.3.37) (2026-02-17)
 
 
