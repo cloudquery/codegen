@@ -7,7 +7,7 @@ require (
 	github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/resources/armmanagedapplications v1.2.0
 	github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/solutions/armmanagedapplications/v2 v2.1.0
 	github.com/bradleyjkemp/cupaloy/v2 v2.8.0
-	github.com/cloudquery/plugin-sdk/v4 v4.94.3
+	github.com/cloudquery/plugin-sdk/v4 v4.94.4
 	github.com/google/go-cmp v0.7.0
 	github.com/invopop/jsonschema v0.13.0
 	github.com/jpillora/longestcommon v0.0.0-20161227235612-adb9d91ee629
@@ -21,7 +21,7 @@ replace github.com/invopop/jsonschema => github.com/cloudquery/jsonschema v0.0.0
 require (
 	github.com/Azure/azure-sdk-for-go/sdk/azcore v1.18.0 // indirect
 	github.com/Azure/azure-sdk-for-go/sdk/internal v1.11.1 // indirect
-	github.com/apache/arrow-go/v18 v18.5.1 // indirect
+	github.com/apache/arrow-go/v18 v18.5.2 // indirect
 	github.com/apapsch/go-jsonmerge/v2 v2.0.0 // indirect
 	github.com/bahlo/generic-list-go v0.2.0 // indirect
 	github.com/buger/jsonparser v1.1.1 // indirect
@@ -43,7 +43,7 @@ require (
 	github.com/santhosh-tekuri/jsonschema/v6 v6.0.2 // indirect
 	github.com/thoas/go-funk v0.9.3 // indirect
 	github.com/wk8/go-ordered-map/v2 v2.1.8 // indirect
-	github.com/zeebo/xxh3 v1.0.2 // indirect
+	github.com/zeebo/xxh3 v1.1.0 // indirect
 	golang.org/x/mod v0.33.0 // indirect
 	golang.org/x/net v0.50.0 // indirect
 	golang.org/x/sync v0.19.0 // indirect
