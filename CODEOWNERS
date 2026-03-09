@@ -1,6 +1,6 @@
 * @cloudquery/backend
 
-**/go.mod
-**/go.sum
+go.mod
+go.sum
 .release-please-manifest.json
-**/CHANGELOG.md
+CHANGELOG.md
