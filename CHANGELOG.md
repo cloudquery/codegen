@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.4.0](https://github.com/cloudquery/codegen/compare/v0.3.37...v0.4.0) (2026-03-24)
+
+
+### Features
+
+* Implement type flattener ([#419](https://github.com/cloudquery/codegen/issues/419)) ([de8ece6](https://github.com/cloudquery/codegen/commit/de8ece6a86ddac23e5160de5fa4aada418a6ebe9))
+
+
+### Bug Fixes
+
+* **deps:** Update dependency go to v1.26.0 ([#414](https://github.com/cloudquery/codegen/issues/414)) ([94c3c5f](https://github.com/cloudquery/codegen/commit/94c3c5fec117f5ce8863edd656f3427dfc60bd44))
+* **deps:** Update golang.org/x/exp digest to 3dfff04 ([#412](https://github.com/cloudquery/codegen/issues/412)) ([28e9880](https://github.com/cloudquery/codegen/commit/28e9880ffdaaec3fbb1c8619c28c3a1541f39d49))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.94.3 ([#410](https://github.com/cloudquery/codegen/issues/410)) ([144ce71](https://github.com/cloudquery/codegen/commit/144ce71e8c164466d6e46d330f141eb09fcef7f2))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.94.4 ([#415](https://github.com/cloudquery/codegen/issues/415)) ([35c026e](https://github.com/cloudquery/codegen/commit/35c026ed45cbe9e3d3c35e51d898e3645108b7a2))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.94.5 ([#416](https://github.com/cloudquery/codegen/issues/416)) ([4586c6d](https://github.com/cloudquery/codegen/commit/4586c6d6a452d968e9cf3c59a7116921ba265caf))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.94.6 ([#417](https://github.com/cloudquery/codegen/issues/417)) ([16902da](https://github.com/cloudquery/codegen/commit/16902da9f646b2db88f21f65234a3af67944a295))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.94.7 ([#418](https://github.com/cloudquery/codegen/issues/418)) ([71d532b](https://github.com/cloudquery/codegen/commit/71d532b6f411e23d36d6012dd74db2606c2d48a5))
+
 ## [0.3.37](https://github.com/cloudquery/codegen/compare/v0.3.36...v0.3.37) (2026-02-17)
 
 
