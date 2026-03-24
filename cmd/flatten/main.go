@@ -73,7 +73,7 @@ func parseExtraFields(s string) []structs.Field {
 
 func init() {
 	flag.Usage = func() {
-		fmt.Fprintf(flag.CommandLine.Output(), "Usage: flatten [flags]\n\nGenerates an optimized Go struct with nested fields replaced by map[string]any.\n\nFlags:\n")
+		_, _ = fmt.Fprintf(flag.CommandLine.Output(), "Usage: flatten [flags]\n\nGenerates an optimized Go struct with nested fields replaced by map[string]any.\n\nFlags:\n")
 		flag.PrintDefaults()
 	}
 }
