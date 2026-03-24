@@ -62,7 +62,7 @@ func resolveType(expr ast.Expr, typeKinds map[string]string, scalars map[string]
 			return t.Name
 		}
 		if kind, ok := typeKinds[t.Name]; ok && scalars[kind] {
-			return "string"
+			return kind
 		}
 		return "map[string]any"
 
@@ -114,7 +114,7 @@ func extractJSONTag(tag *ast.BasicLit) string {
 		return ""
 	}
 	raw := strings.Trim(tag.Value, "`")
-	for _, part := range strings.Split(raw, " ") {
+	for _, part := range strings.Fields(raw) {
 		if strings.HasPrefix(part, `json:"`) {
 			val := strings.TrimPrefix(part, `json:"`)
 			val = strings.TrimSuffix(val, `"`)

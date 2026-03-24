@@ -112,11 +112,14 @@ func flattenOne(f *ast.File, cfg StructConfig, typeKinds map[string]string, scal
 
 	formatted, err := format.Source(buf.Bytes())
 	if err != nil {
-		// Write unformatted so the developer can see what went wrong.
+		fmt.Fprintf(os.Stderr, "warning: could not format generated code for %s: %v\n", cfg.OutputFile, err)
 		formatted = buf.Bytes()
 	}
 
 	outputPath := filepath.Join(outputDir, cfg.OutputFile)
+	if err := os.MkdirAll(filepath.Dir(outputPath), 0o755); err != nil {
+		return fmt.Errorf("creating output directory: %w", err)
+	}
 	if err := os.WriteFile(outputPath, formatted, 0o644); err != nil {
 		return fmt.Errorf("writing %s: %w", outputPath, err)
 	}
