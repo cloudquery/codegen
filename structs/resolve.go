@@ -94,16 +94,18 @@ func extractFields(st *ast.StructType, typeKinds map[string]string, scalars map[
 		if len(f.Names) == 0 {
 			continue // skip embedded fields
 		}
-		name := f.Names[0].Name
 		jsonTag := extractJSONTag(f.Tag)
 		if jsonTag == "" || jsonTag == "-" {
 			continue
 		}
-		fields = append(fields, Field{
-			Name:    name,
-			Type:    resolveType(f.Type, typeKinds, scalars),
-			JSONTag: jsonTag,
-		})
+		fieldType := resolveType(f.Type, typeKinds, scalars)
+		for _, nameIdent := range f.Names {
+			fields = append(fields, Field{
+				Name:    nameIdent.Name,
+				Type:    fieldType,
+				JSONTag: jsonTag,
+			})
+		}
 	}
 	return fields
 }
