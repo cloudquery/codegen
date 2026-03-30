@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.4.1](https://github.com/cloudquery/codegen/compare/v0.4.0...v0.4.1) (2026-03-30)
+
+
+### Bug Fixes
+
+* **deps:** Update github.com/cloudquery/jsonschema digest to 8dfb902 ([#426](https://github.com/cloudquery/codegen/issues/426)) ([562507e](https://github.com/cloudquery/codegen/commit/562507eac27848b20e8fe0ae26d37aab6f934c02))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.95.0 ([#422](https://github.com/cloudquery/codegen/issues/422)) ([5b312fb](https://github.com/cloudquery/codegen/commit/5b312fb7761b76599a63e5ca9d69ceeba1febc54))
+* Suport cross package types when Flattening ([#427](https://github.com/cloudquery/codegen/issues/427)) ([b79c286](https://github.com/cloudquery/codegen/commit/b79c286b8cbc28dd6e72dcaf1372221f51e72051))
+
 ## [0.4.0](https://github.com/cloudquery/codegen/compare/v0.3.37...v0.4.0) (2026-03-24)
 
 
