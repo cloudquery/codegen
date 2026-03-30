@@ -1,12 +1,35 @@
 package structs
 
 // defaultScalarKinds are Go types that are inexpensive to decode and should stay typed.
+// Includes both unqualified names (for types in the same package) and
+// fully qualified names like "time.Time" (for cross-package types).
 var defaultScalarKinds = map[string]bool{
 	"string":  true,
 	"bool":    true,
+	"float32": true,
 	"float64": true,
-	"int64":   true,
 	"int":     true,
+	"int8":    true,
+	"int16":   true,
+	"int32":   true,
+	"int64":   true,
+	"uint":    true,
+	"uint8":   true,
+	"uint16":  true,
+	"uint32":  true,
+	"uint64":  true,
+	"byte":    true,
+	"rune":    true,
+
+	"time.Time":        true,
+	"time.Duration":    true,
+	"net.IP":           true,
+	"net.HardwareAddr": true,
+	"url.URL":          true,
+	"json.RawMessage":  true,
+	"json.Number":      true,
+
+	"uuid.UUID": true,
 }
 
 type options struct {

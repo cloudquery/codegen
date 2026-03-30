@@ -1,7 +1,13 @@
 // {{ .HeaderComment }}
 
 package {{ .PackageName }}
-
+{{ if .Imports }}
+import (
+{{- range .Imports }}
+	"{{ . }}"
+{{- end }}
+)
+{{ end }}
 // {{ .OutputName }} is an optimized version of {{ .SourceName }}
 // where deeply nested struct fields are replaced with map[string]any to avoid
 // the decode -> allocate -> re-encode cycle.
