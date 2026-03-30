@@ -80,8 +80,18 @@ func resolveType(expr ast.Expr, typeKinds map[string]string, scalars map[string]
 		}
 		return "[]" + inner
 
+	case *ast.SelectorExpr:
+		// Cross-package types like time.Time.
+		if pkg, ok := t.X.(*ast.Ident); ok {
+			qualified := pkg.Name + "." + t.Sel.Name
+			if scalars[qualified] {
+				return qualified
+			}
+		}
+		return "map[string]any"
+
 	default:
-		// SelectorExpr (cross-package types), MapType, InterfaceType, etc.
+		// MapType, InterfaceType, etc.
 		return "map[string]any"
 	}
 }

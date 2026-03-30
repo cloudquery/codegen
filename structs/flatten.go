@@ -46,6 +46,7 @@ type Field struct {
 type templateData struct {
 	HeaderComment string
 	PackageName   string
+	Imports       []string
 	SourceName    string
 	OutputName    string
 	Fields        []Field
@@ -100,6 +101,7 @@ func flattenOne(f *ast.File, cfg StructConfig, typeKinds map[string]string, scal
 	data := templateData{
 		HeaderComment: o.headerComment,
 		PackageName:   o.packageName,
+		Imports:       collectImports(fields),
 		SourceName:    cfg.SourceName,
 		OutputName:    cfg.OutputName,
 		Fields:        fields,
@@ -126,6 +128,38 @@ func flattenOne(f *ast.File, cfg StructConfig, typeKinds map[string]string, scal
 
 	fmt.Printf("Generated %s with %d fields\n", outputPath, len(fields))
 	return nil
+}
+
+// collectImports extracts unique package import paths from field types that
+// contain a dot (e.g. "time.Time" -> "time"). Returns a sorted, deduplicated list.
+func collectImports(fields []Field) []string {
+	// Map well-known qualified type prefixes to their import paths.
+	pkgToImport := map[string]string{
+		"time": "time",
+		"net":  "net",
+		"url":  "net/url",
+		"json": "encoding/json",
+		"uuid": "github.com/google/uuid",
+	}
+
+	seen := map[string]bool{}
+	for _, f := range fields {
+		typ := strings.TrimPrefix(f.Type, "*")
+		typ = strings.TrimPrefix(typ, "[]")
+		if dot := strings.IndexByte(typ, '.'); dot > 0 {
+			pkg := typ[:dot]
+			if imp, ok := pkgToImport[pkg]; ok && !seen[imp] {
+				seen[imp] = true
+			}
+		}
+	}
+
+	imports := make([]string, 0, len(seen))
+	for imp := range seen {
+		imports = append(imports, imp)
+	}
+	slices.Sort(imports)
+	return imports
 }
 
 // sortFields sorts fields with "ID" first, then alphabetically by name (case-insensitive).

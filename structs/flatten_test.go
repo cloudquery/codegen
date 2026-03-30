@@ -202,8 +202,13 @@ func TestResolveType(t *testing.T) {
 			want: "[]map[string]any",
 		},
 		{
-			name: "cross-package type",
+			name: "cross-package scalar (time.Time)",
 			expr: &ast.SelectorExpr{X: &ast.Ident{Name: "time"}, Sel: &ast.Ident{Name: "Time"}},
+			want: "time.Time",
+		},
+		{
+			name: "cross-package struct",
+			expr: &ast.SelectorExpr{X: &ast.Ident{Name: "api"}, Sel: &ast.Ident{Name: "Finding"}},
 			want: "map[string]any",
 		},
 		{
