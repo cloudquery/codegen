@@ -1,5 +1,27 @@
 # Changelog
 
+## [0.4.2](https://github.com/cloudquery/codegen/compare/v0.4.1...v0.4.2) (2026-09-01)
+
+
+### Bug Fixes
+
+* **deps:** Update github.com/cloudquery/jsonschema digest to 45e7e20 ([#446](https://github.com/cloudquery/codegen/issues/446)) ([640f9ab](https://github.com/cloudquery/codegen/commit/640f9ab43b8e12ba20dc0c326fd926652c71ea1c))
+* **deps:** Update go module directive to v1.26.4 ([#436](https://github.com/cloudquery/codegen/issues/436)) ([b7b9331](https://github.com/cloudquery/codegen/commit/b7b933198e1b7eaeb12f562282b2b999c7d73fd8))
+* **deps:** Update go module directive to v1.26.5 ([#449](https://github.com/cloudquery/codegen/issues/449)) ([a855df4](https://github.com/cloudquery/codegen/commit/a855df4ea80d41baed910692f0dc72a4976e6a95))
+* **deps:** Update golang.org/x/exp digest to 746e56f ([#435](https://github.com/cloudquery/codegen/issues/435)) ([e2304d4](https://github.com/cloudquery/codegen/commit/e2304d4de347ab4b678cb46b078e4af218e5f63f))
+* **deps:** Update golang.org/x/exp digest to c48552f ([#444](https://github.com/cloudquery/codegen/issues/444)) ([8dcbe38](https://github.com/cloudquery/codegen/commit/8dcbe38d1b1725e82b522ec51df85d3a4ecca04c))
+* **deps:** Update golang.org/x/exp digest to e88cd73 ([#454](https://github.com/cloudquery/codegen/issues/454)) ([274abd9](https://github.com/cloudquery/codegen/commit/274abd9939fca1acfadfa978dbcba30c7c4b8f55))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.95.1 ([#432](https://github.com/cloudquery/codegen/issues/432)) ([1fe81c8](https://github.com/cloudquery/codegen/commit/1fe81c8025d1f663fcd9aab6431f91c14977d80e))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.95.2 ([#439](https://github.com/cloudquery/codegen/issues/439)) ([85add41](https://github.com/cloudquery/codegen/commit/85add416569fc3f666306498c13120b18307a83c))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.95.3 ([#442](https://github.com/cloudquery/codegen/issues/442)) ([27da75d](https://github.com/cloudquery/codegen/commit/27da75d5583493973b6eb34498b9d3b4802f91b1))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.96.0 ([#451](https://github.com/cloudquery/codegen/issues/451)) ([9ce014a](https://github.com/cloudquery/codegen/commit/9ce014a26aac7b50493ed5b805b39e254dd2a630))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.96.1 ([#452](https://github.com/cloudquery/codegen/issues/452)) ([9ae4458](https://github.com/cloudquery/codegen/commit/9ae4458377af5d1c407c180f610c5b8022e54fd5))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.96.2 ([#453](https://github.com/cloudquery/codegen/issues/453)) ([4b0baac](https://github.com/cloudquery/codegen/commit/4b0baac2d331eb3af811fd20cad3e51b0eb76673))
+* **deps:** Update module github.com/cloudquery/plugin-sdk/v4 to v4.96.3 ([#459](https://github.com/cloudquery/codegen/issues/459)) ([2f83059](https://github.com/cloudquery/codegen/commit/2f83059bbe3e158a045b409a44136b2ccbbbeaf6))
+* **deps:** Update module github.com/invopop/jsonschema to v0.14.0 ([#437](https://github.com/cloudquery/codegen/issues/437)) ([04846c8](https://github.com/cloudquery/codegen/commit/04846c8508ea04913810a0006c0759d03ba54666))
+* **deps:** Update module github.com/stretchr/testify to v1.12.1 ([#457](https://github.com/cloudquery/codegen/issues/457)) ([547a939](https://github.com/cloudquery/codegen/commit/547a939b236cb6a90bed7d3aed86ac6381601f4b))
+* **deps:** Update module golang.org/x/net to v0.55.0 [SECURITY] ([#447](https://github.com/cloudquery/codegen/issues/447)) ([e7a584e](https://github.com/cloudquery/codegen/commit/e7a584e0b6d132ee09af29019d75f981f2f20fee))
+
 ## [0.4.1](https://github.com/cloudquery/codegen/compare/v0.4.0...v0.4.1) (2026-03-30)
 
 
