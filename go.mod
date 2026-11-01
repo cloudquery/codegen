@@ -12,7 +12,7 @@ require (
 	github.com/invopop/jsonschema v0.14.0
 	github.com/jpillora/longestcommon v0.0.0-20161227235612-adb9d91ee629
 	github.com/stretchr/testify v1.12.1
-	golang.org/x/exp v0.0.0-20260908205506-85c1c2202aba
+	golang.org/x/exp v0.0.0-20261014143641-f0251eb4aa3e
 )
 
 // github.com/cloudquery/jsonschema @ cqmain
