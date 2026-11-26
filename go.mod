@@ -16,7 +16,7 @@ require (
 )
 
 // github.com/cloudquery/jsonschema @ cqmain
-replace github.com/invopop/jsonschema => github.com/cloudquery/jsonschema v0.0.0-20260703174721-45e7e20e0ed8
+replace github.com/invopop/jsonschema => github.com/cloudquery/jsonschema v0.0.0-20261126170215-3835a01020fb
 
 require (
 	github.com/Azure/azure-sdk-for-go/sdk/azcore v1.21.0 // indirect
